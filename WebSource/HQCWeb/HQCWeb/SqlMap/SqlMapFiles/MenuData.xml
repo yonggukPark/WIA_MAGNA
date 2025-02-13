@@ -4,11 +4,11 @@
     <statement id="Get_Menus" parameterClass="System.Collections.Hashtable" >
       <![CDATA[      
         WITH MENU_INFO AS (
-	        SELECT MENU_ID FROM MES_AUTHGROUP_CONTROL_MA WITH(NOLOCK)
+	        SELECT MENU_ID FROM MA_AUTHGROUP_CONTROL WITH(NOLOCK)
 	        WHERE AUTHGROUP_ID IN (
 		        SELECT 
 			        AUTHGROUP_ID 
-		        FROM MES_AUTHGROUP_USER_MA WITH(NOLOCK)
+		        FROM MA_AUTHGROUP_USER WITH(NOLOCK)
 		        WHERE USER_ID = #USER_ID#
 	        )
 	        GROUP BY MENU_ID
@@ -25,7 +25,7 @@
 			      , USE_YN
             , MENU_ID AS MENU_GROUP_ID
             , ASSEMBLY_ID
-	        FROM MES_MENU_MA WITH(NOLOCK)
+	        FROM MA_MENU WITH(NOLOCK)
 	        WHERE MENU_LEVEL = '1' AND USE_YN = 'Y'
 	        UNION ALL
 	        SELECT 
@@ -40,7 +40,7 @@
 			      , DT.USE_YN
             , DT.MENU_PARENT_ID
             , DT.ASSEMBLY_ID
-	        FROM MES_MENU_MA DT WITH(NOLOCK)
+	        FROM MA_MENU DT WITH(NOLOCK)
 	        INNER JOIN MENU_CTE DC
 		        ON DC.MENU_ID = DT.MENU_PARENT_ID
           WHERE DT.USE_YN = 'Y'
@@ -111,7 +111,7 @@
             , USE_YN
             , POPUP_YN
             , MENU_IDX
-	        FROM MES_MENU_MA WITH(NOLOCK)
+	        FROM MA_MENU WITH(NOLOCK)
 	        WHERE MENU_LEVEL = '1'
 	        UNION ALL
 	        SELECT 
@@ -133,7 +133,7 @@
             , DT.USE_YN
             , DT.POPUP_YN
             , DT.MENU_IDX
-	        FROM MES_MENU_MA DT WITH(NOLOCK)
+	        FROM MA_MENU DT WITH(NOLOCK)
 	        INNER JOIN MENU_CTE DC
 		        ON DC.MENU_ID = DT.MENU_PARENT_ID
 	      )
@@ -173,7 +173,7 @@
 						    WHEN MENU_PARENT_ID = '' THEN SUBSTRING(CD_PATH, 1, LEN(MENU_ID)) 
 						    ELSE SUBSTRING(CD_PATH, 1, LEN(MENU_PARENT_ID)) 
 					  END AS MENU_GROUP_ID
-            , (SELECT COUNT(DT.MENU_PARENT_ID) FROM MES_MENU_MA DT WITH(NOLOCK) WHERE DT.MENU_PARENT_ID = MC.MENU_ID ) AS CHILD_CNT
+            , (SELECT COUNT(DT.MENU_PARENT_ID) FROM MA_MENU DT WITH(NOLOCK) WHERE DT.MENU_PARENT_ID = MC.MENU_ID ) AS CHILD_CNT
             , ASSEMBLY_ID
             , MENU_TYPE
             , REGIST_DATE
@@ -215,7 +215,7 @@
           , APPROVAL_FLAG
           , USE_YN
 				  , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
-	      FROM MES_MENU_MA WITH(NOLOCK)
+	      FROM MA_MENU WITH(NOLOCK)
 			  WHERE MENU_TYPE = 'W'
         AND MENU_ID LIKE '%' + (CASE WHEN #MENU_ID# = '' THEN MENU_ID ELSE #MENU_ID# END) + '%'
 		      AND (
@@ -240,7 +240,7 @@
           , USE_YN
           , POPUP_YN
           , MENU_IDX
-        FROM MES_MENU_MA WITH(NOLOCK)
+        FROM MA_MENU WITH(NOLOCK)
         WHERE MENU_TYPE = 'W'
         AND MENU_ID = #MENU_ID#
       ]]>
@@ -251,7 +251,7 @@
     -->
     <statement id="Get_MenuID_ValChk" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT COUNT(MENU_ID) AS VAL_CHK FROM MES_MENU_MA WITH(NOLOCK)
+        SELECT COUNT(MENU_ID) AS VAL_CHK FROM MA_MENU WITH(NOLOCK)
         WHERE MENU_TYPE = 'W' 
         AND MENU_ID = #MENU_ID#
       ]]>
@@ -262,7 +262,7 @@
     -->
     <statement id="Get_MenuLevel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT MENU_LEVEL FROM MES_MENU_MA WITH(NOLOCK)
+        SELECT MENU_LEVEL FROM MA_MENU WITH(NOLOCK)
         WHERE MENU_TYPE = 'W' 
         GROUP BY MENU_LEVEL
       ]]>
@@ -273,7 +273,7 @@
     -->
     <statement id="Get_ParentMenuLevel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT MENU_LEVEL FROM MES_MENU_MA WITH(NOLOCK)
+        SELECT MENU_LEVEL FROM MA_MENU WITH(NOLOCK)
         WHERE MENU_TYPE = 'W' 
         AND MENU_ID = #MENU_PARENT_ID#
       ]]>
@@ -284,7 +284,7 @@
     -->
     <statement id="Set_MenuInfo" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        MERGE INTO MES_MENU_MA AS A
+        MERGE INTO MA_MENU AS A
         USING (SELECT #MENU_ID#) AS B (MENU_ID)
            ON (A.MENU_ID = B.MENU_ID)
         WHEN MATCHED THEN
@@ -315,7 +315,7 @@
     -->
     <statement id="Set_MenuInfoDel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        DELETE FROM MES_MENU_MA 
+        DELETE FROM MA_MENU 
         WHERE MENU_TYPE = 'W'
         AND MENU_ID = #MENU_ID#
       ]]>
@@ -329,7 +329,7 @@
         SELECT  
           REPLACE(MENU_ID, ' ', '') AS MENU_ID
           , MENU_NM
-        FROM MES_MENU_MA WITH(NOLOCK) 
+        FROM MA_MENU WITH(NOLOCK) 
         WHERE MENU_TYPE = 'W'
           AND MENU_LEVEL = #MENU_LEVEL#
           AND ISNULL(REPLACE(MENU_PARENT_ID, ' ', ''), '') = #MENU_PARENT_ID#
@@ -359,7 +359,7 @@
 		          , @CONTROL_FUNCTION	  VARCHAR(100)
               , @NOT_DEL_CONTROL_ID VARCHAR(1000)
 
-          DELETE FROM MES_MENU_CONTROL_MA
+          DELETE FROM MA_MENU_CONTROL
           WHERE MENU_ID = #MENU_ID#
           
           INSERT INTO @DEF_VAL
@@ -390,7 +390,7 @@
             SELECT @CONTROL_NM = VAL		    FROM @DTL_VAL WHERE NUM = 3
             SELECT @CONTROL_FUNCTION = VAL	FROM @DTL_VAL WHERE NUM = 4
 
-            MERGE INTO MES_MENU_CONTROL_MA AS A
+            MERGE INTO MA_MENU_CONTROL AS A
               USING (SELECT @MENU_ID, @CONTROL_ID) AS B (MENU_ID, CONTROL_ID)
                 ON (A.MENU_ID = B.MENU_ID AND A.CONTROL_ID = B.CONTROL_ID)
               WHEN MATCHED THEN
@@ -422,7 +422,7 @@
 
           END
           
-          DELETE FROM MES_AUTHGROUP_CONTROL_MA  
+          DELETE FROM MA_AUTHGROUP_CONTROL  
           WHERE MENU_ID = #MENU_ID#
 		        AND CONTROL_ID NOT IN (SELECT value FROM dbo.fn_Split(@NOT_DEL_CONTROL_ID, ','))
           
@@ -440,12 +440,12 @@
 	        , MCM.CONTROL_NM
 	        , MCM.CONTROL_FUNCTION
 	        , BA.BUTTON_IDX
-        FROM MES_AUTHGROUP_CONTROL_MA ACM WITH(NOLOCK) 
-	        LEFT OUTER JOIN MES_BUTTON_MA BA WITH(NOLOCK)
+        FROM MA_AUTHGROUP_CONTROL ACM WITH(NOLOCK) 
+	        LEFT OUTER JOIN MA_BUTTON BA WITH(NOLOCK)
 		        ON ACM.CONTROL_ID = BA.BUTTON_ID
-	        LEFT OUTER JOIN MES_MENU_CONTROL_MA MCM WITH(NOLOCK) 
+	        LEFT OUTER JOIN MA_MENU_CONTROL MCM WITH(NOLOCK) 
 		        ON ACM.MENU_ID = MCM.MENU_ID AND ACM.CONTROL_ID = MCM.CONTROL_ID
-        WHERE AUTHGROUP_ID IN (SELECT AUTHGROUP_ID FROM MES_AUTHGROUP_USER_MA WITH(NOLOCK) WHERE USER_ID = #USER_ID#)
+        WHERE AUTHGROUP_ID IN (SELECT AUTHGROUP_ID FROM MA_AUTHGROUP_USER WITH(NOLOCK) WHERE USER_ID = #USER_ID#)
         AND ACM.MENU_ID = #MENU_ID#
         ORDER BY BA.BUTTON_IDX
       ]]>
@@ -463,8 +463,8 @@
           , CO.CONTROL_NM
           , CO.CONTROL_FUNCTION
           , BU.BUTTON_IDX
-        FROM MES_MENU_CONTROL_MA CO WITH(NOLOCK) 
-          LEFT OUTER JOIN MES_BUTTON_MA BU WITH (NOLOCK)
+        FROM MA_MENU_CONTROL CO WITH(NOLOCK) 
+          LEFT OUTER JOIN MA_BUTTON BU WITH (NOLOCK)
 		        ON CO.CONTROL_ID = BU.BUTTON_ID
         WHERE REPLACE(CO.MENU_ID, ' ', '') = #MENU_ID#
         ORDER BY BU.BUTTON_IDX
@@ -473,14 +473,14 @@
 
     <statement id="Get_MenuIDByViewID" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT MENU_ID FROM MES_MENU_MA WITH(NOLOCK)
+        SELECT MENU_ID FROM MA_MENU WITH(NOLOCK)
         WHERE VIEW_ID = #VIEW_ID#
       ]]>
     </statement>
 
     <statement id="Get_MenuIDByViewIDLike" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT DISTINCT MENU_ID FROM MES_MENU_MA WITH(NOLOCK)
+        SELECT DISTINCT MENU_ID FROM MA_MENU WITH(NOLOCK)
         WHERE VIEW_ID LIKE #VIEW_ID#+'%'
       ]]>
     </statement>

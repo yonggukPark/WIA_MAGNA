@@ -10,7 +10,7 @@
           , MSG_TXT_KR
           , MSG_TXT_EN
           , MSG_TXT_LO 
-        FROM MES_MESSAGE_MA WITH(NOLOCK)
+        FROM MA_MESSAGE WITH(NOLOCK)
       ]]>      
     </statement>
 

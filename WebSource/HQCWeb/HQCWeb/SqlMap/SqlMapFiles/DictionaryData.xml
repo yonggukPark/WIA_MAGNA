@@ -17,7 +17,7 @@
             , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
             , MODIFY_USER_ID
 		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
-	        FROM MES_DICTIONARY_MA WITH(NOLOCK)
+	        FROM MA_DICTIONARY WITH(NOLOCK)
 	        WHERE DIC_ID LIKE '%' + (CASE WHEN #DIC_ID# = '' THEN DIC_ID ELSE #DIC_ID# END) + '%'
 		        AND (
               DIC_TXT_KR LIKE '%' + (CASE WHEN #DIC_NM# = '' THEN DIC_TXT_KR ELSE #DIC_NM# END) + '%'
@@ -40,7 +40,7 @@
           , DIC_TXT_KR
           , DIC_TXT_EN
           , DIC_TXT_LO      
-        FROM MES_DICTIONARY_MA WITH(NOLOCK)
+        FROM MA_DICTIONARY WITH(NOLOCK)
         WHERE DIC_ID = #DIC_ID#
       ]]>
     </statement>
@@ -50,7 +50,7 @@
     -->
     <statement id="Get_DictionaryID_ValChk" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT COUNT(DIC_ID) AS VAL_CHK FROM MES_DICTIONARY_MA WITH(NOLOCK)
+        SELECT COUNT(DIC_ID) AS VAL_CHK FROM MA_DICTIONARY WITH(NOLOCK)
         WHERE DIC_ID = #DIC_ID#
       ]]>
     </statement>
@@ -60,7 +60,7 @@
     -->
     <statement id="Set_DictionaryInfo" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        MERGE INTO MES_DICTIONARY_MA AS A
+        MERGE INTO MA_DICTIONARY AS A
         USING (SELECT #DIC_ID#) AS B (DIC_ID)
            ON (A.DIC_ID = B.DIC_ID)
         WHEN MATCHED THEN
@@ -85,7 +85,7 @@
     -->
     <statement id="Set_DictionaryInfoDel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        DELETE FROM MES_DICTIONARY_MA 
+        DELETE FROM MA_DICTIONARY 
         WHERE DIC_ID = #DIC_ID#
       ]]>
     </statement>

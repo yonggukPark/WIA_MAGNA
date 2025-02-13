@@ -30,7 +30,7 @@
 		        , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
 		        , MODIFY_USER_ID
 		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
-	        FROM MES_USER_MA WITH(NOLOCK)
+	        FROM MA_USER WITH(NOLOCK)
 	        WHERE USER_ID LIKE '%' + (CASE WHEN #USER_ID# = '' THEN USER_ID ELSE #USER_ID# END) + '%'
 		        AND USER_NM LIKE '%' + (CASE WHEN #USER_NM# = '' THEN USER_NM ELSE #USER_NM# END) + '%'
           ORDER BY REGIST_DATE DESC
@@ -56,7 +56,7 @@
           , CASE WHEN DATEDIFF(DAY, LOGIN_DT, GETDATE()) > PASSWORD_EXPIRE_CNT THEN 'Y' ELSE 'N' END  AS EXPIRE_YN
           , LOGIN_STAT_CD
           , PREV_PWD
-        FROM MES_USER_MA WITH(NOLOCK)
+        FROM MA_USER WITH(NOLOCK)
         WHERE USER_ID = #USER_ID#
       ]]>
     </statement>
@@ -66,7 +66,7 @@
     -->
     <statement id="Get_UserID_ValChk" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT COUNT(USER_ID) AS VAL_CHK FROM MES_USER_MA WITH(NOLOCK)
+        SELECT COUNT(USER_ID) AS VAL_CHK FROM MA_USER WITH(NOLOCK)
         WHERE USER_ID = #USER_ID#
       ]]>
     </statement>
@@ -76,7 +76,7 @@
     -->
     <statement id="Set_UserInfo" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        MERGE INTO MES_USER_MA AS A
+        MERGE INTO MA_USER AS A
         USING (SELECT #USER_ID#) AS B (USER_ID)
            ON (A.USER_ID = B.USER_ID)
         WHEN MATCHED THEN
@@ -107,7 +107,7 @@
     -->
     <statement id="Set_UserInfoDel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        DELETE FROM MES_USER_MA 
+        DELETE FROM MA_USER 
         WHERE USER_ID = #USER_ID#
       ]]>
     </statement>
@@ -117,7 +117,7 @@
     -->
     <statement id="Set_UserPwdUpdate" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        UPDATE MES_USER_MA SET
+        UPDATE MA_USER SET
           USER_PWD          = #USER_PWD#
           , MODIFY_DATE     = GETDATE()
           , MODIFY_USER_ID  = #USER_ID#
@@ -150,7 +150,7 @@
 		            , @FIX		    VARCHAR(10)
 		            , @COL_INFO   VARCHAR(MAX) = #COL_INFO#
             
-            DELETE FROM MES_USER_MENU_COLUMN_SETTING_MA
+            DELETE FROM MA_USER_MENU_COLUMN_SETTING
             WHERE USER_ID = #USER_ID# AND MENU_ID = #MENU_ID#
 
             INSERT INTO @DEF_VAL
@@ -181,7 +181,7 @@
 	            SELECT @VALINDEX	= VAL FROM @DTL_VAL WHERE NUM = 3
 	            SELECT @FIX			  = VAL FROM @DTL_VAL WHERE NUM = 4
 	
-	            INSERT INTO MES_USER_MENU_COLUMN_SETTING_MA (USER_ID, MENU_ID, COLUMN_NAME, COLUMN_WIDTH, COLUMN_INDEX, COLUMN_FIX, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+	            INSERT INTO MA_USER_MENU_COLUMN_SETTING (USER_ID, MENU_ID, COLUMN_NAME, COLUMN_WIDTH, COLUMN_INDEX, COLUMN_FIX, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
 	            VALUES (#USER_ID#, #MENU_ID#, @NAME, @WIDTH, @VALINDEX, @FIX, GETDATE(), #USER_ID#, GETDATE(), #USER_ID#)
 
 	            SET @START_ROW = @START_ROW+1
@@ -201,7 +201,7 @@
           , COLUMN_WIDTH
           , COLUMN_INDEX
           , COLUMN_FIX
-        FROM MES_USER_MENU_COLUMN_SETTING_MA WITH(NOLOCK)
+        FROM MA_USER_MENU_COLUMN_SETTING WITH(NOLOCK)
         WHERE USER_ID = #USER_ID# AND MENU_ID = #MENU_ID#
         ORDER BY COLUMN_INDEX           
             
@@ -213,7 +213,7 @@
     -->
     <statement id="Set_UserLoginDTUpdate" parameterClass="System.Collections.Hashtable">
       <![CDATA[            
-        UPDATE MES_USER_MA SET
+        UPDATE MA_USER SET
           LOGIN_DT          = GETDATE()
           , LOGIN_FAULT_CNT = 0
           , LOGIN_STAT_CD   = 'N'
@@ -226,7 +226,7 @@
     -->
     <statement id="Set_UserLoginFaultCntUpdate" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-		    UPDATE MES_USER_MA SET
+		    UPDATE MA_USER SET
 			    LOGIN_FAULT_CNT = LOGIN_FAULT_CNT + 1
 		    WHERE USER_ID = #USER_ID#
       ]]>
@@ -237,7 +237,7 @@
     -->
     <statement id="Set_UserLoginFaultInfoUpdate" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-		    UPDATE MES_USER_MA SET
+		    UPDATE MA_USER SET
 			    LOGIN_FAULT_CNT   = LOGIN_FAULT_CNT + 1
           , LOGIN_STAT_CD   = 'C'
           , USER_PWD        = #TEMP_PWD#
@@ -250,7 +250,7 @@
     -->
     <statement id="Set_UserTempPWDUpdate" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-		    UPDATE MES_USER_MA SET
+		    UPDATE MA_USER SET
 			    LOGIN_FAULT_CNT   = 5
           , LOGIN_STAT_CD   = 'C'
           , USER_PWD        = #TEMP_PWD#
@@ -264,7 +264,7 @@
           USER_ID
           , USER_NM
           , SITE_ID
-        FROM MES_USER_MA WITH(NOLOCK)
+        FROM MA_USER WITH(NOLOCK)
         WHERE USER_ID = #USER_ID#
       ]]>
     </statement>

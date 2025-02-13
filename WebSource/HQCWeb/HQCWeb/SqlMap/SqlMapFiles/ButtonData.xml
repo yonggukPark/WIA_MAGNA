@@ -19,7 +19,7 @@
             , REGIST_USER_ID
             , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
             , MODIFY_USER_ID
-	        FROM MES_BUTTON_MA WITH(NOLOCK)
+	        FROM MA_BUTTON WITH(NOLOCK)
 	        WHERE BUTTON_ID LIKE '%' + (CASE WHEN #BUTTON_ID# = '' THEN BUTTON_ID ELSE #BUTTON_ID# END) + '%'
 		        AND (
               BUTTON_TXT_KR LIKE '%' + (CASE WHEN #BUTTON_NM# = '' THEN BUTTON_TXT_KR ELSE #BUTTON_NM# END) + '%'
@@ -45,7 +45,7 @@
           , BUTTON_FUNCTION
           , BUTTON_IDX
           , USE_YN
-        FROM MES_BUTTON_MA WITH(NOLOCK)
+        FROM MA_BUTTON WITH(NOLOCK)
         WHERE BUTTON_ID = #BUTTON_ID#
       ]]>
     </statement>
@@ -61,7 +61,7 @@
           , BUTTON_TXT_EN
           , BUTTON_TXT_LO
           , BUTTON_FUNCTION
-        FROM MES_BUTTON_MA WITH(NOLOCK)
+        FROM MA_BUTTON WITH(NOLOCK)
         WHERE USE_YN = 'Y'
         ORDER BY BUTTON_IDX 
       ]]>
@@ -74,7 +74,7 @@
       <![CDATA[
         SELECT 
           COUNT(BUTTON_ID) AS VAL_CHK 
-        FROM MES_BUTTON_MA WITH(NOLOCK)
+        FROM MA_BUTTON WITH(NOLOCK)
         WHERE BUTTON_ID = #BUTTON_ID#
       ]]>
     </statement>
@@ -84,7 +84,7 @@
     -->
     <statement id="Set_ButtonInfo" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        MERGE INTO MES_BUTTON_MA AS A
+        MERGE INTO MA_BUTTON AS A
         USING (SELECT #BUTTON_ID#) AS B (BUTTON_ID)
            ON (A.BUTTON_ID = B.BUTTON_ID)
         WHEN MATCHED THEN
@@ -112,7 +112,7 @@
     -->
     <statement id="Set_ButtonInfoDel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        DELETE FROM MES_BUTTON_MA 
+        DELETE FROM MA_BUTTON 
         WHERE BUTTON_ID = #BUTTON_ID#
       ]]>
     </statement>

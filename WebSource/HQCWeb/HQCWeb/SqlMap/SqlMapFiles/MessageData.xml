@@ -17,7 +17,7 @@
             , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
             , MODIFY_USER_ID
 		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
-	        FROM MES_MESSAGE_MA WITH(NOLOCK)
+	        FROM MA_MESSAGE WITH(NOLOCK)
 	        WHERE MSG_ID LIKE '%' + (CASE WHEN #MSG_ID# = '' THEN MSG_ID ELSE #MSG_ID# END) + '%'
 		        AND (
               MSG_TXT_KR LIKE '%' + (CASE WHEN #MSG_NM# = '' THEN MSG_TXT_KR ELSE #MSG_NM# END) + '%'
@@ -40,7 +40,7 @@
           , MSG_TXT_KR
           , MSG_TXT_EN
           , MSG_TXT_LO      
-        FROM MES_MESSAGE_MA WITH(NOLOCK)
+        FROM MA_MESSAGE WITH(NOLOCK)
         WHERE MSG_ID = #MSG_ID#
       ]]>
     </statement>
@@ -50,7 +50,7 @@
     -->
     <statement id="Get_MessageID_ValChk" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        SELECT COUNT(MSG_ID) AS VAL_CHK FROM MES_MESSAGE_MA WITH(NOLOCK)
+        SELECT COUNT(MSG_ID) AS VAL_CHK FROM MA_MESSAGE WITH(NOLOCK)
         WHERE MSG_ID = #MSG_ID#
       ]]>
     </statement>
@@ -60,7 +60,7 @@
     -->
     <statement id="Set_MessageInfo" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        MERGE INTO MES_MESSAGE_MA AS A
+        MERGE INTO MA_MESSAGE AS A
         USING (SELECT #MSG_ID#) AS B (MSG_ID)
            ON (A.MSG_ID = B.MSG_ID)
         WHEN MATCHED THEN
@@ -85,7 +85,7 @@
     -->
     <statement id="Set_MessageInfoDel" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-        DELETE FROM MES_MESSAGE_MA 
+        DELETE FROM MA_MESSAGE 
         WHERE MSG_ID = #MSG_ID#
       ]]>
     </statement>

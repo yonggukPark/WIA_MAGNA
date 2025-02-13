@@ -10,7 +10,7 @@
           , DIC_TXT_KR
           , DIC_TXT_EN
           , DIC_TXT_LO 
-        FROM MES_DICTIONARY_MA WITH(NOLOCK)
+        FROM MA_DICTIONARY WITH(NOLOCK)
       ]]>
     </statement>
     
