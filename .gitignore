@@ -1,0 +1,8 @@
+*.dll
+*.pdb
+*.suo
+*.config
+*.cache
+/WebSource/HQCWeb/HQCWeb/bin
+/WebSource/HQCWeb/.vs
+/WebSource/HQCWeb/HQCWeb/obj/Debug
