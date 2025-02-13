@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info43Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_StorageList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO43_S #PLANT_CD#,#STORAGE_NM#,#STORAGE_TYPE#,#USE_YN#,#FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_StorageID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO43_CHK #PLANT_CD#,#STORAGE_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_StorageInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO43_INFO #PLANT_CD#,#STORAGE_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_StorageInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO43_IU #PLANT_CD#,#STORAGE_CD#, #STORAGE_NM#, #STORAGE_TYPE#, #DISP_ORDER#, #RETURN_TYPE#, #DECOMPOSE_TYPE#, #REMARK1#,#REMARK2#,#USE_YN#,#USER_ID#	
+      ]]>
+    </statement>
+
+    <statement id="Set_StorageInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO43_D #PLANT_CD#,#STORAGE_CD#, #FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO43_DDL #PLANT_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

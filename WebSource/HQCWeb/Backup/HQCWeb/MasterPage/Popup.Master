@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Popup.Master.cs" Inherits="HQCWeb.MasterPage.Popup" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <META http-equiv="Expires" content="-1">
+    <META http-equiv="Pragma" content="no-cache">
+    <META http-equiv="Cache-Control" content="No-Cache">    
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.core.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.theme.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.datepicker.css" />
+
+    <script type="text/javascript" src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jq-paginator.js"></script>
+    <script type="text/javascript" src="/Scripts/HQC_Common.js"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.ui.datepicker.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/common_v_popup.css"  />
+
+    <script type="module" src="/Scripts/comboTreePlugin.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/comboTreeStyle.css"  />
+
+    <style type="text/css">
+       .divClass {display:table; width:100%; height:98%; filter:alpha(opacity=65); opacity:0.3; -moz-opacity:0.3; z-index:100; position:absolute; font-size:9pt; background:#d6d3ce;}
+       .pClass {display:table-cell; text-align:center; vertical-align:middle;}
+
+        td.dxgv {
+            height:35px;
+        }
+    </style>
+
+    <script language="javascript" type="text/javascript">
+        function fn_WatingCall() {
+            $("#waiting").show();
+
+            //waiting.style.visibility = 'visible';
+        }
+
+        function fn_NoConnectMsg() {
+            alert('Tibco 서비스와 연결이 끊어졌습니다. 관리자에게 문의바립니다.');
+        }
+
+        function fn_loadingEnd() {
+            $("#waiting").hide();
+
+            //waiting.style.visibility = 'hidden'
+        }
+
+        $(function () {
+            $("#PopupContent_txtDate").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+
+
+        function fn_ExError() {
+            alert("등록할수 없는 문자열이 포함되어 있습니다. 정보를 다시 확인하세요.");
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <form id="frPopupForm" runat="server">
+
+        <div  id="waiting" class="divClass">
+            <p class="pClass"><img src="/images/ajax-loader.gif" /><br /></p>
+        </div>
+
+        <asp:ScriptManager runat="server" ID="ScriptManager"/>
+
+        <asp:HiddenField ID= "hidPopValue" runat="server" />
+
+        <asp:HiddenField ID= "hidPopDefaultValue" runat="server" />
+
+        <asp:ContentPlaceHolder ID="PopupContent" runat="server">
+        </asp:ContentPlaceHolder>
+        
+
+        <script language='Javascript' type="text/javascript">
+            var _width = $("#ifrPopup", parent.document).width();
+            var _height = $("#ifrPopup", parent.document).height();
+
+            $(".popup_wrap").attr("style", "width:" + _width + "px;height:" + _height + "px;");
+
+            setTimeout(function () {
+                fn_loadingEnd();
+            }, 1000);
+        </script>
+
+    </form>
+
+    <form name="form2">
+        <input type="hidden" name="hidPopupValue" id="hidPopupValue" />
+    </form>
+
+</body>
+</html>

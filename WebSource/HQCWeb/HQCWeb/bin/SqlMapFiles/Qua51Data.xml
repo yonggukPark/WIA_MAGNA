@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Qua51Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_CurrectList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_S #PLANT_CD#,#YEAR#,#MAN_DEPT#,#STATUS#,#MAN_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_CurrectDetailList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_QUA51_DETAIL_S #PLANT_CD#,#MAN_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_CurrectID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_QUA51_CHK #PLANT_CD#,#MAN_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_CurrectInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_INFO #PLANT_CD#,#MAN_NO#
+      ]]>
+    </statement>
+
+    <statement id="Set_CurrectInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_I #PLANT_CD#,#MAN_NO#,#MAN_DEPT#,#PART_NAME#,#STANDARD#,#PART_SERIAL_NO#,#INSP_CYCLE#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_CurrectUploadInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_UPLOAD #PLANT_CD#,#MAN_NO#,#MAN_DEPT#,#PART_NAME#,#STANDARD#,#PART_SERIAL_NO#,#INSP_CYCLE#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Upt_CurrectInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_U #PLANT_CD#,#MAN_NO#,#MAN_DEPT#,#PART_NAME#,#STANDARD#,#PART_SERIAL_NO#,#INSP_CYCLE#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Del_CurrectInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_D #PLANT_CD#,#MAN_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_CurrectDetailID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_QUA51_DETAIL_CHK #PLANT_CD#,#MAN_NO#,#CERT_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_CurrectDetailInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_DETAIL_INFO #PLANT_CD#,#MAN_NO#,#CERT_NO#
+      ]]>
+    </statement>
+
+    <statement id="Set_CurrectDetailInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_DETAIL_I #PLANT_CD#,#MAN_NO#,#CERT_NO#,#ISSUE_DT#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Upt_CurrectDetailInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_DETAIL_U #PLANT_CD#,#MAN_NO#,#CERT_NO#,#ISSUE_DT#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Del_CurrectDetailInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_DETAIL_D #PLANT_CD#,#MAN_NO#,#CERT_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_FileInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_FILE_INFO #PLANT_CD#,#MAN_NO#
+      ]]>
+    </statement>
+
+    <statement id="Set_FileInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_FILE_I #PLANT_CD#,#MAN_NO#,#CERT_NO#,#FILE_INFO#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_FileInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_FILE_D #PLANT_CD#,#MAN_NO#,#CERT_NO#,#ORG_FILE_NAME#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA51_DDL #PLANT_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

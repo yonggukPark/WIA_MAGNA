@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Pln02Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_PlanList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_PLN02_S #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#PLAN_DT#, #PLAN_CD#, #PLAN_DETAIL_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_PlanID_ValChk_Event" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN02_CHK_EVENT #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#PART_NO#,#PLAN_DT#, #CAR_TYPE#
+      ]]>
+    </statement>
+
+    <statement id="Get_PlanID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN02_CHK #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#PART_NO#,#PLAN_DT#, #CAR_TYPE#, #ORDER_NO#, #PLAN_D_QTY#, #PLAN_N_QTY#
+      ]]>
+    </statement>
+
+    <statement id="Set_PlanInfo_Event" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN02_I_EVENT #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#PART_NO#,#PLAN_DT#,#PLAN_QTY#, #CAR_TYPE#
+      ]]>
+    </statement>
+
+    <statement id="Set_PlanInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN02_I #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #PART_NO#, #PLAN_DT#, #PLAN_QTY#, #CAR_TYPE#, #ORDER_NO#, #PLAN_D_QTY#, #PLAN_N_QTY#, #REMARK#, #ORDER_TYPE#, #STATUS_FLG#, #FINISH_FLG#, #PLAN_CD#, #PLAN_DETAIL_CD#
+      ]]>
+    </statement>
+
+    <statement id="Update_PlanInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN02_U #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #PART_NO#, #PLAN_DT#, #PLAN_QTY#, #CAR_TYPE#, #ORDER_NO#, #PLAN_D_QTY#, #PLAN_N_QTY#, #REMARK#, #ORDER_TYPE#, #STATUS_FLG#, #FINISH_FLG#, #PLAN_CD#, #PLAN_DETAIL_CD#, #PLAN_SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Get_PlanInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN02_INFO #PLANT_CD#,#PLAN_DT#,#ORDER_NO#,#SHOP_CD#,#LINE_CD#,#PLAN_SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Set_PlanInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN02_D #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #CAR_TYPE#, #PLAN_DT#, #ORDER_NO#, #PLAN_SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN02_DDL #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #PLAN_CD#, #PART_NO#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

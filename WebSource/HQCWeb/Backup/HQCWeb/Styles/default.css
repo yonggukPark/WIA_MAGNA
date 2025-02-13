@@ -1,0 +1,106 @@
+@charset "utf-8";
+@font-face {font-family: HDHarmonyM;src: url('/images/common/HDHarmonyM.eot');}
+@font-face {font-family: HDHarmonyL;src: url('/images/common/HDHarmonyL.eot');}
+/* CSS Document */
+
+
+html { font-size: 15px;height:100%;}
+
+body { font-size: 15px}
+
+label { cursor:pointer}
+
+a { color:#666;}
+
+a:link, a:visited { text-decoration:none;}
+
+a:hover, a:focus, a:active { text-decoration:none; color:#00aeef;}
+
+*{margin:0;padding:0;}
+
+
+
+
+a, abbr, acronym, address, applet, article, aside, audio,
+
+b, blockquote, big, body,
+
+center, canvas, caption, cite, code, command,
+
+datalist, dd, del, details, dfn, dl, div, dt, 
+
+em, embed,
+
+fieldset, figcaption, figure, font, footer, form, 
+
+h1, h2, h3, h4, h5, h6, header, hgroup, html,
+
+i, iframe, img, ins,
+
+kbd, 
+
+keygen,
+
+label, legend, li, 
+
+meter,
+
+nav, menu,
+
+object, ol, output,
+
+p, pre, progress,
+
+q, 
+
+s, samp, section, small, span, source, strike, strong, sub, sup,
+
+table, tbody, tfoot, thead, th, tr, tdvideo, tt,
+
+u, ul, 
+
+var { margin:0; padding:0; }
+
+
+
+h1, h2, h3, h4, h5, h6, th, td, table, input, button, select, textarea, sub{ font-size:15px;}
+
+input, select, textarea, sub{ font-size:15px}
+
+body, input, button, select, textarea, sub{ font-family:HDHarmonyL; }
+
+em, cite, address, optgroup { font-style:normal}
+
+kbd, samp, code { font-family:HDHarmonyL }
+
+
+
+img, input, button, select, textarea { vertical-align:middle}
+
+ul, ol, li{ list-style:none}
+
+img, fieldset { border:0}
+
+abbr, acronym { cursor:help; border-bottom:1px dotted black}
+
+table {	width:100%;  border-spacing:0}
+
+
+
+
+
+
+
+
+select{padding:2px 2px 2px 0;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    color:#666666;
+    border:1px;
+    display: inline-block;
+    appearance:none;
+    cursor:pointer;}

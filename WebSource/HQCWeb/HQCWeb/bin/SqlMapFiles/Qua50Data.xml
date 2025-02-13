@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Qua50Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_EOList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_S #PLANT_CD#,#EO4M_FLAG#,#PROD_MONTH#,#SHOP_CD#,#LINE_CD#,#EO_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_EOID_PartChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_QUA50_PART_CHK #PLANT_CD#, #PART_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_EOID_CarChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_QUA50_CAR_CHK #PLANT_CD#, #PART_NO#, #CAR_TYPE#
+      ]]>
+    </statement>
+    
+    <statement id="Set_EOInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_I #PLANT_CD#,#PROD_DT#,#EO4M_FLAG#,#SHOP_CD#,#LINE_CD#,#PART_NO#,#CAR_TYPE#,#EO_NO#,#MOD_REMARK#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Get_EOInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_INFO #PLANT_CD#,#NO#
+      ]]>
+    </statement>
+
+    <statement id="Upt_EOInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_U #PLANT_CD#,#NO#,#CAR_TYPE#,#EO_NO#,#REMARK#,#MOD_REMARK#,#INBOUND_DT#,#COMPLETE_NO#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Del_EOInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_D #PLANT_CD#,#NO#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_FileInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_FILE_I #PLANT_CD#,#NO#,#FILE_INFO#,#USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_FileInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_FILE_D #PLANT_CD#,#NO#,#ORG_FILE_NAME#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA50_DDL #PLANT_CD#, #PART_NO#, #SHOP_CD#, #LINE_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

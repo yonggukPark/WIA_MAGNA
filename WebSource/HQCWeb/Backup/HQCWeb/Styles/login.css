@@ -1,0 +1,142 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.hidden { visibility:hidden; text-indent:-5000px; margin:0; padding:0;}
+
+.hidden, #container .hidden { visibility:hidden; position:absolute; font-size:0; width:0; height:0; line-height:0; margin:0; padding:0; background:none}
+
+.hand { cursor: pointer; }
+
+.text { text-indent:-5000px;}
+/* wrapper */
+#wrapper { position:relative; width:100%; margin:0 Auto;  }
+
+/* header */
+#header_top { position:relative; width:1000px;height:140px; margin:0 auto;padding:0;  border-bottom:4px solid #259ede;} 
+#header{ position:relative; width:940px;  margin:0 auto; padding:0 0 0 0;}
+h1{ position:absolute; left:0px; top:65px; width:185px; height:60px; line-height:0;}
+.mes{ position:absolute; right:0px; top:100px; line-height:0;}
+
+#contents { position: relative; z-index:1;padding:0; width:1000px; margin:0 auto; overflow:hidden;  ;}
+
+#contents .title_img { height:278px;   margin:0; padding:0 0 0 2px; float:left; position: relative; overflow:hidden; }
+#contents .center {float:left; width:1000px; height:226px; margin:0; padding: 0;  position: relative; border-top:1px solid #dcdcdc; border-bottom:1px solid #dcdcdc;background:url(/images/login/cen_bg.jpg) repeat-x 0 0; }
+
+.notice { width:450px; margin:0; padding:0; position:absolute; left:20px;top:10px;}
+ul.notTabs {
+border-bottom:1px solid #dcdcdc;
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 35px; 
+	width: 100%;
+}
+ul.notTabs li {
+	float: left;
+	margin: 0;
+	padding: 10px 0 0 0;
+	height: 35px;
+	line-height:30px; 
+	border-left: none;
+	margin-bottom: -1px;
+	position: relative;
+	font-weight:bold;color:#518de8;font-size:18px;
+	letter-spacing: -1px;}
+ul.notTabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	padding: 0;
+	border-right: 2px solid #fff; 
+	outline: none;
+	height: 35px;
+	width:97px;
+	text-align:center;
+}
+.noticeLibraryCon { margin:0; padding:28px 0 0 0;}
+.noticeLibraryCon dl { margin:0 0 10px 0; padding:0;}
+.noticeLibraryCon dt { background:url(/images/icon/notice_ico.gif) no-repeat 0 5px; width:300px; margin:0; padding:0 0 0 5px; display:inline; }
+.noticeLibraryCon dd { margin:0; padding:0; display:inline; position:absolute; right:0;color:#cdcdcd ;font-size:15px;}
+.noticeLibraryCon .more a{letter-spacing: -1px;position:absolute; top:20px; right:0 ;font-weight:normal;color:#cdcdcd ;font-size:15px;padding:0 10px 0 0; background:url(/images/login/more.gif) no-repeat right 2px;}
+
+ .copy { width:100%; margin:0 auto; padding:20px 0 20px 0;text-align:center; font-size:15px; color:#959595 ;}
+
+
+/*input box*/
+.sel{ height:21px; border:1px solid #b7b7b7;  font-family:Arial,'Dotum',Sans-serif;background-color:#f5f5f5;}
+   
+
+.select{position: absolute; top:5px; right:0px; z-index:100;}
+
+
+/*로그인*/
+
+.login_box { position: relative; float:right;width:450px;height:200px; padding:0 0 0 13px;margin:15px 15px 10px 0;}
+.login_box .title {
+					font-family:'tahoma', sans-serif,serif ;
+					font-weight:bold;font-size:18px; 
+					color:#000;
+					letter-spacing:-1px; 
+					border-bottom:1px solid #acc8e3;  
+					padding:5px 0 7px 20px;margin:0 ;
+					background:url(/images/icon/login_ico.gif) no-repeat 0 5px;}
+
+.login_box   .id_t{  font-family:'tahoma', sans-serif,serif ;position: absolute; top:62px; left:15px; width:200px;height:33px; font-weight:bold;font-size:15px; color:#000;}
+.login_box   .pw_t{ font-family:'tahoma', sans-serif,serif ; position: absolute; top:105px; left:15px;width:200px;height:33px; font-weight:bold;font-size:15px; color:#000;}
+.login_box   .id{  vertical-align:middle; position: absolute; top:50px; left:135px; width:210px;height:33px;font-size:18px; color:Black;border:1px solid #c7c7c7; padding: 2px 2px 2px 5px;background-color:#f5f5f5;}
+.login_box   .pw{  vertical-align:middle; position: absolute; top:93px; left:135px;width:210px;height:33px; font-size:18px; color:Black;border:1px solid #c7c7c7; padding: 2px 2px 2px 5px;background-color:#f5f5f5;}
+.login_box   .btn_a{  position: absolute; top:49px; right:0px;z-index:99;}
+
+.login_box .line {width:430px;position: absolute; bottom:10px; left:20px; border-top:1px solid #c7c7c7;padding:10px 0 0 10px;}
+
+
+
+/* 버튼 목록 */
+.buttonE, .buttonE a, .buttonE button, .buttonE input {
+    background: url(/images/btn/login_idpw.gif) no-repeat scroll 0 0 transparent; 
+    border: 0 none;
+    display: inline-block;
+    margin: 0;
+    overflow: visible;
+    position: relative;
+    text-decoration: none !important;
+    white-space: nowrap;
+	font-weight: bold;
+	outline:0;
+}
+.buttonE {
+    background-position: left top;
+    height: 28px;
+    margin-right: 10px;
+    padding: 0;
+    vertical-align: middle;
+}
+.buttonE a, .buttonE button, .buttonE input {  /* 왼쪽이미지여백 조정 */
+    cursor: pointer;
+    left: 10px;
+    vertical-align: top;
+	outline:0;
+}
+.buttonE a, .buttonE button, .buttonE input {
+    background-position: right top;
+    font-size: 15px;
+    height: 28px; /* 텍스트위치 */
+    line-height: 28px;       /* 버튼 텍스트 위치 */
+    padding: 1PX 25px 0 10px;   /* 백이미지늘리기 */
+	outline:0;
+	letter-spacing: -1px;
+}
+.buttonE.buAllE, .buttonE.buAllE a, .buttonE.buAllE button, .buttonE.buAllE input {
+    background-image: url(/images/btn/login_idpw.gif);
+    color: #3c5f87;
+	outline:0;
+}
+.buttonE.buAllE *:hover, .buttonE.buAllE *:active, .buttonE.buAllE *:focus {
+    color: #000000;
+	outline:0;
+}
+.buttonE.strong * {
+    font-weight: bold !important;
+}

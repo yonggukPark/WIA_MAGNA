@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="MsgData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+    
+    <statement id="Get_MsgInfoList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        SELECT 
+          MSG_ID
+          , MSG_TXT_KR
+          , MSG_TXT_EN
+          , MSG_TXT_LO 
+        FROM MES_MESSAGE_MA WITH(NOLOCK)
+      ]]>      
+    </statement>
+
+  </statements>
+
+</sqlMap>

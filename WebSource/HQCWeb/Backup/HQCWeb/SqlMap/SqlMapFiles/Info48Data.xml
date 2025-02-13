@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info48Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_LineGrpMatchList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO48_S #PLANT_CD#, #LINE_GROUP_CD#, #FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_LineGrpMatchID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO48_CHK #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #LINE_GROUP_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_LineGrpMatchInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO48_INFO #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #LINE_GROUP_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_LineGrpMatchInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO48_IU #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #LINE_GROUP_CD#, #REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_LineGrpMatchInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO48_D #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #LINE_GROUP_CD#, #FLAG#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO48_DDL #PLANT_CD#, #SHOP_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

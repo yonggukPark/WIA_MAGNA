@@ -1,0 +1,248 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\test.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\test.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SqlMap\\SqlMapFiles\\TestData.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:HQCWeb\\SqlMap\\SqlMapFiles\\TestData.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\test.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\test.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\biz\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\biz\\test.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\biz\\sample_biz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\biz\\sample_biz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\main.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\main.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\systemmgt\\widgetmanagement\\widget001.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\systemmgt\\widgetmanagement\\widget001.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\masterpage\\popup.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\masterpage\\popup.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\biz\\systemmanagement\\cudlogmgt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\biz\\systemmanagement\\cudlogmgt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\biz\\mgt_biz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\biz\\mgt_biz.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\main.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\main.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\systemmgt\\widgetmanagement\\widget000.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\systemmgt\\widgetmanagement\\widget000.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|C:\\WEB\\WEB\\WebSource\\HQCWeb\\hqcweb\\systemmgt\\widgetmanagement\\widget000.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{24B4D999-44E6-4383-85D4-89A42C928637}|HQCWeb\\HQCWeb.csproj|solutionrelative:hqcweb\\systemmgt\\widgetmanagement\\widget000.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TestData.xml",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SqlMap\\SqlMapFiles\\TestData.xml",
+              "RelativeDocumentMoniker": "HQCWeb\\SqlMap\\SqlMapFiles\\TestData.xml",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SqlMap\\SqlMapFiles\\TestData.xml",
+              "RelativeToolTip": "HQCWeb\\SqlMap\\SqlMapFiles\\TestData.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-02-05T01:09:37.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Test.aspx.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Test.aspx.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\Test.aspx.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Test.aspx.cs",
+              "RelativeToolTip": "HQCWeb\\Test.aspx.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAIA/wFYAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T01:02:38.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Test.aspx",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Test.aspx",
+              "RelativeDocumentMoniker": "HQCWeb\\Test.aspx",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Test.aspx",
+              "RelativeToolTip": "HQCWeb\\Test.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-05T01:02:24.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Test.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\Test.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\Biz\\Test.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\Test.cs",
+              "RelativeToolTip": "HQCWeb\\Biz\\Test.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T01:01:50.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Widget001.aspx",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SystemMgt\\WidgetManagement\\Widget001.aspx",
+              "RelativeDocumentMoniker": "HQCWeb\\SystemMgt\\WidgetManagement\\Widget001.aspx",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SystemMgt\\WidgetManagement\\Widget001.aspx",
+              "RelativeToolTip": "HQCWeb\\SystemMgt\\WidgetManagement\\Widget001.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-05T00:47:38.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Mgt_Biz.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\Mgt_Biz.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\Biz\\Mgt_Biz.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\Mgt_Biz.cs",
+              "RelativeToolTip": "HQCWeb\\Biz\\Mgt_Biz.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAQwAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T00:38:24.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Sample_Biz.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\Sample_Biz.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\Biz\\Sample_Biz.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\Sample_Biz.cs",
+              "RelativeToolTip": "HQCWeb\\Biz\\Sample_Biz.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T00:35:11.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Popup.Master.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\MasterPage\\Popup.Master.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\MasterPage\\Popup.Master.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\MasterPage\\Popup.Master.cs",
+              "RelativeToolTip": "HQCWeb\\MasterPage\\Popup.Master.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAwFYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T00:29:22.091Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Widget000.aspx.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx.cs",
+              "RelativeToolTip": "HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T00:12:13.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Widget000.aspx",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx",
+              "RelativeDocumentMoniker": "HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx",
+              "RelativeToolTip": "HQCWeb\\SystemMgt\\WidgetManagement\\Widget000.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-05T00:12:06.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Main.aspx.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Main.aspx.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\Main.aspx.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Main.aspx.cs",
+              "RelativeToolTip": "HQCWeb\\Main.aspx.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAowHYAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T00:10:43.532Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Main.aspx",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Main.aspx",
+              "RelativeDocumentMoniker": "HQCWeb\\Main.aspx",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Main.aspx",
+              "RelativeToolTip": "HQCWeb\\Main.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-04T23:13:09.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Web.config",
+              "RelativeDocumentMoniker": "HQCWeb\\Web.config",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Web.config",
+              "RelativeToolTip": "HQCWeb\\Web.config",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAiwBQAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-02-04T08:22:44.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CUDLogMgt.cs",
+              "DocumentMoniker": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\SystemManagement\\CUDLogMgt.cs",
+              "RelativeDocumentMoniker": "HQCWeb\\Biz\\SystemManagement\\CUDLogMgt.cs",
+              "ToolTip": "C:\\WEB\\WEB\\WebSource\\HQCWeb\\HQCWeb\\Biz\\SystemManagement\\CUDLogMgt.cs",
+              "RelativeToolTip": "HQCWeb\\Biz\\SystemManagement\\CUDLogMgt.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T00:40:06.718Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

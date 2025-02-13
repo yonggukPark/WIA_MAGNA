@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* for styles */
+
+@import url("default.css"); /* 기본전체정의 */
+
+@import url("layout.css");  /* 서브body,header,container,footer전체정의 */
+
+@import url("contents.css");  /* 내용 */
+

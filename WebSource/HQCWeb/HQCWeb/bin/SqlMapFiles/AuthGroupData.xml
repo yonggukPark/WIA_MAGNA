@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="AuthGroupData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+    <!-- 
+    
+    -->
+    <statement id="Get_AuthGroupList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+          SELECT  
+            AUTHGROUP_ID
+            , AUTHGROUP_TXT_KR
+            , AUTHGROUP_TXT_EN
+            , AUTHGROUP_TXT_LO
+            , dbo.GET_COMM_DESC('USE_YN', USE_YN) AS USE_YN
+            , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+            , REGIST_USER_ID
+            , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+            , MODIFY_USER_ID
+		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
+	        FROM MES_AUTHGROUP_MA WITH(NOLOCK)
+	        WHERE AUTHGROUP_ID LIKE '%' + (CASE WHEN #AUTHGROUP_ID# = '' THEN AUTHGROUP_ID ELSE #AUTHGROUP_ID# END) + '%'
+		        AND (
+              AUTHGROUP_TXT_KR LIKE '%' + (CASE WHEN #AUTHGROUP_NM# = '' THEN AUTHGROUP_TXT_KR ELSE #AUTHGROUP_NM# END) + '%'
+              OR 
+              AUTHGROUP_TXT_EN LIKE '%' + (CASE WHEN #AUTHGROUP_NM# = '' THEN AUTHGROUP_TXT_EN ELSE #AUTHGROUP_NM# END) + '%'
+              OR 
+              AUTHGROUP_TXT_LO LIKE '%' + (CASE WHEN #AUTHGROUP_NM# = '' THEN AUTHGROUP_TXT_LO ELSE #AUTHGROUP_NM# END) + '%'
+            )           
+          ORDER BY REGIST_DATE DESC
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_AuthGroupInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        AUTHGROUP_ID
+          , AUTHGROUP_TXT_KR
+          , AUTHGROUP_TXT_EN
+          , AUTHGROUP_TXT_LO
+          , USE_YN
+        FROM MES_AUTHGROUP_MA WITH(NOLOCK)
+        WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_AuthGroupID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+          COUNT(AUTHGROUP_ID) AS VAL_CHK 
+        FROM MES_AUTHGROUP_MA WITH(NOLOCK)
+        WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthGroupInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        MERGE INTO MES_AUTHGROUP_MA AS A
+        USING (SELECT #AUTHGROUP_ID#) AS B (AUTHGROUP_ID)
+           ON (A.AUTHGROUP_ID = B.AUTHGROUP_ID)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+          A.AUTHGROUP_TXT_KR	      = #AUTHGROUP_TXT_KR#
+	        , A.AUTHGROUP_TXT_EN	    = #AUTHGROUP_TXT_EN#
+	        , A.AUTHGROUP_TXT_LO	    = #AUTHGROUP_TXT_LO#
+	        , A.MODIFY_DATE			      = GETDATE()
+	        , A.MODIFY_USER_ID	      = #REG_ID#
+          , A.USE_YN	              = #USE_YN#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            AUTHGROUP_ID, AUTHGROUP_TXT_KR, AUTHGROUP_TXT_EN, AUTHGROUP_TXT_LO, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            #AUTHGROUP_ID#, #AUTHGROUP_TXT_KR#, #AUTHGROUP_TXT_EN#, #AUTHGROUP_TXT_LO#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthGroupInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_AUTHGROUP_MA 
+        WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        WITH MENU_CTE AS (
+	        SELECT 
+		        REPLACE(MENU_ID, ' ', '') AS MENU_ID
+		        , MENU_NM
+		        , REPLACE(MENU_ID, ' ', '') AS CD_PATH
+		        , CONVERT(VARCHAR, MENU_IDX) + '_' + REPLACE(MENU_ID, ' ', '') AS CD_PATH_ORDER
+		        , MENU_TYPE
+		        , MENU_IDX 
+	        FROM MES_MENU_MA WITH(NOLOCK)
+	        WHERE MENU_LEVEL = '1' AND USE_YN = 'Y'
+	        UNION ALL
+	        SELECT 
+		        REPLACE(DT.MENU_ID, ' ', '') AS MENU_ID
+		        , DT.MENU_NM
+		        , CONVERT(VARCHAR, DC.MENU_IDX) + '_' + DC.CD_PATH + '>' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH
+		        , DC.CD_PATH + '>' + CONVERT(VARCHAR, DT.MENU_IDX) + '_' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH_ORDER
+		        , DT.MENU_TYPE
+		        , DT.MENU_IDX
+	        FROM MES_MENU_MA DT WITH(NOLOCK)
+	        INNER JOIN MENU_CTE DC
+		        ON DC.MENU_ID = DT.MENU_PARENT_ID
+	        WHERE DT.USE_YN = 'Y'
+        )
+        SELECT 
+	        MENU_ID
+	        , MENU_NM
+	        , CD_PATH
+	        , CD_PATH_ORDER
+	        , CHILD_CNT
+        FROM 
+        (
+	        SELECT
+		        MENU_ID
+		        , MENU_NM
+		        , CD_PATH
+		        , CD_PATH_ORDER
+		        , MENU_TYPE
+		        , (SELECT COUNT(DT.MENU_PARENT_ID) FROM MES_MENU_MA DT WITH(NOLOCK) WHERE DT.MENU_PARENT_ID = MC.MENU_ID AND DT.USE_YN = 'Y' ) AS CHILD_CNT
+	        FROM MENU_CTE AS MC WITH(NOLOCK)
+        ) A
+        WHERE MENU_TYPE = 'W'
+          AND CHILD_CNT = 0
+          AND MENU_NM LIKE '%' + #MENU_NM# + '%'
+        ORDER BY CD_PATH
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_ButtonList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+          SELECT  
+            BUTTON_ID
+            , BUTTON_TXT_KR
+            , BUTTON_TXT_EN
+            , BUTTON_TXT_LO
+            , BUTTON_IDX
+	        FROM MES_BUTTON_MA WITH(NOLOCK)
+          WHERE USE_YN = 'Y'
+          ORDER BY BUTTON_IDX
+      ]]>
+    </statement>
+
+    <!-- 
+        SELECT
+	        (SELECT MENU_NM FROM MES_MENU_MA WITH(NOLOCK) WHERE MENU_ID = #MENU_ID#) AS MENU_NM
+          , BM.BUTTON_ID
+	        , CASE WHEN BM.BUTTON_ID = CM.CONTROL_ID THEN 'Y' ELSE 'N' END USE_YN
+        FROM MES_BUTTON_MA BM WITH(NOLOCK)
+	        LEFT OUTER JOIN (
+		        SELECT 
+			        CM.CONTROL_ID 
+		        FROM MES_MENU_CONTROL_MA CM WITH(NOLOCK)
+		        WHERE CM.MENU_ID = #MENU_ID#
+	        ) CM
+	        ON BM.BUTTON_ID = CM.CONTROL_ID
+        ORDER BY BM.BUTTON_IDX    
+    -->
+    <statement id="Get_MenuButtonList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DECLARE @BUTTON_START_NUM INT, @BUTTON_END_NUM INT, @MENU_ID VARCHAR(20)
+
+        DECLARE @BUTTON_TABLE TABLE (
+	        NUM				INT 
+	        , MENU_ID		VARCHAR(50)
+        )
+
+        DECLARE @AUTHGROUP_TABLE TABLE (
+	        NUM				      INT
+	        , MENU_ID		    VARCHAR(50) 
+	        , MENU_NM		    VARCHAR(50) 
+	        , BUTTON_ID		  VARCHAR(50)
+	        , USE_YN		    CHAR(1)
+	        , BUTTON_IDX	  INT
+          , BUTTON_COUNT  INT
+        )
+
+        SET @BUTTON_START_NUM = 0
+        SET @BUTTON_END_NUM = 0
+
+        INSERT INTO @BUTTON_TABLE (NUM, MENU_ID)
+        SELECT position, value FROM DBO.fn_Split(#MENU_INFO#, ',')
+
+        SET @BUTTON_START_NUM = 1
+
+        SELECT @BUTTON_END_NUM = COUNT(*) FROM @BUTTON_TABLE
+
+        WHILE (@BUTTON_START_NUM <= @BUTTON_END_NUM)
+        BEGIN
+
+	        SELECT @MENU_ID = MENU_ID FROM @BUTTON_TABLE WHERE NUM = @BUTTON_START_NUM
+	
+	        INSERT INTO @AUTHGROUP_TABLE
+          SELECT
+		      @BUTTON_START_NUM
+	          , @MENU_ID AS MENU_ID
+		        , (SELECT MENU_NM FROM MES_MENU_MA WITH(NOLOCK) WHERE MENU_ID = @MENU_ID) AS MENU_NM
+            , BM.BUTTON_ID
+	          , CASE WHEN BM.BUTTON_ID = CM.CONTROL_ID THEN 'Y' ELSE 'N' END BUTTON_USE_YN
+		        , BM.BUTTON_IDX
+            , (SELECT COUNT(BUTTON_ID) FROM MES_BUTTON_MA WITH(NOLOCK) WHERE USE_YN = 'Y') 
+          FROM MES_BUTTON_MA BM WITH(NOLOCK)
+	          LEFT OUTER JOIN (
+		          SELECT 
+			          CM.CONTROL_ID 
+		          FROM MES_MENU_CONTROL_MA CM WITH(NOLOCK)
+		          WHERE CM.MENU_ID = @MENU_ID
+	          ) CM
+	          ON BM.BUTTON_ID = CM.CONTROL_ID
+          WHERE BM.USE_YN = 'Y'
+          ORDER BY BM.BUTTON_IDX
+
+	        SET  @BUTTON_START_NUM = @BUTTON_START_NUM + 1
+
+        END
+
+        SELECT 
+	        MENU_ID		
+	        , MENU_NM		
+	        , BUTTON_ID		
+	        , USE_YN
+          , BUTTON_COUNT
+        FROM @AUTHGROUP_TABLE
+        ORDER BY NUM, BUTTON_IDX    
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthGroupMenuButtonInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+        DECLARE @MENU_INFO TABLE (
+	        NUM				INT
+	        , MENUINFO		VARCHAR(MAX)
+        )
+
+        DECLARE @BUTTON_INFO TABLE (
+	        NUM				INT
+	        , BUTTONINFO	VARCHAR(MAX)
+        )
+
+        DECLARE @AUTHGROUP_ID	VARCHAR(50)
+        , @REG_ID			VARCHAR(50)
+        , @BUTTON_ID		VARCHAR(50)
+        , @BUTTON_NM		VARCHAR(50)
+        , @BUTTON_FUNCTION	VARCHAR(100)
+       
+
+        INSERT INTO @MENU_INFO (NUM, MENUINFO)
+        SELECT position, value FROM dbo.fn_Split(#BUTTON_INFO#, '/')
+
+        DECLARE @MENU_START_ROW INT, @MENU_END_ROW INT
+
+        DECLARE @BUTTON_START_ROW INT, @BUTTON_END_ROW INT, @MENU_ID VARCHAR(50)
+
+        SET @MENU_START_ROW = 1 
+        SELECT @MENU_END_ROW = COUNT(MENUINFO) FROM @MENU_INFO
+
+
+        WHILE (@MENU_START_ROW <= @MENU_END_ROW)
+        BEGIN
+	        DELETE FROM @BUTTON_INFO
+	
+	        INSERT INTO @BUTTON_INFO (NUM, BUTTONINFO)
+	        SELECT position, value FROM dbo.fn_Split((SELECT MENUINFO FROM @MENU_INFO WHERE NUM = @MENU_START_ROW), ',')
+	
+	        SET @BUTTON_START_ROW = 1 
+	        SELECT @BUTTON_END_ROW = COUNT(BUTTONINFO) FROM @BUTTON_INFO	
+
+	        WHILE (@BUTTON_START_ROW <= @BUTTON_END_ROW)
+	        BEGIN
+		        IF @BUTTON_START_ROW = 1
+		        BEGIN
+			        SELECT @MENU_ID = BUTTONINFO FROM @BUTTON_INFO WHERE NUM = @BUTTON_START_ROW			
+
+			        DELETE FROM MES_AUTHGROUP_CONTROL_MA WHERE AUTHGROUP_ID = #AUTHGROUP_ID# AND MENU_ID = @MENU_ID
+		        END
+		        ELSE 
+		        BEGIN			
+			        SELECT @BUTTON_ID = BUTTONINFO FROM @BUTTON_INFO WHERE NUM = @BUTTON_START_ROW
+
+			        SELECT 
+				        @BUTTON_NM			    = BUTTON_TXT_KR
+				        , @BUTTON_FUNCTION	= BUTTON_FUNCTION
+			        FROM MES_BUTTON_MA WITH(NOLOCK)
+			        WHERE BUTTON_ID = @BUTTON_ID
+              AND USE_YN = 'Y'
+
+			        INSERT INTO MES_AUTHGROUP_CONTROL_MA (AUTHGROUP_ID, MENU_ID, CONTROL_ID, CONTROL_NM, CONTROL_FUNCTION, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+			        VALUES (
+				        #AUTHGROUP_ID#, @MENU_ID, @BUTTON_ID, @BUTTON_NM, @BUTTON_FUNCTION, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+			        )
+		        END	
+
+		        SET @BUTTON_START_ROW = @BUTTON_START_ROW + 1
+	        END 
+
+	        SET @MENU_START_ROW = @MENU_START_ROW + 1
+        END 
+      ]]>
+    </statement>    
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_AuthGroupMenuButtonList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[   
+        DECLARE @MENU_INFO TABLE (
+	        MENU_IDX	INT IDENTITY(1,1) 
+	        , MENU_ID	VARCHAR(20)
+        )	
+
+        ; WITH MENU_CTE AS (
+	        SELECT 
+		        REPLACE(MENU_ID, ' ', '') AS MENU_ID
+		        , CONVERT(VARCHAR, MENU_IDX) + '_' + REPLACE(MENU_ID, ' ', '') AS CD_PATH
+		        , CONVERT(VARCHAR, MENU_IDX) + '_' + REPLACE(MENU_ID, ' ', '') AS CD_PATH_ORDER
+		        , MENU_TYPE
+		        , MENU_IDX 
+	        FROM MES_MENU_MA WITH(NOLOCK)
+	        WHERE MENU_LEVEL = '1' AND USE_YN = 'Y'
+	        UNION ALL
+	        SELECT 
+		        REPLACE(DT.MENU_ID, ' ', '') AS MENU_ID
+		        , CONVERT(VARCHAR, DC.MENU_IDX) + '_' + DC.CD_PATH + '>' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH
+		        , DC.CD_PATH + '>' + CONVERT(VARCHAR, DT.MENU_IDX) + '_' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH_ORDER
+		        , DT.MENU_TYPE
+		        , DT.MENU_IDX
+	        FROM MES_MENU_MA DT WITH(NOLOCK)
+	        INNER JOIN MENU_CTE DC
+		        ON DC.MENU_ID = DT.MENU_PARENT_ID
+	        WHERE DT.USE_YN = 'Y'
+        )
+        INSERT INTO @MENU_INFO (MENU_ID)
+        SELECT 
+	        MENU_ID
+        FROM 
+        (
+	        SELECT
+		        MENU_ID
+		        , CD_PATH_ORDER
+		        , MENU_TYPE
+		        , (SELECT COUNT(DT.MENU_PARENT_ID) FROM MES_MENU_MA DT WITH(NOLOCK) WHERE DT.MENU_PARENT_ID = MC.MENU_ID AND DT.USE_YN = 'Y' ) AS CHILD_CNT
+	        FROM MENU_CTE AS MC WITH(NOLOCK)
+        ) A
+        WHERE MENU_TYPE = 'W'
+            AND CHILD_CNT = 0
+        ORDER BY CD_PATH_ORDER
+
+        DECLARE @AUTH_MENU_LIST TABLE (
+	        NUM			INT			IDENTITY(1,1) 
+	        , MENU_ID	VARCHAR(50)
+        )
+
+        INSERT INTO @AUTH_MENU_LIST (MENU_ID)
+        SELECT 
+	        MENU.MENU_ID
+        FROM 
+        (
+	        SELECT 
+		        MENU_ID FROM MES_AUTHGROUP_CONTROL_MA WITH(NOLOCK)
+	        WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+	        GROUP BY MENU_ID
+        ) MENU 
+	        LEFT OUTER JOIN @MENU_INFO MM
+		        ON MENU.MENU_ID = MM.MENU_ID
+
+        DECLARE @AUTH_MENU_START_NUM INT, @AUTH_MENU_END_NUM INT, @MENU_ID	VARCHAR(50), @MENU_IDX INT
+
+        DECLARE @AUTH_MENU_BUTTON_LIST TABLE (
+	        BUTTON_ID		VARCHAR(60)
+	        , BUTTON_USE_YN VARCHAR(1)
+	        , MENU_ID		VARCHAR(20)
+          , MENU_NM		VARCHAR(50)
+	        , MENU_IDX		INT
+	        , BUTTON_IDX	INT				
+          , BUTTON_CNT	INT
+        )
+        
+        DECLARE @AUTHGROUP_TABLE TABLE (
+	        MENU_ID		VARCHAR(50) 
+	        , BUTTON_ID		VARCHAR(50)
+	        , USE_YN		CHAR(1)
+        )        
+
+        SET @AUTH_MENU_START_NUM = 1
+        SELECT @AUTH_MENU_END_NUM = COUNT(*) FROM @AUTH_MENU_LIST
+
+        WHILE (@AUTH_MENU_START_NUM <= @AUTH_MENU_END_NUM)
+        BEGIN
+	        SELECT 
+		        @MENU_ID = MENU_ID
+		        , @MENU_IDX = NUM
+	        FROM @AUTH_MENU_LIST WHERE NUM = @AUTH_MENU_START_NUM
+          
+          INSERT INTO @AUTHGROUP_TABLE
+          SELECT
+	          @MENU_ID AS MENU_ID
+	          , BM.BUTTON_ID
+	          , CASE WHEN BM.BUTTON_ID = CM.CONTROL_ID THEN 'Y' ELSE 'N' END BUTTON_USE_YN
+          FROM MES_BUTTON_MA BM WITH(NOLOCK)
+	          LEFT OUTER JOIN (
+		          SELECT 
+			          CM.CONTROL_ID 
+		          FROM MES_MENU_CONTROL_MA CM WITH(NOLOCK)
+		          WHERE CM.MENU_ID = @MENU_ID
+	          ) CM
+	          ON BM.BUTTON_ID = CM.CONTROL_ID
+          WHERE BM.USE_YN = 'Y'
+          ORDER BY BM.BUTTON_IDX          
+
+	        INSERT INTO @AUTH_MENU_BUTTON_LIST
+	        SELECT
+		        BM.BUTTON_ID
+		        , CASE WHEN BM.BUTTON_ID = ACM.CONTROL_ID THEN 'Y' ELSE 'N' END BUTTON_USE_YN
+		        , @MENU_ID AS MENU_ID
+            , (SELECT MENU_NM FROM MES_MENU_MA WITH(NOLOCK) WHERE MENU_ID = @MENU_ID) AS MENU_NM
+		        , @MENU_IDX AS MENU_IDX
+		        , BM.BUTTON_IDX
+            , (SELECT COUNT(BUTTON_ID) FROM MES_BUTTON_MA WITH(NOLOCK) WHERE USE_YN = 'Y') AS BUTTON_CNT
+	        FROM MES_BUTTON_MA BM WITH(NOLOCK)
+		        LEFT OUTER JOIN (
+			        SELECT 
+				        ACM.CONTROL_ID 
+				        , ACM.MENU_ID
+			        FROM MES_AUTHGROUP_CONTROL_MA ACM WITH(NOLOCK)
+			        WHERE MENU_ID = @MENU_ID AND AUTHGROUP_ID = #AUTHGROUP_ID#
+		        ) ACM
+		        ON BM.BUTTON_ID = ACM.CONTROL_ID
+	        WHERE BM.USE_YN = 'Y'
+	        ORDER BY BM.BUTTON_IDX
+
+	        SET @AUTH_MENU_START_NUM = @AUTH_MENU_START_NUM + 1
+        END 
+
+        SELECT 
+	        MBL.MENU_ID, MBL.MENU_NM, AT.USE_YN
+	        , MBL.BUTTON_ID, MBL.BUTTON_USE_YN, MBL.BUTTON_CNT
+        FROM @AUTH_MENU_BUTTON_LIST MBL
+	        LEFT OUTER JOIN @AUTHGROUP_TABLE AT
+		        ON MBL.MENU_ID = AT.MENU_ID AND MBL.BUTTON_ID = AT.BUTTON_ID
+        WHERE MBL.MENU_NM LIKE '%' + #MENU_NM# + '%'
+        ORDER BY MENU_IDX, BUTTON_IDX
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthGroupMenuDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_AUTHGROUP_CONTROL_MA
+        WHERE AUTHGROUP_ID = #AUTHGROUP_ID# AND MENU_ID = #MENU_ID#       
+      ]]>
+    </statement>    
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_AuthGroupTargetList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+          SELECT  
+            AUTHGROUP_ID
+            , AUTHGROUP_TXT_KR
+	        FROM MES_AUTHGROUP_MA WITH(NOLOCK)
+	        WHERE USE_YN = 'Y'
+          ORDER BY AUTHGROUP_ID DESC
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthGroupMenuCopy" parameterClass="System.Collections.Hashtable">
+      <![CDATA[        
+        DELETE FROM MES_AUTHGROUP_CONTROL_MA WHERE AUTHGROUP_ID = #TARGET_AUTHGROUP_ID#
+        
+        INSERT INTO MES_AUTHGROUP_CONTROL_MA (AUTHGROUP_ID, MENU_ID, CONTROL_ID, CONTROL_NM, CONTROL_FUNCTION, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+        SELECT 
+	        #TARGET_AUTHGROUP_ID#, MENU_ID, CONTROL_ID, CONTROL_NM, CONTROL_FUNCTION, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+        FROM MES_AUTHGROUP_CONTROL_MA WITH(NOLOCK)
+        WHERE AUTHGROUP_ID = #ORG_AUTHGROUP_ID#  
+        
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_UserList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[        
+        SELECT 
+	        USER_ID AS id
+	        , '[' + USER_ID + '] ' + USER_NM AS title
+        FROM MES_USER_MA WITH(NOLOCK)
+      ]]>
+    </statement>    
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_UserInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT
+	        USER_DEPT
+	        , USER_NM
+          , USER_ID
+        FROM MES_USER_MA WITH(NOLOCK)
+        WHERE USER_ID IN (SELECT value FROM dbo.fn_Split(#USER_ID#, ','))
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthGroupUserInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+        DELETE FROM MES_AUTHGROUP_USER_MA WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+      
+        INSERT INTO MES_AUTHGROUP_USER_MA (AUTHGROUP_ID, USER_ID, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+        SELECT
+	        #AUTHGROUP_ID#
+          , USER_ID
+          , GETDATE()
+          , #REG_ID#
+          , GETDATE()
+          , #REG_ID#
+        FROM MES_USER_MA WITH(NOLOCK)
+        WHERE USER_ID IN (SELECT value FROM dbo.fn_Split(#USER_ID#, ','))
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Get_AuthGroupUserInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+        SELECT 
+	        AUM.USER_ID 
+	        , UM.USER_DEPT
+	        , UM.USER_NM
+          , AUM.USER_ID AS id
+	        , '[' + UM.USER_DEPT + '] ' + UM.USER_NM AS title
+        FROM MES_AUTHGROUP_USER_MA AUM WITH(NOLOCK)
+	        LEFT OUTER JOIN MES_USER_MA UM WITH(NOLOCK)
+		        ON AUM.USER_ID = UM.USER_ID
+        WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Set_AuthUserInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+      
+        DELETE FROM MES_AUTHGROUP_USER_MA 
+        WHERE AUTHGROUP_ID = #AUTHGROUP_ID#
+          AND USER_ID = #USER_ID#
+          
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

@@ -1,0 +1,158 @@
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 100;
+  font-style: normal;
+  src: url('/font/New/NotoSanskr-Thin.eot');
+  src: url('/font/New/NotoSanskr-Thin.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-Thin.otf") format("opentype"),
+  url("/font/New/NotoSans-Thin.woff") format("woff"),
+  url("/font/New/NotoSans-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 200;
+  font-style: normal;
+  src: url('/font/New/NotoSanskr-Light.eot');
+  src: url('/font/New/NotoSanskr-Light.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-Light.otf") format("opentype"),
+  url("/font/New/NotoSans-Light.woff") format("woff"),
+  url("/font/New/NotoSans-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/font/New/NotoSanskr-DemiLight.eot');
+  src: url('/font/New/NotoSanskr-DemiLight.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-DemiLight.otf") format("opentype"),
+  url("/font/New/NotoSans-DemiLight.woff") format("woff"),
+  url("/font/New/NotoSans-DemiLight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/font/New/NotoSanskr-Regular.eot');
+  src: url('/font/New/NotoSanskr-Regular.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-Regular.otf") format("opentype"),
+  url("/font/New/NotoSans-Regular.woff") format("woff"),
+  url("/font/New/NotoSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 500;
+  font-style: normal;
+  src: url('/font/New/NotoSanskr-Medium.eot');
+  src: url('/font/New/NotoSanskr-Medium.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-Medium.otf") format("opentype"),
+  url("/font/New/NotoSans-Medium.woff") format("woff"),
+  url("/font/New/NotoSans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/font/New/NotoSans-Bold.eot');
+  src: url('/font/New/NotoSans-Bold.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-Bold.otf") format("opentype"),
+  url("/font/New/NotoSans-Bold.woff") format("woff"),
+  url("/font/New/NotoSans-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Noto Sans Korean';
+  font-weight: 900;
+  font-style: normal;
+  src: url('/font/New/NotoSanskr-Black.eot');
+  src: url('/font/New/NotoSanskr-Black.eot?#iefix') format('embedded-opentype'),
+  url("/font/New/NotoSans-Black.otf") format("opentype"),
+  url("/font/New/NotoSans-Black.woff") format("woff"),
+  url("/font/New/NotoSans-Black.woff2") format("woff2");
+}
+
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100;
+  font-style: normal;
+  src: url('/font/New/Inter-Thin.ttf') format('truetype');
+  src: url("/font/New/Inter-Thin.otf") format("opentype"),
+  url("/font/New/Inter-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 200;
+  font-style: normal;
+  src: url('/font/New/Inter-ExtraLight.ttf') format('truetype');
+  src: url("/font/New/Inter-ExtraLight.otf") format("opentype"),
+  url("/font/New/Inter-ExtraLight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/font/New/Inter-Light.ttf') format('truetype');
+  src: url("/font/New/Inter-Light.otf") format("opentype"),
+  url("/font/New/Inter-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/font/New/Inter-Regular.ttf') format('truetype');
+  src: url("/font/New/Inter-Regular.otf") format("opentype"),
+  url("/font/New/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-style: normal;
+  src: url('/font/New/Inter-Medium.ttf') format('truetype');
+  src: url("/font/New/Inter-Medium.otf") format("opentype"),
+  url("/font/New/Inter-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-style: normal;
+  src: url('/font/New/Inter-SemiBold.ttf') format('truetype');
+  src: url("/font/New/Inter-SemiBold.otf") format("opentype"),
+  url("/font/New/Inter-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/font/New/Inter-Bold.ttf') format('truetype');
+  src: url("/font/New/Inter-Bold.otf") format("opentype"),
+  url("/font/New/Inter-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 800;
+  font-style: normal;
+  src: url('/font/New/Inter-ExtraBold.ttf') format('truetype');
+  src: url("/font/New/Inter-ExtraBold.otf") format("opentype"),
+  url("/font/New/Inter-ExtraBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 900;
+  font-style: normal;
+  src: url('/font/New/Inter-Black.ttf') format('truetype');
+  src: url("/font/New/Inter-Black.otf") format("opentype"),
+  url("/font/New/Inter-Black.woff2") format("woff2");
+}

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Pln04Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_PlanList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_PLN04_S #PLANT_CD#, #FR_DT#, #TO_DT#, #SHOP_CD#, #PART_NO#, #STATUS_CD#, #CUSTOMER_CD#, #PLAN_TYPE#, #SHIP_NO#, #SUB_STORAGE_CD#, #STORAGE_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_ShipNo_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN04_CHK #PLANT_CD#,#ORDER_NO#,#PART_NO#,#SUB_STORAGE_CD#,#STORAGE_CD#,#CUSTOMER_CD#,#PLAN_TYPE#
+      ]]>
+    </statement>
+
+    <statement id="Set_ShipNo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN04_U #PLANT_CD#,#ORDER_NO#,#PART_NO#
+      ]]>
+    </statement>
+    
+    <statement id="Get_PrintInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN04_INFO #PLANT_CD#,#ORDER_NO#,#PART_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_ShipNo_Cancel_Chk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN04_C_CHK #PLANT_CD#,#SHIP_NO#
+      ]]>
+    </statement>
+
+    <statement id="Set_CancelShip" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_PLN04_C #PLANT_CD#,#SHIP_NO#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_PLN04_DDL #PLANT_CD#, #SHOP_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

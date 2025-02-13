@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />    
+    
+    <link rel="stylesheet" type="text/css" href="/css/jquery.contextMenu.css" />
+    
+    <script src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="/Scripts/jquery.contextMenu.js"></script>
+    <script src="/Scripts/jquery.ui.position.js"></script>
+
+    <script>
+        var _id;
+
+        $(function () {
+            $.contextMenu({
+                selector: '.context-menu-one',
+                items: {
+                    editCard: {
+                        name: "수정",
+                        callback: function(key, opt){
+                            fn_Modify(opt.$trigger[0].id);
+                            _id = opt.$trigger[0].id;
+                            //console.log("fn_Modify _id=", _id);
+                        }
+                        
+                    },deleteCard: {
+                        name: "삭제",
+                        callback: function(key, opt){
+                            fn_Delete(opt.$trigger[0].id);
+                            _id = opt.$trigger[0].id;
+                            //console.log("fn_Delete _id=", _id);
+                        }
+                    }
+                }, 
+                events: {
+                    show: function (opt) {
+
+                        //console.log("show opt=", opt);
+
+                        var $this = this;
+                        $.contextMenu.setInputValues(opt, $this.data());
+                    },
+                    hide: function (opt) {
+
+                        //console.log("hide opt=", opt);
+
+                        var $this = this;
+                        $.contextMenu.getInputValues(opt, $this.data());
+                    }
+                }
+            });
+        });
+
+        function fn_Modify(_val) {
+            $("#tbLayer").show();
+        }
+
+        function fn_Delete(_val) {
+            $("#divCon" + _val).empty();
+        }
+
+        function fn_Change(_val, _val2) {            
+            var _width = $("#" + _id + " table tr:eq(1) td:eq(0)").html();
+
+            const divID = $("#divCon" + _id);
+            
+            if (_width == _val2) {
+                /*
+                divID.load("http://10.208.163.30:81/" + _val + "_img.html");
+                //*/
+
+                ///*
+                divID.load("http://10.208.163.30:81/" + _val + ".html");
+                divID.load("http://10.208.163.30:81/" + _val + ".html");
+                //*/
+
+                $("#tbLayer").hide();
+            }
+            else {
+                alert("사이즈가 동일한 위젯을 선택하세요.");
+            }
+        }
+        function fn_close() {
+            $("#tbLayer").hide();
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <div class="context-menu-one btn btn-neutral" id="1" style="width:500px; display: inline-block;">
+                    <table style="width:100%; height:330px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon1" style="width:100%; height:300px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; height:30px">120*150</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="context-menu-one btn btn-neutral" id="2" style="width:120px; display: inline-block; padding-left:20px;">
+                    <table style="width:120px; height:250px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon2" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">120*250</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="context-menu-one btn btn-neutral" id="3" style="width:400px; display: inline-block; padding-left:20px;">
+                    <table style="width:400px; height:230px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon3" style="width:400px; height:180px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">180*100</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br />
+
+                <div class="context-menu-one btn btn-neutral" id="4" style="width:120px; display: inline-block;">
+                    <table style="width:120px; height:150px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon4" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">120*150</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="context-menu-one btn btn-neutral" id="5" style="width:120px; display: inline-block; padding-left:20px;">
+                    <table style="width:120px; height:250px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon5" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">120*250</td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div class="context-menu-one btn btn-neutral" id="6" style="width:120px; display: inline-block; padding-left:20px;">
+                    <table style="width:180px; height:100px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon6" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">180*100</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br />
+
+                <div class="context-menu-one btn btn-neutral" id="7" style="width:120px; display: inline-block;">
+                    <table style="width:120px; height:150px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon7" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">120*150</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="context-menu-one btn btn-neutral" id="8" style="width:120px; display: inline-block; padding-left:20px;">
+                    <table style="width:120px; height:250px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon8" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">120*250</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="context-menu-one btn btn-neutral" id="9" style="width:120px; display: inline-block; padding-left:20px;">
+                    <table style="width:180px; height:100px;" border="1">
+                        <tr>
+                            <td style="text-align:center;">
+                                <div id="divCon9" style="width:100%; height:35px;"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">180*100</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+            <td style="width:150px;">
+            </td>
+
+            <td style="vertical-align:top;">
+                <table style="width:300px; display:none;" border="1" id="tbLayer">
+                    <tr>
+                        <td>Widget 01</td>
+                        <td>180*100</td>
+                        <td><a href="javascript:fn_Change('Widget01', '180*100');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td>Widget 02</td>
+                        <td>120*150</td>
+                        <td><a href="javascript:fn_Change('Widget02', '180*100');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td>Widget 03</td>
+                        <td>120*250</td>
+                        <td><a href="javascript:fn_Change('Widget03', '180*100');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td>Widget 04</td>
+                        <td>180*100</td>
+                        <td><a href="javascript:fn_Change('Widget04', '120*150');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td>Widget 05</td>
+                        <td>120*250</td>
+                        <td><a href="javascript:fn_Change('Widget05', '120*150');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td>Widget 06</td>
+                        <td>120*250</td>
+                        <td><a href="javascript:fn_Change('Widget06', '120*150');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td>Widget 07</td>
+                        <td>120*250</td>
+                        <td><a href="javascript:fn_Change('Widget07', '120*150');">선택</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align:center;"> <a href="javascript:fn_close();">닫기</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

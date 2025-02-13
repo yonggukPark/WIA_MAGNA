@@ -1,0 +1,100 @@
+﻿
+
+<!-- Resources -->
+<script src="/Scripts/amcharts.js"></script>
+<script src="/Scripts/serial.js"></script>
+
+<!-- Chart code -->
+<script>
+
+    var chart;
+    var legend;
+
+    var chartData = [{
+        "date": "2013-01-16",
+        "sales1": 98,
+        "sales2": 100
+    }
+    ];
+
+
+    AmCharts.ready(function () {
+        chart = new AmCharts.AmSerialChart();
+        chart.dataProvider = chartData;
+
+        chart.rotate = true;
+       
+        chart.valueAxes = [{
+            "id": "v1",
+            "title": "Sales",
+            "position": "left",
+            "autoGridCount": false,
+            "labelFunction": function (value) {
+                return Math.round(value);
+            }
+        }];
+
+        chart.graphs = [
+            {
+                "id": "g3",
+                "valueAxis": "v1",
+                "lineColor": "#e1ede9",
+                "fillColors": "#e1ede9",
+                "fillAlphas": 1,
+                "type": "column",
+                "title": "Actual Count",
+                "valueField": "sales2",
+                //"clustered": false,
+                "columnWidth": 0.002,
+                "legendValueText": "[[value]]",
+                "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
+            }, {
+                "id": "g4",
+                "valueAxis": "v1",
+                "lineColor": "#62cf73",
+                "fillColors": "#62cf73",
+                "fillAlphas": 1,
+                "type": "column",
+                "title": "Target Count",
+                "valueField": "sales1",
+                //"clustered": false,
+                "columnWidth": 0.002,
+                "legendValueText": "[[value]]",
+                "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
+            }
+        ];
+
+        chart.chartCursor = {
+            "pan": true,
+            "valueLineEnabled": true,
+            "valueLineBalloonEnabled": true,
+            "cursorAlpha": 0,
+            "valueLineAlpha": 0.2
+        };
+
+        chart.dataDateFormat = "YYYY-MM-DD";
+        chart.precision = 2;
+
+        chart.categoryField = "date";
+        chart.categoryAxis = {
+            "parseDates": false,
+            "dashLength": 1,
+            "minorGridEnabled": false
+        };
+        chart.legend = {
+            "useGraphSettings": true,
+            "position": "top"
+        };
+
+
+        // WRITE
+        // 차트 DIV는 각 페이지별로 고유해야 함. 중복될경우 나중에 선택되는 차트가 이전차트 위치로 덮어짐
+        chart.write("chartdiv10");
+    });
+
+
+
+</script>
+
+<!-- HTML -->
+<div id="chartdiv10"></div>

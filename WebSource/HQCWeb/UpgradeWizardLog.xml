@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\HQCWeb.csproj" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Chart.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Chart.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01.aspx" />
+  <event action="Analyze" type="Success" name="Info01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info01_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info01_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info01\Info01_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02.aspx" />
+  <event action="Analyze" type="Success" name="Info02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info02_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info02_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info02\Info02_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03.aspx" />
+  <event action="Analyze" type="Success" name="Info03.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info03_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info03_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info03\Info03_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04.aspx" />
+  <event action="Analyze" type="Success" name="Info04.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info04_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info04_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info04\Info04_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05.aspx" />
+  <event action="Analyze" type="Success" name="Info05.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info05_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info05_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info05\Info05_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06.aspx" />
+  <event action="Analyze" type="Success" name="Info06.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info06_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info06_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info06\Info06_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19.aspx" />
+  <event action="Analyze" type="Success" name="Info19.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info19_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info19_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p03.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p03.aspx" />
+  <event action="Analyze" type="Success" name="Info19_p03.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info19\Info19_p03.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47.aspx" />
+  <event action="Analyze" type="Success" name="Info47.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info47_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info47_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info47\Info47_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48.aspx" />
+  <event action="Analyze" type="Success" name="Info48.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48_p01.aspx" />
+  <event action="Analyze" type="Success" name="Info48_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48_p02.aspx" />
+  <event action="Analyze" type="Success" name="Info48_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info48\Info48_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Login.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Login.aspx" />
+  <event action="Analyze" type="Success" name="Login.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Login.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Main.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Main.aspx" />
+  <event action="Analyze" type="Success" name="Main.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Main.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Frames.Master" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Frames.Master" />
+  <event action="Analyze" type="Success" name="Frames.Master" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Frames.Master" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Popup.Master" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Popup.Master" />
+  <event action="Analyze" type="Success" name="Popup.Master" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Popup.Master" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Site.Master" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Site.Master" />
+  <event action="Analyze" type="Success" name="Site.Master" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MasterPage\Site.Master" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MonitorMgt\Mon10\Mon10.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MonitorMgt\Mon10\Mon10.aspx" />
+  <event action="Analyze" type="Success" name="Mon10.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\MonitorMgt\Mon10\Mon10.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02.aspx" />
+  <event action="Analyze" type="Success" name="Pln02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02_p01.aspx" />
+  <event action="Analyze" type="Success" name="Pln02_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02_p02.aspx" />
+  <event action="Analyze" type="Success" name="Pln02_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln02\Pln02_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln03\Pln03.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln03\Pln03.aspx" />
+  <event action="Analyze" type="Success" name="Pln03.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln03\Pln03.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04.aspx" />
+  <event action="Analyze" type="Success" name="Pln04.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04_p02.aspx" />
+  <event action="Analyze" type="Success" name="Pln04_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04_p02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04_p03.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04_p03.aspx" />
+  <event action="Analyze" type="Success" name="Pln04_p03.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\PlanMgt\Pln04\Pln04_p03.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="providers.config" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\providers.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua10\Qua10.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua10\Qua10.aspx" />
+  <event action="Analyze" type="Success" name="Qua10.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua10\Qua10.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua11\Qua11.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua11\Qua11.aspx" />
+  <event action="Analyze" type="Success" name="Qua11.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua11\Qua11.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua11\Qua11_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua11\Qua11_p01.aspx" />
+  <event action="Analyze" type="Success" name="Qua11_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua11\Qua11_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua12\Qua12.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua12\Qua12.aspx" />
+  <event action="Analyze" type="Success" name="Qua12.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua12\Qua12.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua22\Qua22.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua22\Qua22.aspx" />
+  <event action="Analyze" type="Success" name="Qua22.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua22\Qua22.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24.aspx" />
+  <event action="Analyze" type="Success" name="Qua24.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24_p01.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24_p01.aspx" />
+  <event action="Analyze" type="Success" name="Qua24_p01.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24_p01.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24_p02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24_p02.aspx" />
+  <event action="Analyze" type="Success" name="Qua24_p02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua24\Qua24_p02.aspx" />
+  <event action="Analyze" type="Success" name="Report4.resx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Report\Report4.resx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res02\Res02.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res02\Res02.aspx" />
+  <event action="Analyze" type="Success" name="Res02.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res02\Res02.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res18\Res18.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res18\Res18.aspx" />
+  <event action="Analyze" type="Success" name="Res18.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res18\Res18.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res19\Res19.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res19\Res19.aspx" />
+  <event action="Analyze" type="Success" name="Res19.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\ResultMgt\Res19\Res19.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample.aspx" />
+  <event action="Analyze" type="Success" name="Sample.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample001.aspx" />
+  <event action="Analyze" type="Success" name="Sample001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample2.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample2.aspx" />
+  <event action="Analyze" type="Success" name="Sample2.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Sample2.aspx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="SqlMap.config" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SqlMap.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SSOLogin.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SSOLogin.aspx" />
+  <event action="Analyze" type="Success" name="SSOLogin.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SSOLogin.aspx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup000.aspx" />
+  <event action="Analyze" type="Success" name="AuthGroup000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup001.aspx" />
+  <event action="Analyze" type="Success" name="AuthGroup001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup002.aspx" />
+  <event action="Analyze" type="Success" name="AuthGroup002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup003.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup003.aspx" />
+  <event action="Analyze" type="Success" name="AuthGroup003.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup003.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup004.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup004.aspx" />
+  <event action="Analyze" type="Success" name="AuthGroup004.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\AuthGroupManagement\AuthGroup004.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button000.aspx" />
+  <event action="Analyze" type="Success" name="Button000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button001.aspx" />
+  <event action="Analyze" type="Success" name="Button001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button002.aspx" />
+  <event action="Analyze" type="Success" name="Button002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ButtonManagement\Button002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode000.aspx" />
+  <event action="Analyze" type="Success" name="ComCode000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode001.aspx" />
+  <event action="Analyze" type="Success" name="ComCode001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode002.aspx" />
+  <event action="Analyze" type="Success" name="ComCode002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ComCodeManagement\ComCode002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\CUDLogManagement\CUDLog000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\CUDLogManagement\CUDLog000.aspx" />
+  <event action="Analyze" type="Success" name="CUDLog000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\CUDLogManagement\CUDLog000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\CUDLogManagement\CUDLog001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\CUDLogManagement\CUDLog001.aspx" />
+  <event action="Analyze" type="Success" name="CUDLog001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\CUDLogManagement\CUDLog001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary000.aspx" />
+  <event action="Analyze" type="Success" name="Dictionary000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary001.aspx" />
+  <event action="Analyze" type="Success" name="Dictionary001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary002.aspx" />
+  <event action="Analyze" type="Success" name="Dictionary002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\DictionaryManagement\Dictionary002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ErrorLogManagement\ErrorLog000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ErrorLogManagement\ErrorLog000.aspx" />
+  <event action="Analyze" type="Success" name="ErrorLog000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ErrorLogManagement\ErrorLog000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ErrorLogManagement\ErrorLog001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ErrorLogManagement\ErrorLog001.aspx" />
+  <event action="Analyze" type="Success" name="ErrorLog001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\ErrorLogManagement\ErrorLog001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu000.aspx" />
+  <event action="Analyze" type="Success" name="Menu000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu001.aspx" />
+  <event action="Analyze" type="Success" name="Menu001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu002.aspx" />
+  <event action="Analyze" type="Success" name="Menu002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu003.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu003.aspx" />
+  <event action="Analyze" type="Success" name="Menu003.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu003.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu004.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu004.aspx" />
+  <event action="Analyze" type="Success" name="Menu004.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MenuManagement\Menu004.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message000.aspx" />
+  <event action="Analyze" type="Success" name="Message000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message001.aspx" />
+  <event action="Analyze" type="Success" name="Message001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message002.aspx" />
+  <event action="Analyze" type="Success" name="Message002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\MessageManagement\Message002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice000.aspx" />
+  <event action="Analyze" type="Success" name="Notice000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice001.aspx" />
+  <event action="Analyze" type="Success" name="Notice001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice002.aspx" />
+  <event action="Analyze" type="Success" name="Notice002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice003.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice003.aspx" />
+  <event action="Analyze" type="Success" name="Notice003.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\NoticeManagement\Notice003.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\StatisticsManagement\Statistics000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\StatisticsManagement\Statistics000.aspx" />
+  <event action="Analyze" type="Success" name="Statistics000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\StatisticsManagement\Statistics000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User000.aspx" />
+  <event action="Analyze" type="Success" name="User000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User001.aspx" />
+  <event action="Analyze" type="Success" name="User001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User002.aspx" />
+  <event action="Analyze" type="Success" name="User002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\User002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\UserMenuSetting.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\UserMenuSetting.aspx" />
+  <event action="Analyze" type="Success" name="UserMenuSetting.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\UserManagement\UserMenuSetting.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget000.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget000.aspx" />
+  <event action="Analyze" type="Success" name="Widget000.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget000.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget001.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget001.aspx" />
+  <event action="Analyze" type="Success" name="Widget001.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget001.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget002.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget002.aspx" />
+  <event action="Analyze" type="Success" name="Widget002.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\Widget002.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\WidgetMgt.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\WidgetMgt.aspx" />
+  <event action="Analyze" type="Success" name="WidgetMgt.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\SystemMgt\WidgetManagement\WidgetMgt.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicDefaultSample.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicDefaultSample.aspx" />
+  <event action="Analyze" type="Success" name="PublicDefaultSample.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicDefaultSample.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicHorizontalSplitSample_GT.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicHorizontalSplitSample_GT.aspx" />
+  <event action="Analyze" type="Success" name="PublicHorizontalSplitSample_GT.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicHorizontalSplitSample_GT.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicHorizontalSplitSample_TT.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicHorizontalSplitSample_TT.aspx" />
+  <event action="Analyze" type="Success" name="PublicHorizontalSplitSample_TT.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicHorizontalSplitSample_TT.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicPopupSample.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicPopupSample.aspx" />
+  <event action="Analyze" type="Success" name="PublicPopupSample.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicPopupSample.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicSplitSample.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicSplitSample.aspx" />
+  <event action="Analyze" type="Success" name="PublicSplitSample.aspx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Template\PublicSplitSample.aspx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="TOAST.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\TOAST.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\UserContorls\LeftControl.ascx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\UserContorls\LeftControl.ascx" />
+  <event action="Analyze" type="Success" name="LeftControl.ascx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\UserContorls\LeftControl.ascx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\UserContorls\TopControl.ascx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\UserContorls\TopControl.ascx" />
+  <event action="Analyze" type="Success" name="TopControl.ascx" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\UserContorls\TopControl.ascx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget01.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget01.html" />
+  <event action="Analyze" type="Success" name="Widget01.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget01.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget01_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget01_img.html" />
+  <event action="Analyze" type="Success" name="Widget01_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget01_img.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget02.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget02.html" />
+  <event action="Analyze" type="Success" name="Widget02.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget02.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget02_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget02_img.html" />
+  <event action="Analyze" type="Success" name="Widget02_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget02_img.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget03.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget03.html" />
+  <event action="Analyze" type="Success" name="Widget03.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget03.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget03_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget03_img.html" />
+  <event action="Analyze" type="Success" name="Widget03_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget03_img.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget04.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget04.html" />
+  <event action="Analyze" type="Success" name="Widget04.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget04.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget04_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget04_img.html" />
+  <event action="Analyze" type="Success" name="Widget04_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget04_img.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget05.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget05.html" />
+  <event action="Analyze" type="Success" name="Widget05.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget05.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget05_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget05_img.html" />
+  <event action="Analyze" type="Success" name="Widget05_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget05_img.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget06.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget06.html" />
+  <event action="Analyze" type="Success" name="Widget06.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget06.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget06_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget06_img.html" />
+  <event action="Analyze" type="Success" name="Widget06_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget06_img.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget07.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget07.html" />
+  <event action="Analyze" type="Success" name="Widget07.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget07.html" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget07_img.html" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget07_img.html" />
+  <event action="Analyze" type="Success" name="Widget07_img.html" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\Widget07_img.html" />
+  <event action="Analyze" type="Success" name="HQCWeb" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\HQCWeb.csproj" />
+  <event action="Analyze" type="Success" name="HQCWeb" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb.sln" />
+  <event action="Backup" type="Success" name="HQCWeb" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\HQCWeb.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\HQCWeb.csproj" />
+  <event action="Upgrade" type="Success" name="HQCWeb" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\HQCWeb.csproj" />
+  <event action="Upgrade" type="Success" name="HQCWeb" path="C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb.sln" />
+</log>

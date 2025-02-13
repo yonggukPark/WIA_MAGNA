@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Universal.Microsoft.JSInterop</name>
+    </assembly>
+    <members>
+        <member name="T:Universal.Microsoft.JSInterop.IJSInProcessRuntimeExtensions">
+            <summary>
+            Extensions for the <see cref="T:Microsoft.JSInterop.IJSInProcessRuntime"/> interface.
+            </summary>
+        </member>
+        <member name="M:Universal.Microsoft.JSInterop.IJSInProcessRuntimeExtensions.Evaluate(Microsoft.JSInterop.IJSInProcessRuntime,System.String)">
+            <summary>
+            Evaluates the given JavaScript expression.
+            </summary>
+            <param name="jsInProcessRuntime"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Universal.Microsoft.JSInterop.IJSInProcessRuntimeExtensions.Evaluate``1(Microsoft.JSInterop.IJSInProcessRuntime,System.String)">
+            <summary>
+            Evaluates the given JavaScript expression.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="jsInProcessRuntime"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Universal.Microsoft.JSInterop.IJSRuntimeExtensions">
+            <summary>
+            Extensions for <see cref="T:Microsoft.JSInterop.IJSRuntime"/>.
+            </summary>
+        </member>
+        <member name="M:Universal.Microsoft.JSInterop.IJSRuntimeExtensions.EvaluateAsync(Microsoft.JSInterop.IJSRuntime,System.String)">
+            <summary>
+            Evaluates the given JavaScript expression.
+            </summary>
+            <param name="jsRuntime"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Universal.Microsoft.JSInterop.IJSRuntimeExtensions.EvaluateAsync``1(Microsoft.JSInterop.IJSRuntime,System.String)">
+            <summary>
+            Evaluates the given JavaScript expression.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="jsRuntime"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Universal.Microsoft.JSInterop.JSObjectReference">
+            <summary>
+            Represents a reference to a JavaScript object.
+            </summary>
+        </member>
+        <member name="E:Universal.Microsoft.JSInterop.JSObjectReference.Disposed">
+            <summary>
+            Raised when this object is to be disposed.
+            </summary>
+        </member>
+        <member name="P:Universal.Microsoft.JSInterop.JSObjectReference.Id">
+            <summary>
+            Gets or sets the ID of the referenced object.
+            </summary>
+        </member>
+        <member name="M:Universal.Microsoft.JSInterop.JSObjectReference.System#IDisposable#Dispose">
+            <summary>
+            Called when this item is to be disposed.
+            </summary>
+        </member>
+        <member name="T:Universal.Microsoft.JSInterop.TaskCompletionSource`1">
+            <summary>
+            A <see cref="T:System.Threading.Tasks.TaskCompletionSource`1"/> that supports JS interop.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Universal.Microsoft.JSInterop.TaskCompletionSource`1.SetResultJS(`0)">
+            <summary>
+            An <see cref="T:Microsoft.JSInterop.JSInvokableAttribute"/>-applied <see cref="M:System.Threading.Tasks.TaskCompletionSource`1.SetResult(`0)"/>.
+            </summary>
+            <param name="result"></param>
+        </member>
+    </members>
+</doc>

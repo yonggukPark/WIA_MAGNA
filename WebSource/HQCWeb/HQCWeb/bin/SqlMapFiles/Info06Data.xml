@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info06Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_StnList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO06_S #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_StnID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO06_CHK #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_StnInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO06_INFO #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_StnInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO06_IU #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #STN_CD#, #NG_CD#, #STN_NM#, #MULTIPLI#, #REINPUT#, #FINISH#, #COM_PROD#, #TORQUE#, #INSPECTION#, #INPUT#, #REWORK_STN_CD#, #P_R_STN_CD#, #TOTAL_STN_CD#, #MERGE_STN_CD#, #REINPUT_STN_CD#, #VIEW_YN#, #REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_StnInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO06_D #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#,#FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO06_DDL #PLANT_CD#, #SHOP_CD#, #LINE_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

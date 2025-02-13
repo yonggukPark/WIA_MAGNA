@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Spc01Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_SpcList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_SPC01_S #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#STN_CD#,#WORK_CD#,#DEV_ID#, #ITEM_CD#,#FR_DT#,#TO_DT#,#DAY_NIGHT#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_SPC01_DDL #PLANT_CD#, #SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#STN_CD#,#DEV_ID#,#WORK_CD#, #EOP_FLAG#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

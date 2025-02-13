@@ -1,0 +1,3648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24B4D999-44E6-4383-85D4-89A42C928637}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HQCWeb</RootNamespace>
+    <AssemblyName>HQCWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44388</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.102.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.102.1\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.33.0.1\lib\net48\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="HQC.FW.Common">
+      <HintPath>..\..\Framework\Dll\HQC.FW.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.NetCore.1.0.11\lib\net461\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\Framework\Dll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MES.FW.Common.CommonMgt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MES.FW.Common.CommonMgt.dll</HintPath>
+    </Reference>
+    <Reference Include="MES.FW.Common.Crypt">
+      <HintPath>..\..\Framework\Dll\MES.FW.Common.Crypt.dll</HintPath>
+    </Reference>
+    <Reference Include="MES.FW.Common.Presentation">
+      <HintPath>..\..\Framework\Dll\MES.FW.Common.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.JSInterop, Version=3.1.13.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.JSInterop.3.1.13\lib\netstandard2.0\Microsoft.JSInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\Framework\Dll\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Presentation">
+      <HintPath>..\..\Framework\Dll\Spire.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Reporting, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\새 폴더\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=10.1.16.504, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\새 폴더\Telerik.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2015.1.225.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Universal.Microsoft.JSInterop, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Universal.Microsoft.JSInterop.2.1.1\lib\netstandard2.0\Universal.Microsoft.JSInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="InfoMgt\Info30\Info30_p04.aspx" />
+    <Content Include="InfoMgt\InfoTest\InfoTest.aspx" />
+    <Content Include="InfoMgt\InfoTest\InfoTest_P01.aspx" />
+    <Content Include="InfoMgt\InfoTest\InfoTest_P02.aspx" />
+    <Content Include="LmsMgt\Lms11\Lms11.aspx" />
+    <Content Include="MonitorMgt\Mon18\Mon18.aspx" />
+    <Content Include="MonitorMgt\Mon18\Mon18_p01.aspx" />
+    <Content Include="MonitorMgt\Mon18\Mon18_p02.aspx" />
+    <Content Include="MonitorMgt\Mon19\Mon19.aspx" />
+    <Content Include="PIB\Board.html" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\comboTreeStyle.css" />
+    <Content Include="css\common_v_popup.css" />
+    <Content Include="css\HQC_Common.css" />
+    <Content Include="css\common.css" />
+    <Content Include="css\common_v.css" />
+    <Content Include="css\font.css" />
+    <Content Include="css\jquery.contextMenu.css" />
+    <Content Include="css\jquerysctipttop.css" />
+    <Content Include="css\New\common.css" />
+    <Content Include="css\New\font.css" />
+    <Content Include="css\New\login.css" />
+    <Content Include="css\New\reset.css" />
+    <Content Include="css\pagination.css" />
+    <Content Include="css\PIB\StyleSheet.css" />
+    <Content Include="css\PIB\StyleSheetPIB.css" />
+    <Content Include="css\realgrid-dark.css" />
+    <Content Include="css\realgrid-galaxy-blue.css" />
+    <Content Include="css\realgrid-high-contrast.css" />
+    <Content Include="css\realgrid-red-wine.css" />
+    <Content Include="css\realgrid-sky-blue.css" />
+    <Content Include="css\realgrid-style.css" />
+    <Content Include="css\realgrid-white.css" />
+    <Content Include="css\reset.css" />
+    <Content Include="Global.asax" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\btn\btn_02bg.gif" />
+    <Content Include="images\btn\buGray.png" />
+    <Content Include="images\btn\close.gif" />
+    <Content Include="images\btn\closeOrigin.gif" />
+    <Content Include="images\btn\close_off.gif" />
+    <Content Include="images\btn\close_on.gif" />
+    <Content Include="images\btn\delete.png" />
+    <Content Include="images\btn\excel_23.png" />
+    <Content Include="images\btn\excel_80.png" />
+    <Content Include="images\btn\file.gif" />
+    <Content Include="images\btn\file_bg.gif" />
+    <Content Include="images\btn\file_bg2.gif" />
+    <Content Include="images\btn\file_bg_off.gif" />
+    <Content Include="images\btn\file_bg_off2.gif" />
+    <Content Include="images\btn\g_btn.gif" />
+    <Content Include="images\btn\image_23.png" />
+    <Content Include="images\btn\image_80.png" />
+    <Content Include="images\btn\login_btn.gif" />
+    <Content Include="images\btn\login_idpw.gif" />
+    <Content Include="images\btn\logout_btn.gif" />
+    <Content Include="images\btn\menu_off.gif" />
+    <Content Include="images\btn\menu_on.gif" />
+    <Content Include="images\btn\modify.gif" />
+    <Content Include="images\btn\powerpoint_23.png" />
+    <Content Include="images\btn\powerpoint_80.png" />
+    <Content Include="images\btn\save.gif" />
+    <Content Include="images\btn\s_btn.gif" />
+    <Content Include="images\btn\word_23.png" />
+    <Content Include="images\btn\word_80.png" />
+    <Content Include="images\Calendar.gif" />
+    <Content Include="images\icon\arrow_01.gif" />
+    <Content Include="images\icon\arrow_01.png" />
+    <Content Include="images\icon\arrow_02.gif" />
+    <Content Include="images\icon\arrow_02.png" />
+    <Content Include="images\Qcells_Wordmark_Logo_Gradation_2022-04_Rev01.png" />
+    <Content Include="images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="images\ui-icons_222222_256x240.png" />
+    <Content Include="images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="images\ui-icons_454545_256x240.png" />
+    <Content Include="images\ui-icons_888888_256x240.png" />
+    <Content Include="images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="img\2depth_bullet.png" />
+    <Content Include="img\btn_big_off.png" />
+    <Content Include="img\btn_big_on.png" />
+    <Content Include="img\btn_close_off.png" />
+    <Content Include="img\btn_close_on.png" />
+    <Content Include="img\btn_fold_off.png" />
+    <Content Include="img\btn_fold_on.png" />
+    <Content Include="img\btn_reduce_off.png" />
+    <Content Include="img\btn_reduce_on.png" />
+    <Content Include="img\btn_tabclose_off.png" />
+    <Content Include="img\btn_tabclose_on.png" />
+    <Content Include="img\bullet.png" />
+    <Content Include="img\checkbox.png" />
+    <Content Include="img\checkbox_checked.png" />
+    <Content Include="img\checkbox_checked_disabled.png" />
+    <Content Include="img\checkbox_unchecked.png" />
+    <Content Include="img\checkbox_unchecked_disabled.png" />
+    <Content Include="img\gnb_01_off.png" />
+    <Content Include="img\gnb_01_on.png" />
+    <Content Include="img\gnb_02_off.png" />
+    <Content Include="img\gnb_02_on.png" />
+    <Content Include="img\gnb_03_off.png" />
+    <Content Include="img\gnb_03_on.png" />
+    <Content Include="img\gnb_04_off.png" />
+    <Content Include="img\gnb_04_on.png" />
+    <Content Include="img\gnb_05_off.png" />
+    <Content Include="img\gnb_05_on.png" />
+    <Content Include="img\gnb_06_off.png" />
+    <Content Include="img\gnb_06_on.png" />
+    <Content Include="img\gnb_07_off.png" />
+    <Content Include="img\gnb_07_on.png" />
+    <Content Include="img\gnb_08_off.png" />
+    <Content Include="img\gnb_08_on.png" />
+    <Content Include="img\gnb_on_arrow.png" />
+    <Content Include="img\grid_arrow.png" />
+    <Content Include="img\icon_home.png" />
+    <Content Include="img\icon_login_id.png" />
+    <Content Include="img\icon_login_pw.png" />
+    <Content Include="img\lnb_01_off.png" />
+    <Content Include="img\lnb_01_on.png" />
+    <Content Include="img\lnb_02_off.png" />
+    <Content Include="img\lnb_02_on.png" />
+    <Content Include="img\lnb_arrow.png" />
+    <Content Include="img\lnb_close_off.png" />
+    <Content Include="img\lnb_close_on.png" />
+    <Content Include="img\lnb_fold_off.png" />
+    <Content Include="img\lnb_fold_on.png" />
+    <Content Include="img\lnb_unfold_off.png" />
+    <Content Include="img\lnb_unfold_on.png" />
+    <Content Include="img\login_ci.png" />
+    <Content Include="img\login_select.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\New\1depth_arrow_close.png" />
+    <Content Include="img\New\1depth_arrow_hover.png" />
+    <Content Include="img\New\1depth_arrow_open.png" />
+    <Content Include="img\New\2depth_bullet_active.png" />
+    <Content Include="img\New\2depth_bullet_off.png" />
+    <Content Include="img\New\2depth_bullet_on.png" />
+    <Content Include="img\New\arrow.png" />
+    <Content Include="img\New\btn_close.png" />
+    <Content Include="img\New\btn_colorpicker.gif" />
+    <Content Include="img\New\btn_next.png" />
+    <Content Include="img\New\btn_prev.png" />
+    <Content Include="img\New\checkbox.png" />
+    <Content Include="img\New\icon_home.png" />
+    <Content Include="img\New\icon_login_id.png" />
+    <Content Include="img\New\icon_login_pw.png" />
+    <Content Include="img\New\icon_main.png" />
+    <Content Include="img\New\icon_new.png" />
+    <Content Include="img\New\icon_user.png" />
+    <Content Include="img\New\line.png" />
+    <Content Include="img\New\login_left_bg.jpg" />
+    <Content Include="img\New\login_logo.png" />
+    <Content Include="img\New\login_select.png" />
+    <Content Include="img\New\logo.png" />
+    <Content Include="img\New\path_arrow.png" />
+    <Content Include="img\New\sample_graph01.png" />
+    <Content Include="img\New\sample_graph02.png" />
+    <Content Include="img\New\sample_graph03.png" />
+    <Content Include="img\New\sample_graph04.png" />
+    <Content Include="img\New\sample_graph05.png" />
+    <Content Include="img\New\sample_pie.png" />
+    <Content Include="img\New\select_arrow.png" />
+    <Content Include="img\New\tab_close.png" />
+    <Content Include="img\New\wct_Nowork_Color.png" />
+    <Content Include="img\path_arrow.png" />
+    <Content Include="img\sample_graph.png" />
+    <Content Include="img\select_arrow.png" />
+    <Content Include="img\site_id_arrow.png" />
+    <Content Include="img\snb_01.png" />
+    <Content Include="img\snb_02.png" />
+    <Content Include="img\snb_03.png" />
+    <Content Include="img\snb_04.png" />
+    <Content Include="img\snb_05.png" />
+    <Content Include="img\snb_06.png" />
+    <Content Include="img\snb_07.png" />
+    <Content Include="img\snb_08.png" />
+    <Content Include="img\snb_2depth_bullet_off.png" />
+    <Content Include="img\snb_2depth_bullet_on.png" />
+    <Content Include="img\snb_fold_arrow.png" />
+    <Content Include="img\snb_unfold_arrow.png" />
+    <Content Include="img\tab_bg.png" />
+    <Content Include="InfoMgt\Info01\Info01.aspx" />
+    <Content Include="InfoMgt\Info01\Info01_p01.aspx" />
+    <Content Include="InfoMgt\Info01\Info01_p02.aspx" />
+    <Content Include="InfoMgt\Info01\Info01_p03.aspx" />
+    <Content Include="InfoMgt\Info02\Info02.aspx" />
+    <Content Include="InfoMgt\Info02\Info02_p01.aspx" />
+    <Content Include="InfoMgt\Info02\Info02_p02.aspx" />
+    <Content Include="InfoMgt\Info02\Info02_p03.aspx" />
+    <Content Include="InfoMgt\Info03\Info03.aspx" />
+    <Content Include="InfoMgt\Info03\Info03_p01.aspx" />
+    <Content Include="InfoMgt\Info03\Info03_p02.aspx" />
+    <Content Include="InfoMgt\Info03\Info03_p03.aspx" />
+    <Content Include="InfoMgt\Info04\Info04.aspx" />
+    <Content Include="InfoMgt\Info04\Info04_p01.aspx" />
+    <Content Include="InfoMgt\Info04\Info04_p02.aspx" />
+    <Content Include="InfoMgt\Info04\Info04_p03.aspx" />
+    <Content Include="InfoMgt\Info05\Info05.aspx" />
+    <Content Include="InfoMgt\Info05\Info05_p01.aspx" />
+    <Content Include="InfoMgt\Info05\Info05_p02.aspx" />
+    <Content Include="InfoMgt\Info05\Info05_p03.aspx" />
+    <Content Include="InfoMgt\Info06\Info06.aspx" />
+    <Content Include="InfoMgt\Info06\Info06_p01.aspx" />
+    <Content Include="InfoMgt\Info06\Info06_p02.aspx" />
+    <Content Include="InfoMgt\Info06\Info06_p03.aspx" />
+    <Content Include="InfoMgt\Info07\Info07.aspx" />
+    <Content Include="InfoMgt\Info07\Info07_p01.aspx" />
+    <Content Include="InfoMgt\Info07\Info07_p02.aspx" />
+    <Content Include="InfoMgt\Info07\Info07_p03.aspx" />
+    <Content Include="InfoMgt\Info08\Info08.aspx" />
+    <Content Include="InfoMgt\Info08\Info08_p01.aspx" />
+    <Content Include="InfoMgt\Info08\Info08_p02.aspx" />
+    <Content Include="InfoMgt\Info08\Info08_p03.aspx" />
+    <Content Include="InfoMgt\Info08\Info08_p04.aspx" />
+    <Content Include="InfoMgt\Info10\Info10.aspx" />
+    <Content Include="InfoMgt\Info10\Info10_p01.aspx" />
+    <Content Include="InfoMgt\Info10\Info10_p02.aspx" />
+    <Content Include="InfoMgt\Info10\Info10_p03.aspx" />
+    <Content Include="InfoMgt\Info11\Info11_p03.aspx" />
+    <Content Include="InfoMgt\Info12\Info12.aspx" />
+    <Content Include="InfoMgt\Info12\Info12_p01.aspx" />
+    <Content Include="InfoMgt\Info12\Info12_p02.aspx" />
+    <Content Include="InfoMgt\Info12\Info12_p03.aspx" />
+    <Content Include="InfoMgt\Info15\Info15.aspx" />
+    <Content Include="InfoMgt\Info16\Info16.aspx" />
+    <Content Include="InfoMgt\Info16\Info16_p01.aspx" />
+    <Content Include="InfoMgt\Info16\Info16_p02.aspx" />
+    <Content Include="InfoMgt\Info16\Info16_p03.aspx" />
+    <Content Include="InfoMgt\Info17\Info17_p03.aspx" />
+    <Content Include="InfoMgt\Info18\Info18_p03.aspx" />
+    <Content Include="InfoMgt\Info19\Info19_p04.aspx" />
+    <Content Include="InfoMgt\Info30\Info30.aspx" />
+    <Content Include="InfoMgt\Info30\Info30_p01.aspx" />
+    <Content Include="InfoMgt\Info30\Info30_p02.aspx" />
+    <Content Include="InfoMgt\Info30\Info30_p03.aspx" />
+    <Content Include="InfoMgt\Info37\Info37.aspx" />
+    <Content Include="InfoMgt\Info37\Info37_p01.aspx" />
+    <Content Include="InfoMgt\Info37\Info37_p02.aspx" />
+    <Content Include="InfoMgt\Info37\Info37_p03.aspx" />
+    <Content Include="InfoMgt\Info38\Info38.aspx" />
+    <Content Include="InfoMgt\Info38\Info38_p01.aspx" />
+    <Content Include="InfoMgt\Info38\Info38_p02.aspx" />
+    <Content Include="InfoMgt\Info38\Info38_p03.aspx" />
+    <Content Include="InfoMgt\Info38\Info38_p04.aspx" />
+    <Content Include="InfoMgt\Info38\Info38_p05.aspx" />
+    <Content Include="InfoMgt\Info39\Info39.aspx" />
+    <Content Include="InfoMgt\Info39\Info39_p01.aspx" />
+    <Content Include="InfoMgt\Info39\Info39_p02.aspx" />
+    <Content Include="InfoMgt\Info39\Info39_p03.aspx" />
+    <Content Include="InfoMgt\Info39\Info39_p04.aspx" />
+    <Content Include="InfoMgt\Info40\Info40.aspx" />
+    <Content Include="InfoMgt\Info40\Info40_p01.aspx" />
+    <Content Include="InfoMgt\Info40\Info40_p02.aspx" />
+    <Content Include="InfoMgt\Info40\Info40_p03.aspx" />
+    <Content Include="InfoMgt\Info41\Info41.aspx" />
+    <Content Include="InfoMgt\Info41\Info41_p01.aspx" />
+    <Content Include="InfoMgt\Info11\Info11.aspx" />
+    <Content Include="InfoMgt\Info11\Info11_p01.aspx" />
+    <Content Include="InfoMgt\Info11\Info11_p02.aspx" />
+    <Content Include="InfoMgt\Info14\Info14.aspx" />
+    <Content Include="InfoMgt\Info17\Info17.aspx" />
+    <Content Include="InfoMgt\Info17\Info17_p01.aspx" />
+    <Content Include="InfoMgt\Info17\Info17_p02.aspx" />
+    <Content Include="InfoMgt\Info18\Info18.aspx" />
+    <Content Include="InfoMgt\Info18\Info18_p01.aspx" />
+    <Content Include="InfoMgt\Info18\Info18_p02.aspx" />
+    <Content Include="InfoMgt\Info19\Info19.aspx" />
+    <Content Include="InfoMgt\Info19\Info19_p01.aspx" />
+    <Content Include="InfoMgt\Info19\Info19_p02.aspx" />
+    <Content Include="InfoMgt\Info19\Info19_p03.aspx" />
+    <Content Include="InfoMgt\Info41\Info41_p02.aspx" />
+    <Content Include="InfoMgt\Info41\Info41_p03.aspx" />
+    <Content Include="InfoMgt\Info42\Info42.aspx" />
+    <Content Include="InfoMgt\Info43\Info43.aspx" />
+    <Content Include="InfoMgt\Info43\Info43_p01.aspx" />
+    <Content Include="InfoMgt\Info43\Info43_p02.aspx" />
+    <Content Include="InfoMgt\Info43\Info43_p03.aspx" />
+    <Content Include="InfoMgt\Info47\Info47.aspx" />
+    <Content Include="InfoMgt\Info47\Info47_p01.aspx" />
+    <Content Include="InfoMgt\Info47\Info47_p02.aspx" />
+    <Content Include="InfoMgt\Info47\Info47_p03.aspx" />
+    <Content Include="InfoMgt\Info48\Info48.aspx" />
+    <Content Include="InfoMgt\Info48\Info48_p01.aspx" />
+    <Content Include="InfoMgt\Info48\Info48_p02.aspx" />
+    <Content Include="InfoMgt\Info48\Info48_p03.aspx" />
+    <Content Include="InfoMgt\Info49\Info49.aspx" />
+    <Content Include="InfoMgt\Info49\Info49_p01.aspx" />
+    <Content Include="InfoMgt\Info49\Info49_p02.aspx" />
+    <Content Include="InfoMgt\Info49\Info49_p03.aspx" />
+    <Content Include="InfoMgt\Info50\Info50.aspx" />
+    <Content Include="InfoMgt\Info50\Info50_p01.aspx" />
+    <Content Include="InfoMgt\Info50\Info50_p02.aspx" />
+    <Content Include="InfoMgt\Info50\Info50_p03.aspx" />
+    <Content Include="InfoMgt\Info52\Info52.aspx" />
+    <Content Include="InfoMgt\Info52\Info52_p01.aspx" />
+    <Content Include="InfoMgt\Info52\Info52_p02.aspx" />
+    <Content Include="InfoMgt\Info52\Info52_p03.aspx" />
+    <Content Include="InfoMgt\Info54\Info54.aspx" />
+    <Content Include="InfoMgt\Info54\Info54_p01.aspx" />
+    <Content Include="InfoMgt\Info54\Info54_p02.aspx" />
+    <Content Include="InfoMgt\Info54\Info54_p03.aspx" />
+    <Content Include="InfoMgt\Info56\Info56.aspx" />
+    <Content Include="InfoMgt\Info56\Info56_p01.aspx" />
+    <Content Include="InfoMgt\Info56\Info56_p02.aspx" />
+    <Content Include="InfoMgt\Info56\Info56_p03.aspx" />
+    <Content Include="InfoMgt\Info59\Info59.aspx" />
+    <Content Include="InfoMgt\Info59\Info59_p02.aspx" />
+    <Content Include="InfoMgt\Info60\Info60.aspx" />
+    <Content Include="InfoMgt\Info60\Info60_p01.aspx" />
+    <Content Include="InfoMgt\Info60\Info60_p02.aspx" />
+    <Content Include="InfoMgt\Info60\Info60_p03.aspx" />
+    <Content Include="InfoMgt\Info61\Info61.aspx" />
+    <Content Include="InfoMgt\Info61\Info61_p01.aspx" />
+    <Content Include="InfoMgt\Info61\Info61_p02.aspx" />
+    <Content Include="InfoMgt\Info61\Info61_p03.aspx" />
+    <Content Include="InfoMgt\Info62\Info62.aspx" />
+    <Content Include="InfoMgt\Info62\Info62_p01.aspx" />
+    <Content Include="InfoMgt\Info62\Info62_p02.aspx" />
+    <Content Include="InfoMgt\Info62\Info62_p03.aspx" />
+    <Content Include="InfoMgt\Info63\Info63.aspx" />
+    <Content Include="InfoMgt\Info63\Info63_p01.aspx" />
+    <Content Include="InfoMgt\Info63\Info63_p02.aspx" />
+    <Content Include="InfoMgt\Info63\Info63_p03.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Main.aspx" />
+    <Content Include="MonitorMgt\Mon10\Mon10.aspx" />
+    <Content Include="MonitorMgt\Mon11\Mon11.aspx" />
+    <Content Include="MonitorMgt\Mon13\Mon13.aspx" />
+    <Content Include="MonitorMgt\Mon14\Mon14.aspx" />
+    <Content Include="MonitorMgt\Mon15\Mon15.aspx" />
+    <Content Include="MonitorMgt\Mon16\Mon16.aspx" />
+    <Content Include="MonitorMgt\Mon16\Mon16_p01.aspx" />
+    <Content Include="MonitorMgt\Mon16\Mon16_p02.aspx" />
+    <Content Include="MonitorMgt\Mon17\Mon17.aspx" />
+    <Content Include="MonitorMgt\Mon20\Mon20.aspx" />
+    <Content Include="MonitorMgt\Mon20\Mon20_p01.aspx" />
+    <Content Include="MonitorMgt\Mon20\Mon20_p02.aspx" />
+    <Content Include="MonitorMgt\Mon20\Mon20_p03.aspx" />
+    <Content Include="MonitorMgt\MonWidget02\MonWidget02.aspx" />
+    <Content Include="PIB\DLVRPIB43.html" />
+    <Content Include="PIB\GetPibData.aspx" />
+    <Content Include="PlanMgt\Pln02\Pln02.aspx" />
+    <Content Include="PlanMgt\Pln02\Pln02_p01.aspx" />
+    <Content Include="PlanMgt\Pln02\Pln02_p02.aspx" />
+    <Content Include="PlanMgt\Pln03\Pln03.aspx" />
+    <Content Include="PlanMgt\Pln04\Pln04.aspx" />
+    <Content Include="PlanMgt\Pln04\Pln04_p02.aspx" />
+    <Content Include="PlanMgt\Pln04\Pln04_p03.aspx" />
+    <Content Include="PlanMgt\Pln05\Pln05.aspx" />
+    <Content Include="PlanMgt\PlnWidget02\PlnWidget02.aspx" />
+    <Content Include="QualityMgt\Qua10\Qua10.aspx" />
+    <Content Include="QualityMgt\Qua11\Qua11.aspx" />
+    <Content Include="QualityMgt\Qua11\Qua11_p01.aspx" />
+    <Content Include="QualityMgt\Qua12\Qua12.aspx" />
+    <Content Include="QualityMgt\Qua13\Qua13.aspx" />
+    <Content Include="QualityMgt\Qua14\Qua14.aspx" />
+    <Content Include="QualityMgt\Qua15\Qua15.aspx" />
+    <Content Include="QualityMgt\Qua22\Qua22.aspx" />
+    <Content Include="QualityMgt\Qua24\Qua24.aspx" />
+    <Content Include="QualityMgt\Qua24\Qua24_p01.aspx" />
+    <Content Include="QualityMgt\Qua24\Qua24_p02.aspx" />
+    <Content Include="QualityMgt\Qua34\Qua34.aspx" />
+    <Content Include="QualityMgt\Qua34\Qua34_p01.aspx" />
+    <Content Include="QualityMgt\Qua34\Qua34_p02.aspx" />
+    <Content Include="QualityMgt\Qua38\Qua38.aspx" />
+    <Content Include="QualityMgt\Qua38\Qua38_p01.aspx" />
+    <Content Include="QualityMgt\Qua38\Qua38_p02.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40_p01.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40_p02.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40_p03.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40_p04.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40_p05.aspx" />
+    <Content Include="QualityMgt\Qua40\Qua40_p06.aspx" />
+    <Content Include="QualityMgt\Qua50\Qua50.aspx" />
+    <Content Include="QualityMgt\Qua50\Qua50_p01.aspx" />
+    <Content Include="QualityMgt\Qua50\Qua50_p02.aspx" />
+    <Content Include="QualityMgt\Qua51\Qua51.aspx" />
+    <Content Include="QualityMgt\Qua51\Qua51_p01.aspx" />
+    <Content Include="QualityMgt\Qua51\Qua51_p02.aspx" />
+    <Content Include="QualityMgt\Qua51\Qua51_p03.aspx" />
+    <Content Include="QualityMgt\Qua51\Qua51_p04.aspx" />
+    <Content Include="QualityMgt\Qua51\Qua51_p05.aspx" />
+    <Content Include="QualityMgt\Qua98\Qua98.aspx" />
+    <Content Include="QualityMgt\QuaWidget02\QuaWidget02.aspx" />
+    <Content Include="ResultMgt\Res02\Res02.aspx" />
+    <Content Include="ResultMgt\Res11\Res11.aspx" />
+    <Content Include="ResultMgt\Res12\Res12.aspx" />
+    <Content Include="ResultMgt\Res18\Res18.aspx" />
+    <Content Include="ResultMgt\Res19\Res19.aspx" />
+    <Content Include="ResultMgt\Res20\Res20.aspx" />
+    <Content Include="ResultMgt\Res26\Res26.aspx" />
+    <Content Include="ResultMgt\Res27\Res27.aspx" />
+    <Content Include="ResultMgt\Res28\Res28.aspx" />
+    <Content Include="ResultMgt\ResComm2\ResComm2.aspx" />
+    <Content Include="ResultMgt\ResComm\ResComm.aspx" />
+    <Content Include="ResultMgt\ResWidget02\ResWidget02.aspx" />
+    <Content Include="Sample.aspx" />
+    <Content Include="Sample001.aspx" />
+    <Content Include="Sample2.aspx" />
+    <Content Include="Scripts\amcharts.js" />
+    <Content Include="Scripts\annotation-shape-series.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\comboTreePlugin.js" />
+    <Content Include="Scripts\demos.js" />
+    <Content Include="Scripts\HQC_Common.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.contextMenu.js" />
+    <Content Include="Scripts\jquery.ui.position.js" />
+    <Content Include="Scripts\jqxcore.js" />
+    <Content Include="Scripts\jqxdockinglayout.js" />
+    <Content Include="Scripts\jqxlayout.js" />
+    <Content Include="Scripts\jqxribbon.js" />
+    <Content Include="Scripts\jqxtree.js" />
+    <Content Include="Scripts\jqxwindow.js" />
+    <Content Include="Scripts\jszip.min.js" />
+    <Content Include="Scripts\lnb.js" />
+    <Content Include="Scripts\pagination.min.js" />
+    <Content Include="Scripts\PIB\AlarmHandler.js" />
+    <Content Include="Scripts\PIB\BoardHandler.js" />
+    <Content Include="Scripts\PIB\PibHandler.js" />
+    <Content Include="Scripts\PIB\TimerHandler.js" />
+    <Content Include="Scripts\PIB\XmlHttpHandler.js" />
+    <Content Include="Scripts\pie.js" />
+    <Content Include="Scripts\realchart-lic.js" />
+    <Content Include="Scripts\realchart.min.js" />
+    <Content Include="Scripts\realgrid-lic.js" />
+    <Content Include="Scripts\realgrid-utils.js" />
+    <Content Include="Scripts\realgrid.2.7.2.min.js" />
+    <Content Include="Scripts\serial.js" />
+    <Content Include="Scripts\xlsx.full.min.js" />
+    <Content Include="Scripts\xy.js" />
+    <Content Include="SpcMgt\Spc01\Spc01.aspx" />
+    <Content Include="SpcMgt\Spc02\Spc02.aspx" />
+    <Content Include="SpcMgt\Spc03\Spc03.aspx" />
+    <Content Include="SqlMap\SqlMapFiles\ButtonStatisticsData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info08Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info37Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info39Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info42Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info59Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info63Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info62Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info61Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info54Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info56Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info16Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info12Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info15Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info38Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\InfoTestData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Lms11Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Mon15Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Mon14Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Mon19Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Mon18Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Mon20Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Mon17Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Mon16Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Pln05Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\MonWidgetData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info30Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Qua15Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua14Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua51Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua50Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua34Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua40Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\QuaWidgetData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Res20Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\PlnWidgetData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Res28Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\ResComm2Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\ResWidgetData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Spc03Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Spc02Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Spc01Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua13Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua38Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info07Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info02Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info03Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info40Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info60Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info43Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info41Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info11Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info14Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info10Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info17Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info18Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info50Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info49Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info52Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Mon11Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Mon13Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Mon10Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Pln04Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Qua98Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Res12Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Res27Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Res26Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Res11Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Res02Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Res18Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Res19Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\ResCommData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\StatisticsData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\WidgetData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\AuthGroupData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\ComCodeData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\ComSearchControlData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\DicData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\ButtonData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\DictionaryData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\ErrorLogData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Info01Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info04Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info05Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info06Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info19Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info47Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Info48Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\MenuData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\MessageData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\CUDData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\MsgData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\NoticeData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Pln02Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Pln03Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Qua10Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Qua11Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Qua12Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Qua22Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\Qua24Data.xml" />
+    <Content Include="SqlMap\SqlMapFiles\UserInfoData.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SqlMap\SqlMapFiles\Sample1.xml" />
+    <Content Include="Sso2.aspx" />
+    <Content Include="SSOLogin.aspx" />
+    <Content Include="Styles\demo\css\style.css" />
+    <Content Include="Styles\demo\css\vgnav-theme.css" />
+    <Content Include="Styles\dist\vgfliplist.css" />
+    <Content Include="Styles\dist\vgfliplist.js" />
+    <Content Include="Styles\dist\vgfliplist.min.js" />
+    <Content Include="Styles\dist\vgnav.css" />
+    <Content Include="Styles\dist\vgnav.js" />
+    <Content Include="Styles\dist\vgnav.min.js" />
+    <Content Include="Styles\dist\vgsidebar.css" />
+    <Content Include="Styles\dist\vgsidebar.js" />
+    <Content Include="Styles\dist\vgsidebar.min.js" />
+    <Content Include="Scripts\html5-qrcode.min.js" />
+    <Content Include="Scripts\analytics.js" />
+    <Content Include="Scripts\ndef-record.js" />
+    <Content Include="Styles\jqx.base.css" />
+    <Content Include="Styles\realchart-style.css" />
+    <Content Include="SystemMgt\AuthGroupManagement\AuthGroup000.aspx" />
+    <Content Include="SystemMgt\AuthGroupManagement\AuthGroup001.aspx" />
+    <Content Include="SystemMgt\AuthGroupManagement\AuthGroup002.aspx" />
+    <Content Include="SystemMgt\AuthGroupManagement\AuthGroup003.aspx" />
+    <Content Include="SystemMgt\AuthGroupManagement\AuthGroup004.aspx" />
+    <Content Include="SystemMgt\ButtonManagement\Button000.aspx" />
+    <Content Include="SystemMgt\ButtonManagement\Button001.aspx" />
+    <Content Include="SystemMgt\ButtonManagement\Button002.aspx" />
+    <Content Include="SystemMgt\ButtonStatisticsManagement\ButtonStatistics000.aspx" />
+    <Content Include="SystemMgt\ComCodeManagement\ComCode000.aspx" />
+    <Content Include="SystemMgt\ComCodeManagement\ComCode001.aspx" />
+    <Content Include="SystemMgt\ComCodeManagement\ComCode002.aspx" />
+    <Content Include="SystemMgt\CUDLogManagement\CUDLog000.aspx" />
+    <Content Include="SystemMgt\CUDLogManagement\CUDLog001.aspx" />
+    <Content Include="SystemMgt\DictionaryManagement\Dictionary000.aspx" />
+    <Content Include="SystemMgt\DictionaryManagement\Dictionary001.aspx" />
+    <Content Include="SystemMgt\DictionaryManagement\Dictionary002.aspx" />
+    <Content Include="SystemMgt\ErrorLogManagement\ErrorLog000.aspx" />
+    <Content Include="SystemMgt\ErrorLogManagement\ErrorLog001.aspx" />
+    <Content Include="SystemMgt\FrameManagement\MainFrame02.html" />
+    <Content Include="SystemMgt\FrameManagement\ModFrame02.html" />
+    <Content Include="SystemMgt\FrameManagement\ModFrame01.html" />
+    <Content Include="SystemMgt\FrameManagement\MainFrame01.html" />
+    <Content Include="SystemMgt\MenuManagement\Menu000.aspx" />
+    <Content Include="SystemMgt\MenuManagement\Menu001.aspx" />
+    <Content Include="SystemMgt\MenuManagement\Menu002.aspx" />
+    <Content Include="SystemMgt\MenuManagement\Menu003.aspx" />
+    <Content Include="SystemMgt\MenuManagement\Menu004.aspx" />
+    <Content Include="SystemMgt\MessageManagement\Message000.aspx" />
+    <Content Include="SystemMgt\MessageManagement\Message001.aspx" />
+    <Content Include="SystemMgt\MessageManagement\Message002.aspx" />
+    <Content Include="SystemMgt\NoticeManagement\Notice000.aspx" />
+    <Content Include="SystemMgt\NoticeManagement\Notice001.aspx" />
+    <Content Include="SystemMgt\NoticeManagement\Notice002.aspx" />
+    <Content Include="SystemMgt\NoticeManagement\Notice003.aspx" />
+    <Content Include="SystemMgt\NoticeManagement\Notice004.aspx" />
+    <Content Include="SystemMgt\NoticeManagement\Notice005.aspx" />
+    <Content Include="SystemMgt\StatisticsManagement\Statistics000.aspx" />
+    <Content Include="SystemMgt\UserManagement\User000.aspx" />
+    <Content Include="SystemMgt\UserManagement\User001.aspx" />
+    <Content Include="SystemMgt\UserManagement\User002.aspx" />
+    <Content Include="SystemMgt\WidgetManagement\Widget000.aspx" />
+    <Content Include="SystemMgt\WidgetManagement\Widget001.aspx" />
+    <Content Include="SystemMgt\WidgetManagement\Widget002.aspx" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetAlarm01.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetCalendar01.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetGraph01.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetGraph02.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetMgt.aspx" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetNotice01.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetStat01.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetStat02.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetStat03.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetStat04.html" />
+    <Content Include="SystemMgt\WidgetManagement\WidgetStatusBoard01.html" />
+    <Content Include="Template\PublicHorizontalSplitSample_TT.aspx" />
+    <Content Include="Template\PublicHorizontalSplitSample_GT.aspx" />
+    <Content Include="Template\PublicDefaultSample.aspx" />
+    <Content Include="Template\PublicSplitSample.aspx" />
+    <Content Include="Template\PublicPopupSample.aspx" />
+    <Content Include="Scripts\jq-paginator.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery.ui.core.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.js" />
+    <Content Include="Styles\contents.css" />
+    <Content Include="Styles\default.css" />
+    <Content Include="Styles\jquery-ui.css" />
+    <Content Include="css\jquery.ui.core.css" />
+    <Content Include="css\jquery.ui.datepicker.css" />
+    <Content Include="css\jquery.ui.theme.css" />
+    <Content Include="Styles\layer.css" />
+    <Content Include="Styles\layout.css" />
+    <Content Include="Styles\login.css" />
+    <Content Include="Styles\styles.css" />
+    <Content Include="Template\PublicTabSample.aspx" />
+    <Content Include="toastui-editor\toastui-editor-all.min.js" />
+    <Content Include="toastui-editor\toastui-editor.min.css" />
+    <Content Include="UserContorls\LeftControl.ascx" />
+    <Content Include="UserContorls\TopControl.ascx" />
+    <Content Include="SystemMgt\UserManagement\UserMenuSetting.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Default.html" />
+    <Content Include="Widget01.html" />
+    <Content Include="Widget02.html" />
+    <Content Include="Widget03.html" />
+    <Content Include="Widget04.html" />
+    <Content Include="Widget05.html" />
+    <Content Include="Widget06.html" />
+    <Content Include="Widget07.html" />
+    <Content Include="Widget08.html" />
+    <Content Include="Widget09.html" />
+    <Content Include="Widget10.html" />
+    <Content Include="realChart01.html" />
+    <Content Include="Widget11.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Biz\InfoManagement\Info01.cs" />
+    <Compile Include="Biz\InfoManagement\Info02.cs" />
+    <Compile Include="Biz\InfoManagement\Info03.cs" />
+    <Compile Include="Biz\InfoManagement\Info04.cs" />
+    <Compile Include="Biz\InfoManagement\Info05.cs" />
+    <Compile Include="Biz\InfoManagement\Info06.cs" />
+    <Compile Include="Biz\InfoManagement\Info07.cs" />
+    <Compile Include="Biz\InfoManagement\Info08.cs" />
+    <Compile Include="Biz\InfoManagement\Info10.cs" />
+    <Compile Include="Biz\InfoManagement\Info12.cs" />
+    <Compile Include="Biz\InfoManagement\Info15.cs" />
+    <Compile Include="Biz\InfoManagement\Info16.cs" />
+    <Compile Include="Biz\InfoManagement\Info30.cs" />
+    <Compile Include="Biz\InfoManagement\Info37.cs" />
+    <Compile Include="Biz\InfoManagement\Info38.cs" />
+    <Compile Include="Biz\InfoManagement\Info39.cs" />
+    <Compile Include="Biz\InfoManagement\Info40.cs" />
+    <Compile Include="Biz\InfoManagement\Info41.cs" />
+    <Compile Include="Biz\InfoManagement\Info11.cs" />
+    <Compile Include="Biz\InfoManagement\Info14.cs" />
+    <Compile Include="Biz\InfoManagement\Info17.cs" />
+    <Compile Include="Biz\InfoManagement\Info18.cs" />
+    <Compile Include="Biz\InfoManagement\Info19.cs" />
+    <Compile Include="Biz\InfoManagement\Info42.cs" />
+    <Compile Include="Biz\InfoManagement\Info43.cs" />
+    <Compile Include="Biz\InfoManagement\Info47.cs" />
+    <Compile Include="Biz\InfoManagement\Info48.cs" />
+    <Compile Include="Biz\InfoManagement\Info49.cs" />
+    <Compile Include="Biz\InfoManagement\Info50.cs" />
+    <Compile Include="Biz\InfoManagement\Info52.cs" />
+    <Compile Include="Biz\InfoManagement\Info54.cs" />
+    <Compile Include="Biz\InfoManagement\Info56.cs" />
+    <Compile Include="Biz\InfoManagement\Info59.cs" />
+    <Compile Include="Biz\InfoManagement\Info60.cs" />
+    <Compile Include="Biz\InfoManagement\Info61.cs" />
+    <Compile Include="Biz\InfoManagement\Info62.cs" />
+    <Compile Include="Biz\InfoManagement\Info63.cs" />
+    <Compile Include="Biz\InfoManagement\InfoTest.cs" />
+    <Compile Include="Biz\LmsManageMent\Lms10.cs" />
+    <Compile Include="Biz\LmsManageMent\Lms11.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon10.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon11.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon13.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon14.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon15.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon16.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon17.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon18.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon19.cs" />
+    <Compile Include="Biz\MonitorManagement\Mon20.cs" />
+    <Compile Include="Biz\MonitorManagement\MonComm.cs" />
+    <Compile Include="Biz\MonitorManagement\MonWidget02.cs" />
+    <Compile Include="Biz\PlanManagement\Pln02.cs" />
+    <Compile Include="Biz\PlanManagement\Pln03.cs" />
+    <Compile Include="Biz\PlanManagement\Pln04.cs" />
+    <Compile Include="Biz\PlanManagement\Pln05.cs" />
+    <Compile Include="Biz\PlanManagement\Pln06.cs" />
+    <Compile Include="Biz\PlanManagement\PlnWidget02.cs" />
+    <Compile Include="Biz\QualityManagement\Qua10.cs" />
+    <Compile Include="Biz\QualityManagement\Qua11.cs" />
+    <Compile Include="Biz\QualityManagement\Qua12.cs" />
+    <Compile Include="Biz\QualityManagement\Qua13.cs" />
+    <Compile Include="Biz\QualityManagement\Qua14.cs" />
+    <Compile Include="Biz\QualityManagement\Qua15.cs" />
+    <Compile Include="Biz\QualityManagement\Qua22.cs" />
+    <Compile Include="Biz\QualityManagement\Qua24.cs" />
+    <Compile Include="Biz\QualityManagement\Qua34.cs" />
+    <Compile Include="Biz\QualityManagement\Qua38.cs" />
+    <Compile Include="Biz\QualityManagement\Qua40.cs" />
+    <Compile Include="Biz\QualityManagement\Qua50.cs" />
+    <Compile Include="Biz\QualityManagement\Qua51.cs" />
+    <Compile Include="Biz\QualityManagement\Qua98.cs" />
+    <Compile Include="Biz\QualityManagement\QuaWidget02.cs" />
+    <Compile Include="Biz\ResultManagement\Res02.cs" />
+    <Compile Include="Biz\ResultManagement\Res11.cs" />
+    <Compile Include="Biz\ResultManagement\Res12.cs" />
+    <Compile Include="Biz\ResultManagement\Res18.cs" />
+    <Compile Include="Biz\ResultManagement\Res19.cs" />
+    <Compile Include="Biz\ResultManagement\Res20.cs" />
+    <Compile Include="Biz\ResultManagement\Res26.cs" />
+    <Compile Include="Biz\ResultManagement\Res27.cs" />
+    <Compile Include="Biz\ResultManagement\Res28.cs" />
+    <Compile Include="Biz\ResultManagement\ResComm.cs" />
+    <Compile Include="Biz\ResultManagement\ResComm2.cs" />
+    <Compile Include="Biz\ResultManagement\ResWidget02.cs" />
+    <Compile Include="Biz\SpcManagement\Spc01.cs" />
+    <Compile Include="Biz\SpcManagement\Spc02.cs" />
+    <Compile Include="Biz\SpcManagement\Spc03.cs" />
+    <Compile Include="Biz\SystemManagement\AuthGroupMgt.cs" />
+    <Compile Include="Biz\SystemManagement\ButtonStatisticsMgt.cs" />
+    <Compile Include="Biz\SystemManagement\PublicBizSample1.cs" />
+    <Compile Include="Biz\SystemManagement\PublicBizSample2.cs" />
+    <Compile Include="Biz\SystemManagement\StatisticsMgt.cs" />
+    <Compile Include="Biz\SystemManagement\WidgetMgt.cs" />
+    <Compile Include="Biz\SystemManagement\ButtonMgt.cs" />
+    <Compile Include="Biz\SystemManagement\ComCodeMgt.cs" />
+    <Compile Include="Biz\SystemManagement\CUDLogMgt.cs" />
+    <Compile Include="Biz\SystemManagement\DictionaryMgt.cs" />
+    <Compile Include="Biz\SystemManagement\ErrorLogMgt.cs" />
+    <Compile Include="Biz\SystemManagement\MenuMgt.cs" />
+    <Compile Include="Biz\Mgt_Biz.cs" />
+    <Compile Include="Biz\Sample_Biz.cs" />
+    <Compile Include="Biz\SystemManagement\MessageMgt.cs" />
+    <Compile Include="Biz\SystemManagement\NoticeMgt.cs" />
+    <Compile Include="Biz\SystemManagement\UserMgt.cs" />
+    <Compile Include="Biz\SystemManagement\Config.cs" />
+    <Compile Include="FW\Constants\CommonConstants.cs" />
+    <Compile Include="FW\Constants\MessageAttribute.cs" />
+    <Compile Include="FW\Constants\MessageFieldName.cs" />
+    <Compile Include="FW\Constants\MessageType.cs" />
+    <Compile Include="FW\Constants\ProcessStatusType.cs" />
+    <Compile Include="FW\Constants\QueryType.cs" />
+    <Compile Include="FW\Constants\RequestType.cs" />
+    <Compile Include="FW\Constants\XmlNames.cs" />
+    <Compile Include="FW\WCTService.cs" />
+    <Compile Include="FW\DataBaseService.cs" />
+    <Compile Include="FW\Data\BindingGridColumnInfo.cs" />
+    <Compile Include="FW\Data\Common\DataSource.cs" />
+    <Compile Include="FW\Data\Common\DataSourceDeSerializer.cs" />
+    <Compile Include="FW\Data\Common\DbProvider.cs" />
+    <Compile Include="FW\Data\Common\Exceptions\ConfigurationException.cs" />
+    <Compile Include="FW\Data\Common\Exceptions\ForeignKeyException.cs" />
+    <Compile Include="FW\Data\Common\Exceptions\IBatisNetException.cs" />
+    <Compile Include="FW\Data\Common\Exceptions\ProbeException.cs" />
+    <Compile Include="FW\Data\Common\IDalSession.cs" />
+    <Compile Include="FW\Data\Common\IDataSource.cs" />
+    <Compile Include="FW\Data\Common\IDbProvider.cs" />
+    <Compile Include="FW\Data\Common\Pagination\IPaginatedList.cs" />
+    <Compile Include="FW\Data\Common\Pagination\PaginatedArrayList.cs" />
+    <Compile Include="FW\Data\Common\ProviderDeSerializer.cs" />
+    <Compile Include="FW\Data\Common\Transaction\IsolationLevel.cs" />
+    <Compile Include="FW\Data\Common\Transaction\TransactionOptions.cs" />
+    <Compile Include="FW\Data\Common\Transaction\TransactionScopeOptions.cs" />
+    <Compile Include="FW\Data\Common\Utilities\ConfigWatcherHandler.cs" />
+    <Compile Include="FW\Data\Common\Utilities\DBHelperParameterCache.cs" />
+    <Compile Include="FW\Data\Common\Utilities\HashCodeProvider.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\AbstractFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\ActivatorFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\ActivatorObjectFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\BoxingOpCodes.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\DelegateFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\DelegateObjectFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\EmitObjectFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\FactoryBuilder.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\FactoryLogAdapter.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\IFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\IObjectFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\AccessorFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\BaseAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\DelegateGetFieldAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\DelegatePropertyGetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\DelegatePropertySetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\DelegateSetFieldAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\EmitFieldGetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\EmitFieldSetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\EmitPropertyGetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\EmitPropertySetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\GetAccessorFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\IAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\IGet.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\IGetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\IGetAccessorFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ISet.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ISetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ISetAccessorFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ReflectionFieldGetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ReflectionFieldSetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ReflectionPropertyGetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\ReflectionPropertySetAccessor.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\Members\SetAccessorFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\ObjectFactory.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\ObjectProbe.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Objects\ReflectionInfo.cs" />
+    <Compile Include="FW\Data\Common\Utilities\Resources.cs" />
+    <Compile Include="FW\Data\Common\Utilities\ScriptRunner.cs" />
+    <Compile Include="FW\Data\Common\Utilities\StringTokenizer.cs" />
+    <Compile Include="FW\Data\Common\Utilities\TypesResolver\CachedTypeResolver.cs" />
+    <Compile Include="FW\Data\Common\Utilities\TypesResolver\ITypeResolver.cs" />
+    <Compile Include="FW\Data\Common\Utilities\TypesResolver\TypeRegistry.cs" />
+    <Compile Include="FW\Data\Common\Utilities\TypesResolver\TypeResolver.cs" />
+    <Compile Include="FW\Data\Common\Utilities\TypeUtils.cs" />
+    <Compile Include="FW\Data\Common\Xml\NodeUtils.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\DataReaderDecorator.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\DataReaderTransformer.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\DbCommandDecorator.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\DefaultPreparedCommand.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\IDbDataParameterCollection.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\InMemoryDataReader.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\IPreparedCommand.cs" />
+    <Compile Include="FW\Data\DataMapper\Commands\PreparedCommandFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Alias\TypeAlias.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Alias\TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\CacheKey.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\CacheModel.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\Fifo\FifoCacheController.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\FlushInterval.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\ICacheController.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\Lru\LruCacheController.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\Memory\MemoryCacheControler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Cache\Memory\MemoryCacheLevel.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\DomSqlMapBuilder.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ParameterMapping\InlineParameterMapParser.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ParameterMapping\ParameterMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ParameterMapping\ParameterProperty.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ParameterMapping\ParameterPropertyCollection.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\ArgumentProperty.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\AutoResultMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\Discriminator.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\DynamicResultMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\IResultMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\NullResultMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\ResultMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\ResultMapCollection.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\ResultProperty.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\ResultPropertyCollection.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\ResultMapping\SubMap.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\ArgumentPropertyDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\CacheModelDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\DeleteDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\DeSerializerFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\DiscriminatorDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\DynamicDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\InsertDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsEmptyDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsEqualDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsGreaterEqualDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsGreaterThanDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsLessEqualDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsLessThanDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsNotEmptyDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsNotEqualDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsNotNullDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsNotParameterPresentDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsNotPropertyAvailableDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsNullDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsParameterPresentDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IsPropertyAvailableDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\IterateSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\ParameterMapDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\ParameterPropertyDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\ProcedureDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\ResultMapDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\ResultPropertyDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\SelectDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\SqlDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\StatementDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\SubMapDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\TypeAliasDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\TypeHandlerDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Serializers\UpdateDeSerializer.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\DynamicSql.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\BaseTag.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\Conditional.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\Dynamic.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IDynamicParent.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsEmpty.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsEqual.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsGreaterEqual.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsGreaterThan.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsLessEqual.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsLessThan.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsNotEmpty.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsNotEqual.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsNotNull.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsNotParameterPresent.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsNotPropertyAvailable.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsNull.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsParameterPresent.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\IsPropertyAvailable.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\Iterate.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Elements\SqlTag.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\BaseTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\ConditionalTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\DynamicTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsEmptyTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsEqualTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsGreaterEqualTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsGreaterThanTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsLessEqualTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsLessThanTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsNotEmptyTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsNotEqualTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsNotNullTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsNotParameterPresentTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsNotPropertyAvailableTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsNullTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsParameterPresentTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IsPropertyAvailableTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\ISqlTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IterateContext.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\IterateTagHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\Handlers\SqlTagContext.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\ISqlChild.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Dynamic\SqlText.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\ISql.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\SimpleDynamic\SimpleDynamicSql.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Static\ProcedureSql.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Sql\Static\StaticSql.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Delete.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Generate.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Insert.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\IStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\PreparedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\PreparedStatementFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Procedure.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Select.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\SelectKey.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\SqlGenerator.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Statement.cs" />
+    <Compile Include="FW\Data\DataMapper\Configuration\Statements\Update.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\BaseDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\ComplexDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\DataExchangeFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\DictionaryDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\DotNetObjectDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\IDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\ListDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\DataExchange\PrimitiveDataExchange.cs" />
+    <Compile Include="FW\Data\DataMapper\Delegates.cs" />
+    <Compile Include="FW\Data\DataMapper\Enumeration.cs" />
+    <Compile Include="FW\Data\DataMapper\Exceptions\DataMapperException.cs" />
+    <Compile Include="FW\Data\DataMapper\ExecuteEventArgs.cs" />
+    <Compile Include="FW\Data\DataMapper\ISqlMapper.cs" />
+    <Compile Include="FW\Data\DataMapper\ISqlMapSession.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\ArgumentStrategyFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\DefaultStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\IArgumentStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\ResultMapStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\SelectArrayStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\SelectGenericListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\SelectListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\SelectObjectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ArgumentStrategy\SelectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\BaseStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\CachingStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\DeleteMappedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\IMappedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\InsertMappedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\MappedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PaginatedList.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostBindind.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\ArrayStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\GenericListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\IPostSelectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\ListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\ObjectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\PostSelectStrategyFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PostSelectStrategy\StrongTypedListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\DefaultStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\GroupByStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\IPropertyStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\PropertyStrategyFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\ResultMapStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\SelectArrayStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\SelectGenericListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\SelectListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\SelectObjectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\PropertStrategy\SelectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ReaderAutoMapper.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\AutoMapStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\BaseResultStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\DictionaryStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\DynamicMapStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\GroupByStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\IResultStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\ListStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\MapStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\ObjectStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\ResultClassStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\ResultMapStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\ResultStrategyFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\SimpleTypeStrategy.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\SelectMappedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\MappedStatements\UpdateMappedStatement.cs" />
+    <Compile Include="FW\Data\DataMapper\Mapper.cs" />
+    <Compile Include="FW\Data\DataMapper\Scope\ConfigurationScope.cs" />
+    <Compile Include="FW\Data\DataMapper\Scope\ErrorContext.cs" />
+    <Compile Include="FW\Data\DataMapper\Scope\IScope.cs" />
+    <Compile Include="FW\Data\DataMapper\Scope\RequestScope.cs" />
+    <Compile Include="FW\Data\DataMapper\SessionStore\AbstractSessionStore.cs" />
+    <Compile Include="FW\Data\DataMapper\SessionStore\ISessionStore.cs" />
+    <Compile Include="FW\Data\DataMapper\SessionStore\SessionStoreFactory .cs" />
+    <Compile Include="FW\Data\DataMapper\SessionStore\ThreadSessionStore.cs" />
+    <Compile Include="FW\Data\DataMapper\SqlMapper.cs" />
+    <Compile Include="FW\Data\DataMapper\SqlMapSession.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\AnsiStringTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\BaseTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\BooleanTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ByteArrayTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ByteTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\CharTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\CustomTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\DateTimeTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\DBNullTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\DecimalTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\DoubleTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\EnumTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\GuidTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Int16TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Int32TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Int64TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\IParameterSetter.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\IResultGetter.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ITypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ITypeHandlerCallback.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableBooleanTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableByteTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableCharTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableDateTimeTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableDecimalTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableDoubleTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableGuidTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableInt16TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableInt32TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableInt64TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableSByteTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableSingleTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableTimeSpanTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableUInt16TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableUInt32TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\Nullables\NullableUInt64TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ObjectTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ParameterSetterImpl.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\ResultGetterImpl.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\SByteTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\SingleTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\StringTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\TimeSpanTypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\TypeHandlerFactory.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\UInt16TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\UInt32TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\UInt64TypeHandler.cs" />
+    <Compile Include="FW\Data\DataMapper\TypeHandlers\UnknownTypeHandler.cs" />
+    <Compile Include="FW\Data\MessageData.cs" />
+    <Compile Include="FW\Data\Parameters.cs" />
+    <Compile Include="FW\Data\SqlMapper.cs" />
+    <Compile Include="FW\ConvertJSONData.cs" />
+    <Compile Include="FW\DicService.cs" />
+    <Compile Include="FW\Dictionary_Data.cs" />
+    <Compile Include="FW\Exception\MesException.cs" />
+    <Compile Include="FW\Exception\MesRuleNotFoundException.cs" />
+    <Compile Include="FW\Exception\PostRuleFailedException.cs" />
+    <Compile Include="FW\Exception\PreRuleFailedException.cs" />
+    <Compile Include="FW\Logging\LogHandler.cs" />
+    <Compile Include="FW\Logging\RollingMinuteFileAppender.cs" />
+    <Compile Include="FW\MessageInfo.cs" />
+    <Compile Include="FW\MessageMgt.cs" />
+    <Compile Include="FW\Message_Data.cs" />
+    <Compile Include="FW\DictionaryInfo.cs" />
+    <Compile Include="FW\MsgService.cs" />
+    <Compile Include="FW\Rule\MesRuleBase.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01.aspx.cs">
+      <DependentUpon>Info01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01.aspx.designer.cs">
+      <DependentUpon>Info01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01_p01.aspx.cs">
+      <DependentUpon>Info01_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01_p01.aspx.designer.cs">
+      <DependentUpon>Info01_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01_p02.aspx.cs">
+      <DependentUpon>Info01_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01_p02.aspx.designer.cs">
+      <DependentUpon>Info01_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01_p03.aspx.cs">
+      <DependentUpon>Info01_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info01\Info01_p03.aspx.designer.cs">
+      <DependentUpon>Info01_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02.aspx.cs">
+      <DependentUpon>Info02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02.aspx.designer.cs">
+      <DependentUpon>Info02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02_p01.aspx.cs">
+      <DependentUpon>Info02_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02_p01.aspx.designer.cs">
+      <DependentUpon>Info02_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02_p02.aspx.cs">
+      <DependentUpon>Info02_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02_p02.aspx.designer.cs">
+      <DependentUpon>Info02_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02_p03.aspx.cs">
+      <DependentUpon>Info02_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info02\Info02_p03.aspx.designer.cs">
+      <DependentUpon>Info02_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03.aspx.cs">
+      <DependentUpon>Info03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03.aspx.designer.cs">
+      <DependentUpon>Info03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03_p01.aspx.cs">
+      <DependentUpon>Info03_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03_p01.aspx.designer.cs">
+      <DependentUpon>Info03_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03_p02.aspx.cs">
+      <DependentUpon>Info03_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03_p02.aspx.designer.cs">
+      <DependentUpon>Info03_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03_p03.aspx.cs">
+      <DependentUpon>Info03_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info03\Info03_p03.aspx.designer.cs">
+      <DependentUpon>Info03_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04.aspx.cs">
+      <DependentUpon>Info04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04.aspx.designer.cs">
+      <DependentUpon>Info04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04_p01.aspx.cs">
+      <DependentUpon>Info04_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04_p01.aspx.designer.cs">
+      <DependentUpon>Info04_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04_p02.aspx.cs">
+      <DependentUpon>Info04_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04_p02.aspx.designer.cs">
+      <DependentUpon>Info04_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04_p03.aspx.cs">
+      <DependentUpon>Info04_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info04\Info04_p03.aspx.designer.cs">
+      <DependentUpon>Info04_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05.aspx.cs">
+      <DependentUpon>Info05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05.aspx.designer.cs">
+      <DependentUpon>Info05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05_p01.aspx.cs">
+      <DependentUpon>Info05_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05_p01.aspx.designer.cs">
+      <DependentUpon>Info05_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05_p02.aspx.cs">
+      <DependentUpon>Info05_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05_p02.aspx.designer.cs">
+      <DependentUpon>Info05_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05_p03.aspx.cs">
+      <DependentUpon>Info05_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info05\Info05_p03.aspx.designer.cs">
+      <DependentUpon>Info05_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06.aspx.cs">
+      <DependentUpon>Info06.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06.aspx.designer.cs">
+      <DependentUpon>Info06.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06_p01.aspx.cs">
+      <DependentUpon>Info06_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06_p01.aspx.designer.cs">
+      <DependentUpon>Info06_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06_p02.aspx.cs">
+      <DependentUpon>Info06_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06_p02.aspx.designer.cs">
+      <DependentUpon>Info06_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06_p03.aspx.cs">
+      <DependentUpon>Info06_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info06\Info06_p03.aspx.designer.cs">
+      <DependentUpon>Info06_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07.aspx.cs">
+      <DependentUpon>Info07.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07.aspx.designer.cs">
+      <DependentUpon>Info07.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07_p01.aspx.cs">
+      <DependentUpon>Info07_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07_p01.aspx.designer.cs">
+      <DependentUpon>Info07_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07_p02.aspx.cs">
+      <DependentUpon>Info07_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07_p02.aspx.designer.cs">
+      <DependentUpon>Info07_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07_p03.aspx.cs">
+      <DependentUpon>Info07_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info07\Info07_p03.aspx.designer.cs">
+      <DependentUpon>Info07_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08.aspx.cs">
+      <DependentUpon>Info08.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08.aspx.designer.cs">
+      <DependentUpon>Info08.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p01.aspx.cs">
+      <DependentUpon>Info08_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p01.aspx.designer.cs">
+      <DependentUpon>Info08_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p02.aspx.cs">
+      <DependentUpon>Info08_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p02.aspx.designer.cs">
+      <DependentUpon>Info08_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p03.aspx.cs">
+      <DependentUpon>Info08_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p03.aspx.designer.cs">
+      <DependentUpon>Info08_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p04.aspx.cs">
+      <DependentUpon>Info08_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info08\Info08_p04.aspx.designer.cs">
+      <DependentUpon>Info08_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10.aspx.cs">
+      <DependentUpon>Info10.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10.aspx.designer.cs">
+      <DependentUpon>Info10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10_p01.aspx.cs">
+      <DependentUpon>Info10_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10_p01.aspx.designer.cs">
+      <DependentUpon>Info10_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10_p02.aspx.cs">
+      <DependentUpon>Info10_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10_p02.aspx.designer.cs">
+      <DependentUpon>Info10_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10_p03.aspx.cs">
+      <DependentUpon>Info10_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info10\Info10_p03.aspx.designer.cs">
+      <DependentUpon>Info10_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11_p03.aspx.cs">
+      <DependentUpon>Info11_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11_p03.aspx.designer.cs">
+      <DependentUpon>Info11_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12.aspx.cs">
+      <DependentUpon>Info12.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12.aspx.designer.cs">
+      <DependentUpon>Info12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12_p01.aspx.cs">
+      <DependentUpon>Info12_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12_p01.aspx.designer.cs">
+      <DependentUpon>Info12_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12_p02.aspx.cs">
+      <DependentUpon>Info12_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12_p02.aspx.designer.cs">
+      <DependentUpon>Info12_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12_p03.aspx.cs">
+      <DependentUpon>Info12_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info12\Info12_p03.aspx.designer.cs">
+      <DependentUpon>Info12_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info15\Info15.aspx.cs">
+      <DependentUpon>Info15.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info15\Info15.aspx.designer.cs">
+      <DependentUpon>Info15.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16.aspx.cs">
+      <DependentUpon>Info16.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16.aspx.designer.cs">
+      <DependentUpon>Info16.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16_p01.aspx.cs">
+      <DependentUpon>Info16_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16_p01.aspx.designer.cs">
+      <DependentUpon>Info16_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16_p02.aspx.cs">
+      <DependentUpon>Info16_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16_p02.aspx.designer.cs">
+      <DependentUpon>Info16_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16_p03.aspx.cs">
+      <DependentUpon>Info16_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info16\Info16_p03.aspx.designer.cs">
+      <DependentUpon>Info16_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17_p03.aspx.cs">
+      <DependentUpon>Info17_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17_p03.aspx.designer.cs">
+      <DependentUpon>Info17_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18_p03.aspx.cs">
+      <DependentUpon>Info18_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18_p03.aspx.designer.cs">
+      <DependentUpon>Info18_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p04.aspx.cs">
+      <DependentUpon>Info19_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p04.aspx.designer.cs">
+      <DependentUpon>Info19_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30.aspx.cs">
+      <DependentUpon>Info30.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30.aspx.designer.cs">
+      <DependentUpon>Info30.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p01.aspx.cs">
+      <DependentUpon>Info30_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p01.aspx.designer.cs">
+      <DependentUpon>Info30_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p02.aspx.cs">
+      <DependentUpon>Info30_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p02.aspx.designer.cs">
+      <DependentUpon>Info30_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p03.aspx.cs">
+      <DependentUpon>Info30_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p03.aspx.designer.cs">
+      <DependentUpon>Info30_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p04.aspx.cs">
+      <DependentUpon>Info30_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info30\Info30_p04.aspx.designer.cs">
+      <DependentUpon>Info30_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37.aspx.cs">
+      <DependentUpon>Info37.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37.aspx.designer.cs">
+      <DependentUpon>Info37.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37_p01.aspx.cs">
+      <DependentUpon>Info37_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37_p01.aspx.designer.cs">
+      <DependentUpon>Info37_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37_p02.aspx.cs">
+      <DependentUpon>Info37_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37_p02.aspx.designer.cs">
+      <DependentUpon>Info37_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37_p03.aspx.cs">
+      <DependentUpon>Info37_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info37\Info37_p03.aspx.designer.cs">
+      <DependentUpon>Info37_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38.aspx.cs">
+      <DependentUpon>Info38.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38.aspx.designer.cs">
+      <DependentUpon>Info38.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p01.aspx.cs">
+      <DependentUpon>Info38_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p01.aspx.designer.cs">
+      <DependentUpon>Info38_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p02.aspx.cs">
+      <DependentUpon>Info38_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p02.aspx.designer.cs">
+      <DependentUpon>Info38_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p03.aspx.cs">
+      <DependentUpon>Info38_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p03.aspx.designer.cs">
+      <DependentUpon>Info38_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p04.aspx.cs">
+      <DependentUpon>Info38_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p04.aspx.designer.cs">
+      <DependentUpon>Info38_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p05.aspx.cs">
+      <DependentUpon>Info38_p05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info38\Info38_p05.aspx.designer.cs">
+      <DependentUpon>Info38_p05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39.aspx.cs">
+      <DependentUpon>Info39.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39.aspx.designer.cs">
+      <DependentUpon>Info39.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p01.aspx.cs">
+      <DependentUpon>Info39_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p01.aspx.designer.cs">
+      <DependentUpon>Info39_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p02.aspx.cs">
+      <DependentUpon>Info39_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p02.aspx.designer.cs">
+      <DependentUpon>Info39_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p03.aspx.cs">
+      <DependentUpon>Info39_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p03.aspx.designer.cs">
+      <DependentUpon>Info39_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p04.aspx.cs">
+      <DependentUpon>Info39_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info39\Info39_p04.aspx.designer.cs">
+      <DependentUpon>Info39_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40.aspx.cs">
+      <DependentUpon>Info40.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40.aspx.designer.cs">
+      <DependentUpon>Info40.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40_p01.aspx.cs">
+      <DependentUpon>Info40_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40_p01.aspx.designer.cs">
+      <DependentUpon>Info40_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40_p02.aspx.cs">
+      <DependentUpon>Info40_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40_p02.aspx.designer.cs">
+      <DependentUpon>Info40_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40_p03.aspx.cs">
+      <DependentUpon>Info40_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info40\Info40_p03.aspx.designer.cs">
+      <DependentUpon>Info40_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41.aspx.cs">
+      <DependentUpon>Info41.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41.aspx.designer.cs">
+      <DependentUpon>Info41.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41_p01.aspx.cs">
+      <DependentUpon>Info41_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41_p01.aspx.designer.cs">
+      <DependentUpon>Info41_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11.aspx.cs">
+      <DependentUpon>Info11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11.aspx.designer.cs">
+      <DependentUpon>Info11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11_p01.aspx.cs">
+      <DependentUpon>Info11_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11_p01.aspx.designer.cs">
+      <DependentUpon>Info11_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11_p02.aspx.cs">
+      <DependentUpon>Info11_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info11\Info11_p02.aspx.designer.cs">
+      <DependentUpon>Info11_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info14\Info14.aspx.cs">
+      <DependentUpon>Info14.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info14\Info14.aspx.designer.cs">
+      <DependentUpon>Info14.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17.aspx.cs">
+      <DependentUpon>Info17.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17.aspx.designer.cs">
+      <DependentUpon>Info17.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17_p01.aspx.cs">
+      <DependentUpon>Info17_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17_p01.aspx.designer.cs">
+      <DependentUpon>Info17_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17_p02.aspx.cs">
+      <DependentUpon>Info17_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info17\Info17_p02.aspx.designer.cs">
+      <DependentUpon>Info17_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18.aspx.cs">
+      <DependentUpon>Info18.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18.aspx.designer.cs">
+      <DependentUpon>Info18.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18_p01.aspx.cs">
+      <DependentUpon>Info18_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18_p01.aspx.designer.cs">
+      <DependentUpon>Info18_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18_p02.aspx.cs">
+      <DependentUpon>Info18_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info18\Info18_p02.aspx.designer.cs">
+      <DependentUpon>Info18_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19.aspx.cs">
+      <DependentUpon>Info19.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19.aspx.designer.cs">
+      <DependentUpon>Info19.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p01.aspx.cs">
+      <DependentUpon>Info19_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p01.aspx.designer.cs">
+      <DependentUpon>Info19_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p02.aspx.cs">
+      <DependentUpon>Info19_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p02.aspx.designer.cs">
+      <DependentUpon>Info19_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p03.aspx.cs">
+      <DependentUpon>Info19_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info19\Info19_p03.aspx.designer.cs">
+      <DependentUpon>Info19_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41_p02.aspx.cs">
+      <DependentUpon>Info41_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41_p02.aspx.designer.cs">
+      <DependentUpon>Info41_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41_p03.aspx.cs">
+      <DependentUpon>Info41_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info41\Info41_p03.aspx.designer.cs">
+      <DependentUpon>Info41_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info42\Info42.aspx.cs">
+      <DependentUpon>Info42.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info42\Info42.aspx.designer.cs">
+      <DependentUpon>Info42.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43.aspx.cs">
+      <DependentUpon>Info43.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43.aspx.designer.cs">
+      <DependentUpon>Info43.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43_p01.aspx.cs">
+      <DependentUpon>Info43_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43_p01.aspx.designer.cs">
+      <DependentUpon>Info43_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43_p02.aspx.cs">
+      <DependentUpon>Info43_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43_p02.aspx.designer.cs">
+      <DependentUpon>Info43_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43_p03.aspx.cs">
+      <DependentUpon>Info43_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info43\Info43_p03.aspx.designer.cs">
+      <DependentUpon>Info43_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47.aspx.cs">
+      <DependentUpon>Info47.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47.aspx.designer.cs">
+      <DependentUpon>Info47.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47_p01.aspx.cs">
+      <DependentUpon>Info47_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47_p01.aspx.designer.cs">
+      <DependentUpon>Info47_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47_p02.aspx.cs">
+      <DependentUpon>Info47_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47_p02.aspx.designer.cs">
+      <DependentUpon>Info47_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47_p03.aspx.cs">
+      <DependentUpon>Info47_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info47\Info47_p03.aspx.designer.cs">
+      <DependentUpon>Info47_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48.aspx.cs">
+      <DependentUpon>Info48.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48.aspx.designer.cs">
+      <DependentUpon>Info48.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48_p01.aspx.cs">
+      <DependentUpon>Info48_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48_p01.aspx.designer.cs">
+      <DependentUpon>Info48_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48_p02.aspx.cs">
+      <DependentUpon>Info48_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48_p02.aspx.designer.cs">
+      <DependentUpon>Info48_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48_p03.aspx.cs">
+      <DependentUpon>Info48_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info48\Info48_p03.aspx.designer.cs">
+      <DependentUpon>Info48_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49.aspx.cs">
+      <DependentUpon>Info49.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49.aspx.designer.cs">
+      <DependentUpon>Info49.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49_p01.aspx.cs">
+      <DependentUpon>Info49_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49_p01.aspx.designer.cs">
+      <DependentUpon>Info49_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49_p02.aspx.cs">
+      <DependentUpon>Info49_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49_p02.aspx.designer.cs">
+      <DependentUpon>Info49_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49_p03.aspx.cs">
+      <DependentUpon>Info49_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info49\Info49_p03.aspx.designer.cs">
+      <DependentUpon>Info49_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50.aspx.cs">
+      <DependentUpon>Info50.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50.aspx.designer.cs">
+      <DependentUpon>Info50.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50_p01.aspx.cs">
+      <DependentUpon>Info50_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50_p01.aspx.designer.cs">
+      <DependentUpon>Info50_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50_p02.aspx.cs">
+      <DependentUpon>Info50_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50_p02.aspx.designer.cs">
+      <DependentUpon>Info50_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50_p03.aspx.cs">
+      <DependentUpon>Info50_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info50\Info50_p03.aspx.designer.cs">
+      <DependentUpon>Info50_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52.aspx.cs">
+      <DependentUpon>Info52.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52.aspx.designer.cs">
+      <DependentUpon>Info52.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52_p01.aspx.cs">
+      <DependentUpon>Info52_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52_p01.aspx.designer.cs">
+      <DependentUpon>Info52_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52_p02.aspx.cs">
+      <DependentUpon>Info52_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52_p02.aspx.designer.cs">
+      <DependentUpon>Info52_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52_p03.aspx.cs">
+      <DependentUpon>Info52_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info52\Info52_p03.aspx.designer.cs">
+      <DependentUpon>Info52_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54.aspx.cs">
+      <DependentUpon>Info54.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54.aspx.designer.cs">
+      <DependentUpon>Info54.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54_p01.aspx.cs">
+      <DependentUpon>Info54_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54_p01.aspx.designer.cs">
+      <DependentUpon>Info54_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54_p02.aspx.cs">
+      <DependentUpon>Info54_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54_p02.aspx.designer.cs">
+      <DependentUpon>Info54_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54_p03.aspx.cs">
+      <DependentUpon>Info54_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info54\Info54_p03.aspx.designer.cs">
+      <DependentUpon>Info54_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56.aspx.cs">
+      <DependentUpon>Info56.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56.aspx.designer.cs">
+      <DependentUpon>Info56.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56_p01.aspx.cs">
+      <DependentUpon>Info56_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56_p01.aspx.designer.cs">
+      <DependentUpon>Info56_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56_p02.aspx.cs">
+      <DependentUpon>Info56_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56_p02.aspx.designer.cs">
+      <DependentUpon>Info56_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56_p03.aspx.cs">
+      <DependentUpon>Info56_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info56\Info56_p03.aspx.designer.cs">
+      <DependentUpon>Info56_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info59\Info59.aspx.cs">
+      <DependentUpon>Info59.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info59\Info59.aspx.designer.cs">
+      <DependentUpon>Info59.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info59\Info59_p02.aspx.cs">
+      <DependentUpon>Info59_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info59\Info59_p02.aspx.designer.cs">
+      <DependentUpon>Info59_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60.aspx.cs">
+      <DependentUpon>Info60.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60.aspx.designer.cs">
+      <DependentUpon>Info60.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60_p01.aspx.cs">
+      <DependentUpon>Info60_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60_p01.aspx.designer.cs">
+      <DependentUpon>Info60_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60_p02.aspx.cs">
+      <DependentUpon>Info60_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60_p02.aspx.designer.cs">
+      <DependentUpon>Info60_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60_p03.aspx.cs">
+      <DependentUpon>Info60_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info60\Info60_p03.aspx.designer.cs">
+      <DependentUpon>Info60_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61.aspx.cs">
+      <DependentUpon>Info61.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61.aspx.designer.cs">
+      <DependentUpon>Info61.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61_p01.aspx.cs">
+      <DependentUpon>Info61_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61_p01.aspx.designer.cs">
+      <DependentUpon>Info61_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61_p02.aspx.cs">
+      <DependentUpon>Info61_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61_p02.aspx.designer.cs">
+      <DependentUpon>Info61_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61_p03.aspx.cs">
+      <DependentUpon>Info61_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info61\Info61_p03.aspx.designer.cs">
+      <DependentUpon>Info61_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62.aspx.cs">
+      <DependentUpon>Info62.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62.aspx.designer.cs">
+      <DependentUpon>Info62.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62_p01.aspx.cs">
+      <DependentUpon>Info62_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62_p01.aspx.designer.cs">
+      <DependentUpon>Info62_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62_p02.aspx.cs">
+      <DependentUpon>Info62_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62_p02.aspx.designer.cs">
+      <DependentUpon>Info62_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62_p03.aspx.cs">
+      <DependentUpon>Info62_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info62\Info62_p03.aspx.designer.cs">
+      <DependentUpon>Info62_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63.aspx.cs">
+      <DependentUpon>Info63.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63.aspx.designer.cs">
+      <DependentUpon>Info63.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63_p01.aspx.cs">
+      <DependentUpon>Info63_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63_p01.aspx.designer.cs">
+      <DependentUpon>Info63_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63_p02.aspx.cs">
+      <DependentUpon>Info63_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63_p02.aspx.designer.cs">
+      <DependentUpon>Info63_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63_p03.aspx.cs">
+      <DependentUpon>Info63_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\Info63\Info63_p03.aspx.designer.cs">
+      <DependentUpon>Info63_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\InfoTest\InfoTest.aspx.cs">
+      <DependentUpon>InfoTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\InfoTest\InfoTest.aspx.designer.cs">
+      <DependentUpon>InfoTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\InfoTest\InfoTest_P01.aspx.cs">
+      <DependentUpon>InfoTest_P01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\InfoTest\InfoTest_P01.aspx.designer.cs">
+      <DependentUpon>InfoTest_P01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InfoMgt\InfoTest\InfoTest_P02.aspx.cs">
+      <DependentUpon>InfoTest_P02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InfoMgt\InfoTest\InfoTest_P02.aspx.designer.cs">
+      <DependentUpon>InfoTest_P02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LmsMgt\Lms11\Lms11.aspx.cs">
+      <DependentUpon>Lms11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LmsMgt\Lms11\Lms11.aspx.designer.cs">
+      <DependentUpon>Lms11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\Frames.Master.cs">
+      <DependentUpon>Frames.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\Frames.Master.designer.cs">
+      <DependentUpon>Frames.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\Popup.Master.cs">
+      <DependentUpon>Popup.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\Popup.Master.designer.cs">
+      <DependentUpon>Popup.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Biz\SystemManagement\MessagingLib.cs" />
+    <Compile Include="MasterPage\Widget.Master.cs">
+      <DependentUpon>Widget.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\Widget.Master.designer.cs">
+      <DependentUpon>Widget.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon10\Mon10.aspx.cs">
+      <DependentUpon>Mon10.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon10\Mon10.aspx.designer.cs">
+      <DependentUpon>Mon10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon11\Mon11.aspx.cs">
+      <DependentUpon>Mon11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon11\Mon11.aspx.designer.cs">
+      <DependentUpon>Mon11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon13\Mon13.aspx.cs">
+      <DependentUpon>Mon13.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon13\Mon13.aspx.designer.cs">
+      <DependentUpon>Mon13.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon14\Mon14.aspx.cs">
+      <DependentUpon>Mon14.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon14\Mon14.aspx.designer.cs">
+      <DependentUpon>Mon14.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon15\Mon15.aspx.cs">
+      <DependentUpon>Mon15.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon15\Mon15.aspx.designer.cs">
+      <DependentUpon>Mon15.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon16\Mon16.aspx.cs">
+      <DependentUpon>Mon16.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon16\Mon16.aspx.designer.cs">
+      <DependentUpon>Mon16.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon16\Mon16_p01.aspx.cs">
+      <DependentUpon>Mon16_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon16\Mon16_p01.aspx.designer.cs">
+      <DependentUpon>Mon16_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon16\Mon16_p02.aspx.cs">
+      <DependentUpon>Mon16_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon16\Mon16_p02.aspx.designer.cs">
+      <DependentUpon>Mon16_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon17\Mon17.aspx.cs">
+      <DependentUpon>Mon17.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon17\Mon17.aspx.designer.cs">
+      <DependentUpon>Mon17.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon18\Mon18.aspx.cs">
+      <DependentUpon>Mon18.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon18\Mon18.aspx.designer.cs">
+      <DependentUpon>Mon18.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon18\Mon18_p01.aspx.cs">
+      <DependentUpon>Mon18_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon18\Mon18_p01.aspx.designer.cs">
+      <DependentUpon>Mon18_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon18\Mon18_p02.aspx.cs">
+      <DependentUpon>Mon18_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon18\Mon18_p02.aspx.designer.cs">
+      <DependentUpon>Mon18_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon19\Mon19.aspx.cs">
+      <DependentUpon>Mon19.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon19\Mon19.aspx.designer.cs">
+      <DependentUpon>Mon19.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20.aspx.cs">
+      <DependentUpon>Mon20.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20.aspx.designer.cs">
+      <DependentUpon>Mon20.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20_p01.aspx.cs">
+      <DependentUpon>Mon20_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20_p01.aspx.designer.cs">
+      <DependentUpon>Mon20_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20_p02.aspx.cs">
+      <DependentUpon>Mon20_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20_p02.aspx.designer.cs">
+      <DependentUpon>Mon20_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20_p03.aspx.cs">
+      <DependentUpon>Mon20_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\Mon20\Mon20_p03.aspx.designer.cs">
+      <DependentUpon>Mon20_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorMgt\MonWidget02\MonWidget02.aspx.cs">
+      <DependentUpon>MonWidget02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonitorMgt\MonWidget02\MonWidget02.aspx.designer.cs">
+      <DependentUpon>MonWidget02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PIB\GetPibData.aspx.cs">
+      <DependentUpon>GetPibData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PIB\GetPibData.aspx.designer.cs">
+      <DependentUpon>GetPibData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PIB\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln02\Pln02.aspx.cs">
+      <DependentUpon>Pln02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln02\Pln02.aspx.designer.cs">
+      <DependentUpon>Pln02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln02\Pln02_p01.aspx.cs">
+      <DependentUpon>Pln02_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln02\Pln02_p01.aspx.designer.cs">
+      <DependentUpon>Pln02_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln02\Pln02_p02.aspx.cs">
+      <DependentUpon>Pln02_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln02\Pln02_p02.aspx.designer.cs">
+      <DependentUpon>Pln02_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln03\Pln03.aspx.cs">
+      <DependentUpon>Pln03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln03\Pln03.aspx.designer.cs">
+      <DependentUpon>Pln03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln04\Pln04.aspx.cs">
+      <DependentUpon>Pln04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln04\Pln04.aspx.designer.cs">
+      <DependentUpon>Pln04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln04\Pln04_p02.aspx.cs">
+      <DependentUpon>Pln04_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln04\Pln04_p02.aspx.designer.cs">
+      <DependentUpon>Pln04_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln04\Pln04_p03.aspx.cs">
+      <DependentUpon>Pln04_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln04\Pln04_p03.aspx.designer.cs">
+      <DependentUpon>Pln04_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln05\Pln05.aspx.cs">
+      <DependentUpon>Pln05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln05\Pln05.aspx.designer.cs">
+      <DependentUpon>Pln05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\PlnWidget02\PlnWidget02.aspx.cs">
+      <DependentUpon>PlnWidget02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\PlnWidget02\PlnWidget02.aspx.designer.cs">
+      <DependentUpon>PlnWidget02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualityMgt\Qua10\Qua10.aspx.cs">
+      <DependentUpon>Qua10.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua10\Qua10.aspx.designer.cs">
+      <DependentUpon>Qua10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua11\Qua11.aspx.cs">
+      <DependentUpon>Qua11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua11\Qua11.aspx.designer.cs">
+      <DependentUpon>Qua11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua11\Qua11_p01.aspx.cs">
+      <DependentUpon>Qua11_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua11\Qua11_p01.aspx.designer.cs">
+      <DependentUpon>Qua11_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua12\Qua12.aspx.cs">
+      <DependentUpon>Qua12.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua12\Qua12.aspx.designer.cs">
+      <DependentUpon>Qua12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua13\Qua13.aspx.cs">
+      <DependentUpon>Qua13.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua13\Qua13.aspx.designer.cs">
+      <DependentUpon>Qua13.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua14\Qua14.aspx.cs">
+      <DependentUpon>Qua14.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua14\Qua14.aspx.designer.cs">
+      <DependentUpon>Qua14.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua15\Qua15.aspx.cs">
+      <DependentUpon>Qua15.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua15\Qua15.aspx.designer.cs">
+      <DependentUpon>Qua15.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua22\Qua22.aspx.cs">
+      <DependentUpon>Qua22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua22\Qua22.aspx.designer.cs">
+      <DependentUpon>Qua22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua24\Qua24.aspx.cs">
+      <DependentUpon>Qua24.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua24\Qua24.aspx.designer.cs">
+      <DependentUpon>Qua24.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua24\Qua24_p01.aspx.cs">
+      <DependentUpon>Qua24_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua24\Qua24_p01.aspx.designer.cs">
+      <DependentUpon>Qua24_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua24\Qua24_p02.aspx.cs">
+      <DependentUpon>Qua24_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua24\Qua24_p02.aspx.designer.cs">
+      <DependentUpon>Qua24_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua34\Qua34.aspx.cs">
+      <DependentUpon>Qua34.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua34\Qua34.aspx.designer.cs">
+      <DependentUpon>Qua34.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua34\Qua34_p01.aspx.cs">
+      <DependentUpon>Qua34_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua34\Qua34_p01.aspx.designer.cs">
+      <DependentUpon>Qua34_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua34\Qua34_p02.aspx.cs">
+      <DependentUpon>Qua34_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua34\Qua34_p02.aspx.designer.cs">
+      <DependentUpon>Qua34_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua38\Qua38.aspx.cs">
+      <DependentUpon>Qua38.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua38\Qua38.aspx.designer.cs">
+      <DependentUpon>Qua38.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua38\Qua38_p01.aspx.cs">
+      <DependentUpon>Qua38_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua38\Qua38_p01.aspx.designer.cs">
+      <DependentUpon>Qua38_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua38\Qua38_p02.aspx.cs">
+      <DependentUpon>Qua38_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua38\Qua38_p02.aspx.designer.cs">
+      <DependentUpon>Qua38_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40.aspx.cs">
+      <DependentUpon>Qua40.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40.aspx.designer.cs">
+      <DependentUpon>Qua40.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p01.aspx.cs">
+      <DependentUpon>Qua40_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p01.aspx.designer.cs">
+      <DependentUpon>Qua40_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p02.aspx.cs">
+      <DependentUpon>Qua40_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p02.aspx.designer.cs">
+      <DependentUpon>Qua40_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p03.aspx.cs">
+      <DependentUpon>Qua40_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p03.aspx.designer.cs">
+      <DependentUpon>Qua40_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p04.aspx.cs">
+      <DependentUpon>Qua40_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p04.aspx.designer.cs">
+      <DependentUpon>Qua40_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p05.aspx.cs">
+      <DependentUpon>Qua40_p05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p05.aspx.designer.cs">
+      <DependentUpon>Qua40_p05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p06.aspx.cs">
+      <DependentUpon>Qua40_p06.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua40\Qua40_p06.aspx.designer.cs">
+      <DependentUpon>Qua40_p06.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua50\Qua50.aspx.cs">
+      <DependentUpon>Qua50.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua50\Qua50.aspx.designer.cs">
+      <DependentUpon>Qua50.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua50\Qua50_p01.aspx.cs">
+      <DependentUpon>Qua50_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua50\Qua50_p01.aspx.designer.cs">
+      <DependentUpon>Qua50_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua50\Qua50_p02.aspx.cs">
+      <DependentUpon>Qua50_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua50\Qua50_p02.aspx.designer.cs">
+      <DependentUpon>Qua50_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51.aspx.cs">
+      <DependentUpon>Qua51.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51.aspx.designer.cs">
+      <DependentUpon>Qua51.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p01.aspx.cs">
+      <DependentUpon>Qua51_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p01.aspx.designer.cs">
+      <DependentUpon>Qua51_p01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p02.aspx.cs">
+      <DependentUpon>Qua51_p02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p02.aspx.designer.cs">
+      <DependentUpon>Qua51_p02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p03.aspx.cs">
+      <DependentUpon>Qua51_p03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p03.aspx.designer.cs">
+      <DependentUpon>Qua51_p03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p04.aspx.cs">
+      <DependentUpon>Qua51_p04.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p04.aspx.designer.cs">
+      <DependentUpon>Qua51_p04.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p05.aspx.cs">
+      <DependentUpon>Qua51_p05.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua51\Qua51_p05.aspx.designer.cs">
+      <DependentUpon>Qua51_p05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\Qua98\Qua98.aspx.cs">
+      <DependentUpon>Qua98.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\Qua98\Qua98.aspx.designer.cs">
+      <DependentUpon>Qua98.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QualityMgt\QuaWidget02\QuaWidget02.aspx.cs">
+      <DependentUpon>QuaWidget02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QualityMgt\QuaWidget02\QuaWidget02.aspx.designer.cs">
+      <DependentUpon>QuaWidget02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Report1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Report1.Designer.cs">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res02\Res02.aspx.cs">
+      <DependentUpon>Res02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res02\Res02.aspx.designer.cs">
+      <DependentUpon>Res02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res11\Res11.aspx.cs">
+      <DependentUpon>Res11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res11\Res11.aspx.designer.cs">
+      <DependentUpon>Res11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res12\Res12.aspx.cs">
+      <DependentUpon>Res12.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res12\Res12.aspx.designer.cs">
+      <DependentUpon>Res12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res18\Res18.aspx.cs">
+      <DependentUpon>Res18.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res18\Res18.aspx.designer.cs">
+      <DependentUpon>Res18.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res19\Res19.aspx.cs">
+      <DependentUpon>Res19.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res19\Res19.aspx.designer.cs">
+      <DependentUpon>Res19.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res20\Res20.aspx.cs">
+      <DependentUpon>Res20.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res20\Res20.aspx.designer.cs">
+      <DependentUpon>Res20.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res26\Res26.aspx.cs">
+      <DependentUpon>Res26.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res26\Res26.aspx.designer.cs">
+      <DependentUpon>Res26.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res27\Res27.aspx.cs">
+      <DependentUpon>Res27.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res27\Res27.aspx.designer.cs">
+      <DependentUpon>Res27.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\Res28\Res28.aspx.cs">
+      <DependentUpon>Res28.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\Res28\Res28.aspx.designer.cs">
+      <DependentUpon>Res28.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\ResComm2\ResComm2.aspx.cs">
+      <DependentUpon>ResComm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\ResComm2\ResComm2.aspx.designer.cs">
+      <DependentUpon>ResComm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\ResComm\ResComm.aspx.cs">
+      <DependentUpon>ResComm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\ResComm\ResComm.aspx.designer.cs">
+      <DependentUpon>ResComm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultMgt\ResWidget02\ResWidget02.aspx.cs">
+      <DependentUpon>ResWidget02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultMgt\ResWidget02\ResWidget02.aspx.designer.cs">
+      <DependentUpon>ResWidget02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sample.aspx.cs">
+      <DependentUpon>Sample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sample.aspx.designer.cs">
+      <DependentUpon>Sample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sample001.aspx.cs">
+      <DependentUpon>Sample001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sample001.aspx.designer.cs">
+      <DependentUpon>Sample001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sample2.aspx.cs">
+      <DependentUpon>Sample2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sample2.aspx.designer.cs">
+      <DependentUpon>Sample2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SpcMgt\Spc01\Spc01.aspx.cs">
+      <DependentUpon>Spc01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpcMgt\Spc01\Spc01.aspx.designer.cs">
+      <DependentUpon>Spc01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SpcMgt\Spc02\Spc02.aspx.cs">
+      <DependentUpon>Spc02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpcMgt\Spc02\Spc02.aspx.designer.cs">
+      <DependentUpon>Spc02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SpcMgt\Spc03\Spc03.aspx.cs">
+      <DependentUpon>Spc03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpcMgt\Spc03\Spc03.aspx.designer.cs">
+      <DependentUpon>Spc03.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sso2.aspx.cs">
+      <DependentUpon>Sso2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sso2.aspx.designer.cs">
+      <DependentUpon>Sso2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SSOLogin.aspx.cs">
+      <DependentUpon>SSOLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SSOLogin.aspx.designer.cs">
+      <DependentUpon>SSOLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup000.aspx.cs">
+      <DependentUpon>AuthGroup000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup000.aspx.designer.cs">
+      <DependentUpon>AuthGroup000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup001.aspx.cs">
+      <DependentUpon>AuthGroup001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup001.aspx.designer.cs">
+      <DependentUpon>AuthGroup001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup002.aspx.cs">
+      <DependentUpon>AuthGroup002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup002.aspx.designer.cs">
+      <DependentUpon>AuthGroup002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup003.aspx.cs">
+      <DependentUpon>AuthGroup003.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup003.aspx.designer.cs">
+      <DependentUpon>AuthGroup003.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup004.aspx.cs">
+      <DependentUpon>AuthGroup004.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\AuthGroupManagement\AuthGroup004.aspx.designer.cs">
+      <DependentUpon>AuthGroup004.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonManagement\Button000.aspx.cs">
+      <DependentUpon>Button000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonManagement\Button000.aspx.designer.cs">
+      <DependentUpon>Button000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonManagement\Button001.aspx.cs">
+      <DependentUpon>Button001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonManagement\Button001.aspx.designer.cs">
+      <DependentUpon>Button001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonManagement\Button002.aspx.cs">
+      <DependentUpon>Button002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonManagement\Button002.aspx.designer.cs">
+      <DependentUpon>Button002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonStatisticsManagement\ButtonStatistics000.aspx.cs">
+      <DependentUpon>ButtonStatistics000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ButtonStatisticsManagement\ButtonStatistics000.aspx.designer.cs">
+      <DependentUpon>ButtonStatistics000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ComCodeManagement\ComCode000.aspx.cs">
+      <DependentUpon>ComCode000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ComCodeManagement\ComCode000.aspx.designer.cs">
+      <DependentUpon>ComCode000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ComCodeManagement\ComCode001.aspx.cs">
+      <DependentUpon>ComCode001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ComCodeManagement\ComCode001.aspx.designer.cs">
+      <DependentUpon>ComCode001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ComCodeManagement\ComCode002.aspx.cs">
+      <DependentUpon>ComCode002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ComCodeManagement\ComCode002.aspx.designer.cs">
+      <DependentUpon>ComCode002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\CUDLogManagement\CUDLog000.aspx.cs">
+      <DependentUpon>CUDLog000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\CUDLogManagement\CUDLog000.aspx.designer.cs">
+      <DependentUpon>CUDLog000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\CUDLogManagement\CUDLog001.aspx.cs">
+      <DependentUpon>CUDLog001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\CUDLogManagement\CUDLog001.aspx.designer.cs">
+      <DependentUpon>CUDLog001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\DictionaryManagement\Dictionary000.aspx.cs">
+      <DependentUpon>Dictionary000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\DictionaryManagement\Dictionary000.aspx.designer.cs">
+      <DependentUpon>Dictionary000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\DictionaryManagement\Dictionary001.aspx.cs">
+      <DependentUpon>Dictionary001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\DictionaryManagement\Dictionary001.aspx.designer.cs">
+      <DependentUpon>Dictionary001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\DictionaryManagement\Dictionary002.aspx.cs">
+      <DependentUpon>Dictionary002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\DictionaryManagement\Dictionary002.aspx.designer.cs">
+      <DependentUpon>Dictionary002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ErrorLogManagement\ErrorLog000.aspx.cs">
+      <DependentUpon>ErrorLog000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ErrorLogManagement\ErrorLog000.aspx.designer.cs">
+      <DependentUpon>ErrorLog000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\ErrorLogManagement\ErrorLog001.aspx.cs">
+      <DependentUpon>ErrorLog001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\ErrorLogManagement\ErrorLog001.aspx.designer.cs">
+      <DependentUpon>ErrorLog001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu000.aspx.cs">
+      <DependentUpon>Menu000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu000.aspx.designer.cs">
+      <DependentUpon>Menu000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu001.aspx.cs">
+      <DependentUpon>Menu001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu001.aspx.designer.cs">
+      <DependentUpon>Menu001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu002.aspx.cs">
+      <DependentUpon>Menu002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu002.aspx.designer.cs">
+      <DependentUpon>Menu002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu003.aspx.cs">
+      <DependentUpon>Menu003.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu003.aspx.designer.cs">
+      <DependentUpon>Menu003.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu004.aspx.cs">
+      <DependentUpon>Menu004.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MenuManagement\Menu004.aspx.designer.cs">
+      <DependentUpon>Menu004.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MessageManagement\Message000.aspx.cs">
+      <DependentUpon>Message000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MessageManagement\Message000.aspx.designer.cs">
+      <DependentUpon>Message000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MessageManagement\Message001.aspx.cs">
+      <DependentUpon>Message001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MessageManagement\Message001.aspx.designer.cs">
+      <DependentUpon>Message001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\MessageManagement\Message002.aspx.cs">
+      <DependentUpon>Message002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\MessageManagement\Message002.aspx.designer.cs">
+      <DependentUpon>Message002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice000.aspx.cs">
+      <DependentUpon>Notice000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice000.aspx.designer.cs">
+      <DependentUpon>Notice000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice001.aspx.cs">
+      <DependentUpon>Notice001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice001.aspx.designer.cs">
+      <DependentUpon>Notice001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice002.aspx.cs">
+      <DependentUpon>Notice002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice002.aspx.designer.cs">
+      <DependentUpon>Notice002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice003.aspx.cs">
+      <DependentUpon>Notice003.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice003.aspx.designer.cs">
+      <DependentUpon>Notice003.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice004.aspx.cs">
+      <DependentUpon>Notice004.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice004.aspx.designer.cs">
+      <DependentUpon>Notice004.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice005.aspx.cs">
+      <DependentUpon>Notice005.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\NoticeManagement\Notice005.aspx.designer.cs">
+      <DependentUpon>Notice005.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\StatisticsManagement\Statistics000.aspx.cs">
+      <DependentUpon>Statistics000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\StatisticsManagement\Statistics000.aspx.designer.cs">
+      <DependentUpon>Statistics000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\User000.aspx.cs">
+      <DependentUpon>User000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\User000.aspx.designer.cs">
+      <DependentUpon>User000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\User001.aspx.cs">
+      <DependentUpon>User001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\User001.aspx.designer.cs">
+      <DependentUpon>User001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\User002.aspx.cs">
+      <DependentUpon>User002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\User002.aspx.designer.cs">
+      <DependentUpon>User002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\Widget000.aspx.cs">
+      <DependentUpon>Widget000.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\Widget000.aspx.designer.cs">
+      <DependentUpon>Widget000.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\Widget001.aspx.cs">
+      <DependentUpon>Widget001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\Widget001.aspx.designer.cs">
+      <DependentUpon>Widget001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\Widget002.aspx.cs">
+      <DependentUpon>Widget002.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\Widget002.aspx.designer.cs">
+      <DependentUpon>Widget002.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\WidgetMgt.aspx.cs">
+      <DependentUpon>WidgetMgt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\WidgetManagement\WidgetMgt.aspx.designer.cs">
+      <DependentUpon>WidgetMgt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PublicBizSample.cs" />
+    <Compile Include="Template\PublicHorizontalSplitSample_TT.aspx.cs">
+      <DependentUpon>PublicHorizontalSplitSample_TT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template\PublicHorizontalSplitSample_TT.aspx.designer.cs">
+      <DependentUpon>PublicHorizontalSplitSample_TT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PublicHorizontalSplitSample_GT.aspx.cs">
+      <DependentUpon>PublicHorizontalSplitSample_GT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template\PublicHorizontalSplitSample_GT.aspx.designer.cs">
+      <DependentUpon>PublicHorizontalSplitSample_GT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PublicDefaultSample.aspx.cs">
+      <DependentUpon>PublicDefaultSample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template\PublicDefaultSample.aspx.designer.cs">
+      <DependentUpon>PublicDefaultSample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PublicSplitSample.aspx.cs">
+      <DependentUpon>PublicSplitSample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template\PublicSplitSample.aspx.designer.cs">
+      <DependentUpon>PublicSplitSample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PublicPopupSample.aspx.cs">
+      <DependentUpon>PublicPopupSample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template\PublicPopupSample.aspx.designer.cs">
+      <DependentUpon>PublicPopupSample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PublicTabSample.aspx.cs">
+      <DependentUpon>PublicTabSample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template\PublicTabSample.aspx.designer.cs">
+      <DependentUpon>PublicTabSample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserContorls\LeftControl.ascx.cs">
+      <DependentUpon>LeftControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserContorls\LeftControl.ascx.designer.cs">
+      <DependentUpon>LeftControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserContorls\TopControl.ascx.cs">
+      <DependentUpon>TopControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserContorls\TopControl.ascx.designer.cs">
+      <DependentUpon>TopControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\UserMenuSetting.aspx.cs">
+      <DependentUpon>UserMenuSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemMgt\UserManagement\UserMenuSetting.aspx.designer.cs">
+      <DependentUpon>UserMenuSetting.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterPage\Site.Master" />
+    <Content Include="MasterPage\Popup.Master" />
+    <Content Include="MasterPage\Frames.Master" />
+    <Content Include="font\NotoSans-Black.eot" />
+    <Content Include="font\NotoSans-Black.otf" />
+    <Content Include="font\NotoSans-Black.woff" />
+    <Content Include="font\NotoSans-Black.woff2" />
+    <Content Include="font\NotoSans-Bold.eot" />
+    <Content Include="font\NotoSans-Bold.otf" />
+    <Content Include="font\NotoSans-Bold.woff" />
+    <Content Include="font\NotoSans-Bold.woff2" />
+    <Content Include="font\NotoSans-DemiLight.eot" />
+    <Content Include="font\NotoSans-DemiLight.otf" />
+    <Content Include="font\NotoSans-DemiLight.woff" />
+    <Content Include="font\NotoSans-DemiLight.woff2" />
+    <Content Include="font\NotoSans-Light.eot" />
+    <Content Include="font\NotoSans-Light.otf" />
+    <Content Include="font\NotoSans-Light.woff" />
+    <Content Include="font\NotoSans-Light.woff2" />
+    <Content Include="font\NotoSans-Medium.eot" />
+    <Content Include="font\NotoSans-Medium.otf" />
+    <Content Include="font\NotoSans-Medium.woff" />
+    <Content Include="font\NotoSans-Medium.woff2" />
+    <Content Include="font\NotoSans-Regular.eot" />
+    <Content Include="font\NotoSans-Regular.otf" />
+    <Content Include="font\NotoSans-Regular.woff" />
+    <Content Include="font\NotoSans-Regular.woff2" />
+    <Content Include="font\NotoSans-Thin.eot" />
+    <Content Include="font\NotoSans-Thin.otf" />
+    <Content Include="font\NotoSans-Thin.woff" />
+    <Content Include="font\NotoSans-Thin.woff2" />
+    <Content Include="FW\Data\DataMapper\MappedStatements\ResultStrategy\ClassDiagram.cd" />
+    <Content Include="font\New\Inter-Black.otf" />
+    <Content Include="font\New\Inter-Black.ttf" />
+    <Content Include="font\New\Inter-Black.woff2" />
+    <Content Include="font\New\Inter-Bold.otf" />
+    <Content Include="font\New\Inter-Bold.ttf" />
+    <Content Include="font\New\Inter-Bold.woff2" />
+    <Content Include="font\New\Inter-ExtraBold.otf" />
+    <Content Include="font\New\Inter-ExtraBold.ttf" />
+    <Content Include="font\New\Inter-ExtraBold.woff2" />
+    <Content Include="font\New\Inter-ExtraLight.otf" />
+    <Content Include="font\New\Inter-ExtraLight.ttf" />
+    <Content Include="font\New\Inter-ExtraLight.woff2" />
+    <Content Include="font\New\Inter-Light.otf" />
+    <Content Include="font\New\Inter-Light.ttf" />
+    <Content Include="font\New\Inter-Light.woff2" />
+    <Content Include="font\New\Inter-Medium.otf" />
+    <Content Include="font\New\Inter-Medium.ttf" />
+    <Content Include="font\New\Inter-Medium.woff2" />
+    <Content Include="font\New\Inter-Regular.otf" />
+    <Content Include="font\New\Inter-Regular.ttf" />
+    <Content Include="font\New\Inter-Regular.woff2" />
+    <Content Include="font\New\Inter-SemiBold.otf" />
+    <Content Include="font\New\Inter-SemiBold.ttf" />
+    <Content Include="font\New\Inter-SemiBold.woff2" />
+    <Content Include="font\New\Inter-Thin.otf" />
+    <Content Include="font\New\Inter-Thin.ttf" />
+    <Content Include="font\New\Inter-Thin.woff2" />
+    <Content Include="font\New\NotoSans-Black.eot" />
+    <Content Include="font\New\NotoSans-Black.otf" />
+    <Content Include="font\New\NotoSans-Black.woff" />
+    <Content Include="font\New\NotoSans-Black.woff2" />
+    <Content Include="font\New\NotoSans-Bold.eot" />
+    <Content Include="font\New\NotoSans-Bold.otf" />
+    <Content Include="font\New\NotoSans-Bold.woff" />
+    <Content Include="font\New\NotoSans-Bold.woff2" />
+    <Content Include="font\New\NotoSans-DemiLight.eot" />
+    <Content Include="font\New\NotoSans-DemiLight.otf" />
+    <Content Include="font\New\NotoSans-DemiLight.woff" />
+    <Content Include="font\New\NotoSans-DemiLight.woff2" />
+    <Content Include="font\New\NotoSans-Light.eot" />
+    <Content Include="font\New\NotoSans-Light.otf" />
+    <Content Include="font\New\NotoSans-Light.woff" />
+    <Content Include="font\New\NotoSans-Light.woff2" />
+    <Content Include="font\New\NotoSans-Medium.eot" />
+    <Content Include="font\New\NotoSans-Medium.otf" />
+    <Content Include="font\New\NotoSans-Medium.woff" />
+    <Content Include="font\New\NotoSans-Medium.woff2" />
+    <Content Include="font\New\NotoSans-Regular.eot" />
+    <Content Include="font\New\NotoSans-Regular.otf" />
+    <Content Include="font\New\NotoSans-Regular.woff" />
+    <Content Include="font\New\NotoSans-Regular.woff2" />
+    <Content Include="font\New\NotoSans-Thin.eot" />
+    <Content Include="font\New\NotoSans-Thin.otf" />
+    <Content Include="font\New\NotoSans-Thin.woff" />
+    <Content Include="font\New\NotoSans-Thin.woff2" />
+    <Content Include="font\HDharmonyB.ttf" />
+    <Content Include="font\HDharmonyL.ttf" />
+    <Content Include="font\현대하모니 M.ttf" />
+    <None Include="FW\Data\Common\provider.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="providers.config" />
+    <Content Include="MasterPage\Widget.Master" />
+    <None Include="SqlMap.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SqlMapConfig.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SqlMapModule.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SqlMap.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="FMB_FW\" />
+    <Folder Include="FW\Utils\" />
+    <Folder Include="LmsMgt\Lms10\" />
+    <Folder Include="LmsMgt\Lms20\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="EnvDTE80">
+      <Guid>{1A31287A-4D7D-413E-8E32-3B374931BD89}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Report\Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53350</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44388/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy $(ProjectDir)SqlMap $(TargetDir) /e /k /y</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

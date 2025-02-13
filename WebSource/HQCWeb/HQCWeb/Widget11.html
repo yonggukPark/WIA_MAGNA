@@ -1,0 +1,57 @@
+﻿<!-- Resources -->
+<script src="/Scripts/amcharts.js"></script>
+<script src="/Scripts/serial.js"></script>
+
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart( "chartdiv1", {
+  "type": "serial",
+  "theme": "none",
+  "autoMargins": false,
+  "marginTop": 30,
+  "marginLeft": 80,
+  "marginBottom": 30,
+  "marginRight": 50,
+  "dataProvider": [ {
+    "category": "Total Sum",
+    "total": 100,
+    "bullet": 98
+  } ],
+  "valueAxes": [ {
+      "maximum": 100,
+    "stackType": "regular",
+    "gridAlpha": 0
+  } ],
+  "startDuration": 0,
+  "graphs": [ {
+    "fillAlphas": 0.8,
+    "lineColor": "#19d228",
+    "showBalloon": false,
+    "type": "column",
+    "valueField": "total"
+  }
+  , {
+    "clustered": false,
+    "columnWidth": 0.09,
+    "fillAlphas": 1,
+    "lineColor": "#000000",
+    "stackable": false,
+    "type": "column",
+    "valueField": "bullet",
+    "balloonText": "<b style='font-size: 150%'>[[bullet]]%</b>"
+  }
+  ],
+  "rotate": true,
+  "columnWidth": 0.09,
+  "categoryField": "category",
+  "categoryAxis": {
+    "gridAlpha": 0,
+    "position": "left"
+  }
+} );
+</script>
+
+<!-- HTML -->
+<div class="chart-block">
+    <div id="chartdiv1" style="width:100%; height:220px;"></div>
+</div>					

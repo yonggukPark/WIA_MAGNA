@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Spc03Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_SpcList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_SPC03_S #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#STN_CD#,#WORK_CD#,#DEV_ID#, #ITEM_CD#,#FR_DT#,#TO_DT#,#DAY_NIGHT#,#H#,#SPC_DATA_01#,#SPC_DATA_02#,#SPC_DATA_03#,#SPC_DATA_04#,#SPC_DATA_05#,#SPC_DATA_06#,#SPC_DATA_07#,#SPC_DATA_08#,#SPC_DATA_09#,#SPC_DATA_10#,#SPC_DATA_11#,#SPC_DATA_12#,#SPC_DATA_13#
+      ]]>
+    </statement>
+
+    <statement id="Get_SpcListChk" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_SPC03_CHK #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#STN_CD#,#WORK_CD#,#DEV_ID#, #ITEM_CD#,#FR_DT#,#TO_DT#,#DAY_NIGHT#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_SPC03_DDL #PLANT_CD#, #SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#STN_CD#,#DEV_ID#,#WORK_CD#, #EOP_FLAG#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

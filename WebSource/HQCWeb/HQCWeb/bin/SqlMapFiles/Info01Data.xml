@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info01Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_TimeList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO01_S #PLANT_CD#,#FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_TimeID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO01_CHK #PLANT_CD#,#CODE#
+      ]]>
+    </statement>
+
+    <statement id="Get_TimeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO01_INFO #PLANT_CD#,#CODE#
+      ]]>
+    </statement>
+
+    <statement id="Set_TimeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO01_IU #PLANT_CD#,#CODE#,#CODE_NM#,#START_TIME#,#END_TIME#,#REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_TimeInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO01_D #PLANT_CD#,#CODE#, #FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO01_DDL
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

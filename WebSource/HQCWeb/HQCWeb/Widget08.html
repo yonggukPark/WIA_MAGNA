@@ -1,0 +1,39 @@
+﻿<script>
+    //var jsonData = JSON.stringify({ sParams: _width });
+
+    $.ajax({
+        type: "POST",
+        url: "WidgetMgt.aspx/GetWidgetStat01",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            fn_GetData(msg.d);
+        }
+    });
+
+    function fn_GetData(_val) {
+
+        var arrVal = _val.split('^');
+
+        $("#spStit01").html(arrVal[0]);
+        $("#spStit02").html(arrVal[1]);
+        $("#spStit03").html(arrVal[2]);
+    }
+</script>
+
+<h3>금일 생산실적 및 달성율 (BSA 기준)</h3>
+<ul>
+    <li>
+        <p class="f01">완제품 계획</p>
+        <span class="no01" id="spStit01"></span>
+    </li>
+    <li>
+        <p class="f01">완제품 실적</p>
+        <span class="no01" id="spStit02"></span>
+    </li>
+    <li>
+        <p class="f01">달성율</p>
+        <span class="no01" id="spStit03"></span>
+    </li>
+</ul>

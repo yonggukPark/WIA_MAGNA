@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+
+/* 요소(element) 여백 초기화  */
+* {margin:0px; padding:0px; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+html, body {width:100vh; height:100vh; margin:0px; padding:0px; word-break:keep-all;}
+*:focus {outline:none;}
+
+
+html, body,
+div, span, object, iframe,
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+a, button,
+blockquote, p, address, pre, cite,
+form, fieldset, input, label, textarea, select,
+table, th, td {margin:0px; padding:0px; font-family:'Noto Sans Korean', Arial, '돋움', Dotum, sans-serif, 'Malgun Gothic', '맑은 고딕';}
+
+
+/* 목록 */
+ol, ul, li {list-style:none; margin:0px; padding:0px;}
+
+
+/* 제목요소 */
+h1, h2, h3, h4, h5, h6 {font-size:100%; vertical-align:middle;}  /* body의 기본값인 16px로 모두 통일하라 */
+						
+
+/* 테두리 없애기 */
+fieldset, img, abbr, acronym {border:0px none;}  /* abbr, acroym : 축약어 */
+
+
+/* 텍스트 관련 요소 초기화 */
+address, caption, em, cite {font-weight:normal; font-style:normal;}  /* 기울어진 글자를 모두 똑바로 세워서 출력하라 */
+ins {text-decoration:none;}          /* 추가 데이터 : 밑줄라인이 생기는걸 방지시켜준다. */
+del {text-decoration:line-through;}  /* 삭제 데이터 : 글자 가운데를 통과하는 스타일 */
+
+
+/* 테이블 - 마크업에 cellspacing="0", cellpadding="0" 지정 함께 필요 */
+table {width:100%; 
+	   border-collapse:collapse;  /* collapse : 맞닿는 border는 1px로 처리하라 */	
+	   border-spacing:0px; table-layout:fixed;}
+caption {visibility:hidden; width:0px; height:0px; padding:0px; margin:0px; font-size:0px;}
+th      {text-align:center;}
+
+
+/* 기본 스타일 */
+body {color:#333333; font-size:88%;    /* font-size:75%는 12px, 88%는 14px, 100%는 16px이 된다. */
+	  font-family:'Noto Sans Korean', Arial, '돋움', Dotum, sans-serif, 'Malgun Gothic', '맑은 고딕';
+	  line-height:1; -webkit-text-size-adjust:none;}  /* 12px 글자 위아래로 1px의 여백이 생긴다. */
+img, button {vertical-align:middle; outline:none;}
+button {cursor:pointer; border:0px; border-radius:0px; -webkit-border-radius:0px; -moz-border-radius:0px;}
+
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner {cursor:pointer;}
+::-webkit-file-upload-button {cursor:pointer;}
+
+input[type="checkbox"],
+input[type="radio"] {box-sizing:content-box; -webkit-box-sizing:content-box; -moz-box-sizing:content-box; /* 1 */
+    padding:0px; /* 2 */
+    height:14px; /* 3 */
+    width:14px; /* 3 */ 
+	vertical-align:middle; cursor:pointer !important;}
+input[readonly="readonly"] {color:#808080; background-color:#f5f5f5;}
+
+
+/* 링크 스타일 */
+a, input[type="button"] {cursor:pointer;}
+a {outline:none; text-decoration:none;}
+a, a:link, a:hover, a:active, a:visited {color:inherit; -webkit-transition:color 0.1s ease-out; -moz-transition:color 0.1s ease-out; -o-transition:color 0.1s ease-out; -ms-transition:color 0.1s linear; transition:color 0.1s ease-out; text-decoration:none; -webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+a:hover, a:focus, a:active {text-decoration:none;}  /* focus : ie6은 지원하지 않는다. */
+
+
+/* 폼요소의 글자크기 */
+select, input, textarea {font-size:88%; letter-spacing:0; vertical-align:middle;}
+input {
+	color: #333333;
+	font-family: inherit;
+	font-weight: 400;
+	font-size: 12px;
+} /*padding-left:8px; */
+select {color:#333333; font-family:inherit; font-weight:400; font-size:12px; padding-left:8px; padding-right:28px; cursor:pointer; background:#ffffff url('../img/select_arrow.png') no-repeat 95% 52%; /* 네이티브 화살표를 커스텀 화살표로 대체 */ -webkit-appearance:none; /* 네이티브 외형 감추기 */ -moz-appearance:none; appearance:none;}
+select::-ms-expand {display:none; /* IE 10, 11의 네이티브 화살표 숨기기 */}
+
+
+/* 숨김 콘텐츠 */
+/* 1. display:none을 사용하지 않는다. */
+/* position : 기본은 static, 1.relative:normal(상대값) 플로우 2.absolute, fixed:절대값 = 일반적인 레이어가 가지는 값 */
+.hidden, legend {position:absolute; left:-9999em; width:0; height:0; visibility:hidden; font-size:0; line-height:0;} /* absolute은 block 속성을 가진다. */

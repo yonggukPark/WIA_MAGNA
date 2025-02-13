@@ -1,0 +1,80 @@
+﻿html, body, form {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    overflow:hidden;
+}
+
+table, tr, td, th, input, textarea, div {
+    font-family: 'Noto Sans Korean', Arial, '돋움', Dotum, sans-serif, 'Malgun Gothic', '맑은 고딕';
+    font-size: 12px;
+}
+
+table, tr, td, th, div,input[type=text] {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+input[type=text] {
+	padding-top : 4px;
+}
+
+td, th {
+	padding-left : 2px;
+	padding-right : 2px;
+}
+
+input {
+    border:1px solid gray;
+}
+
+input[type=button],input[type=submit] {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color:white;
+    cursor:pointer;
+}
+
+input[type=button]:hover,input[type=submit]:hover {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color:#dddddd;
+}
+
+#divMasterLayer {
+    width: 100%;
+    height: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    position:absolute;
+    background-color:#efefef;
+}
+
+.RoundBox {    
+    -moz-border-radius: 3px;
+    -webket-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.tblPibEdit, .tblMonitorStatus {
+    background-color:#ffffff;
+}
+.tblPibEdit > tbody > tr > th, .tblMonitorStatus > tbody > tr > th, .tblMonitorManage > tbody > tr > th{
+    background-color: #f7f8fa;
+    color: #767d8a;
+    height:24px;
+}
+.tblPibEdit > tbody > tr > td, .tblMonitorStatus > tbody > tr > td, .tblMonitorStatus > tbody > tr > tblMonitorManage{
+	height:24px;
+}

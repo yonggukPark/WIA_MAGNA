@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="UserInfoData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+    <!-- 
+    
+    -->
+    <statement id="Get_UserInfoList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+          SELECT  
+            CASE
+              WHEN LEN(USER_ID) < 4 THEN  LEFT(USER_ID, 1) + '*' + SUBSTRING(USER_ID, 3, 50)
+              WHEN LEN(USER_ID) >= 4 THEN  LEFT(USER_ID, 1) + '**' + SUBSTRING(USER_ID, 4, 50)
+            END AS USER_CONVERT_ID
+            , USER_ID
+            , CASE
+              WHEN LEN(USER_NM) < 4 THEN  LEFT(USER_NM, 1) + '*' + SUBSTRING(USER_NM, 3, 50)
+              WHEN LEN(USER_NM) >= 4 THEN  LEFT(USER_NM, 1) + '**' + SUBSTRING(USER_NM, 4, 50)
+            END AS USER_NM
+		        , USER_GROUP
+		        , SITE_ID
+		        , ISNULL(dbo.GET_COMM_DESC('USER_DEPT', USER_DEPT), USER_DEPT) AS USER_DEPT
+		        , SUBSTRING(USER_TEL, 1, 3) + '****' + SUBSTRING(USER_TEL, 8, 4) AS USER_TEL 
+				    , SUBSTRING(USER_MOBILE, 1, 3) + '****' + SUBSTRING(USER_MOBILE, 8, 4) AS USER_MOBILE
+		        , dbo.FN_MASK_EMAIL(USER_EMAIL) AS USER_EMAIL
+		        , USER_EXPIRE_CNT
+		        , PASSWORD_EXPIRE_CNT
+		        , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+		        , REGIST_USER_ID
+		        , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+		        , MODIFY_USER_ID
+		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
+	        FROM MES_USER_MA WITH(NOLOCK)
+	        WHERE USER_ID LIKE '%' + (CASE WHEN #USER_ID# = '' THEN USER_ID ELSE #USER_ID# END) + '%'
+		        AND USER_NM LIKE '%' + (CASE WHEN #USER_NM# = '' THEN USER_NM ELSE #USER_NM# END) + '%'
+          ORDER BY REGIST_DATE DESC
+      ]]>      
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_UserInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+          USER_ID
+          , USER_PWD
+          , USER_NM
+          , USER_GROUP
+          , SITE_ID
+          , USER_DEPT
+          , USER_TEL
+          , USER_MOBILE
+          , USER_EMAIL
+          , LOGIN_FAULT_CNT
+          , CASE WHEN DATEDIFF(DAY, LOGIN_DT, GETDATE()) > PASSWORD_EXPIRE_CNT THEN 'Y' ELSE 'N' END  AS EXPIRE_YN
+          , LOGIN_STAT_CD
+          , PREV_PWD
+        FROM MES_USER_MA WITH(NOLOCK)
+        WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_UserID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT COUNT(USER_ID) AS VAL_CHK FROM MES_USER_MA WITH(NOLOCK)
+        WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+    -->
+    <statement id="Set_UserInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        MERGE INTO MES_USER_MA AS A
+        USING (SELECT #USER_ID#) AS B (USER_ID)
+           ON (A.USER_ID = B.USER_ID)
+        WHEN MATCHED THEN
+	        UPDATE SET A.USER_NM	= #USER_NM#
+	        , A.SITE_ID				    = '9012C'
+	        , A.USER_DEPT			    = #USER_DEPT#
+	        , A.USER_TEL			    = #USER_TEL#
+	        , A.USER_MOBILE			  = #USER_MOBILE#
+	        , A.USER_EMAIL			  = #USER_EMAIL#
+	        , A.MODIFY_DATE			  = GETDATE()
+	        , A.MODIFY_USER_ID		= #REG_ID#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            USER_ID, USER_NM, SITE_ID, USER_DEPT, USER_TEL 
+            , USER_MOBILE, USER_EMAIL, USER_EXPIRE_CNT, PASSWORD_EXPIRE_CNT, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+            , USER_PWD, USER_GROUP, PREV_PWD
+          ) 
+	        VALUES (
+            #USER_ID#, #USER_NM#, '9012C', #USER_DEPT#, #USER_TEL#
+            , #USER_MOBILE#, #USER_EMAIL#, 90, 90, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+            , #USER_PWD#, 'GROUP', #USER_PWD#
+          );
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_UserInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_USER_MA 
+        WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_UserPwdUpdate" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        UPDATE MES_USER_MA SET
+          USER_PWD          = #USER_PWD#
+          , MODIFY_DATE     = GETDATE()
+          , MODIFY_USER_ID  = #USER_ID#
+          , PREV_PWD        = #USER_PWD#
+          , LOGIN_STAT_CD   = 'N'
+          , LOGIN_FAULT_CNT = 0
+        WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+    -->
+    <statement id="Set_UserMenuSettingInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+            DECLARE @DEF_VAL TABLE (
+	            NUM		  INT IDENTITY(1, 1)
+	            , VAL		VARCHAR(500)
+            )
+
+            DECLARE @DTL_VAL TABLE (
+	            NUM			INT		
+	            , VAL		VARCHAR(500)
+            )
+
+            DECLARE @SQL_VAL	VARCHAR(500)
+		            , @NAME		    VARCHAR(50)
+		            , @WIDTH	    VARCHAR(10)
+		            , @VALINDEX	  VARCHAR(10)
+		            , @FIX		    VARCHAR(10)
+		            
+            
+            DELETE FROM MES_USER_MENU_COLUMN_SETTING_MA
+            WHERE USER_ID = #USER_ID# AND MENU_ID = #MENU_ID#
+
+            INSERT INTO @DEF_VAL
+            SELECT value AS LINE FROM dbo.fn_Split(#COL_INFO#, '/')
+
+            DECLARE @START_ROW INT, @END_ROW INT
+
+            SET @START_ROW = 1
+
+            SELECT @END_ROW = COUNT(VAL) FROM @DEF_VAL
+
+            SET @SQL_VAL = ''
+
+            WHILE @START_ROW <= @END_ROW
+            BEGIN 
+	            DELETE FROM @DTL_VAL
+	
+	            SELECT @SQL_VAL = VAL FROM @DEF_VAL WHERE NUM = @START_ROW
+	
+	            INSERT INTO @DTL_VAL(NUM, VAL)
+	            SELECT 
+		            ROW_NUMBER() OVER(ORDER BY (SELECT 1)) AS ROWNUM
+		            , value 
+	            FROM dbo.fn_Split(@SQL_VAL, ',')
+	
+	            SELECT @NAME		  = VAL FROM @DTL_VAL WHERE NUM = 1
+	            SELECT @WIDTH		  = VAL FROM @DTL_VAL WHERE NUM = 2
+	            SELECT @VALINDEX	= VAL FROM @DTL_VAL WHERE NUM = 3
+	            SELECT @FIX			  = VAL FROM @DTL_VAL WHERE NUM = 4
+	
+	            INSERT INTO MES_USER_MENU_COLUMN_SETTING_MA (USER_ID, MENU_ID, COLUMN_NAME, COLUMN_WIDTH, COLUMN_INDEX, COLUMN_FIX, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+	            VALUES (#USER_ID#, #MENU_ID#, @NAME, @WIDTH, @VALINDEX, @FIX, GETDATE(), #USER_ID#, GETDATE(), #USER_ID#)
+
+	            SET @START_ROW = @START_ROW+1
+
+            END
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_UserMenuSettingInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+            
+        SELECT
+          COLUMN_NAME
+          , COLUMN_WIDTH
+          , COLUMN_INDEX
+          , COLUMN_FIX
+        FROM MES_USER_MENU_COLUMN_SETTING_MA WITH(NOLOCK)
+        WHERE USER_ID = #USER_ID# AND MENU_ID = #MENU_ID#
+        ORDER BY COLUMN_INDEX           
+            
+      ]]>
+    </statement>
+
+    <!--
+    
+    -->
+    <statement id="Set_UserLoginDTUpdate" parameterClass="System.Collections.Hashtable">
+      <![CDATA[            
+        UPDATE MES_USER_MA SET
+          LOGIN_DT          = GETDATE()
+          , LOGIN_FAULT_CNT = 0
+          , LOGIN_STAT_CD   = 'N'
+        WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+
+    <!--
+    
+    -->
+    <statement id="Set_UserLoginFaultCntUpdate" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+		    UPDATE MES_USER_MA SET
+			    LOGIN_FAULT_CNT = LOGIN_FAULT_CNT + 1
+		    WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+
+    <!--
+    
+    -->
+    <statement id="Set_UserLoginFaultInfoUpdate" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+		    UPDATE MES_USER_MA SET
+			    LOGIN_FAULT_CNT   = LOGIN_FAULT_CNT + 1
+          , LOGIN_STAT_CD   = 'C'
+          , USER_PWD        = #TEMP_PWD#
+		    WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+
+    <!--
+    
+    -->
+    <statement id="Set_UserTempPWDUpdate" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+		    UPDATE MES_USER_MA SET
+			    LOGIN_FAULT_CNT   = 5
+          , LOGIN_STAT_CD   = 'C'
+          , USER_PWD        = #TEMP_PWD#
+		    WHERE USER_ID = #USER_ID#
+      ]]>
+    </statement>
+
+
+  </statements>
+
+</sqlMap>

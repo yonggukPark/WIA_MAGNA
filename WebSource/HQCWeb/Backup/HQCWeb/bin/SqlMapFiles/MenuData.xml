@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="MenuData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <statements>
+    <statement id="Get_Menus" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[      
+        WITH MENU_INFO AS (
+	        SELECT MENU_ID FROM MES_AUTHGROUP_CONTROL_MA WITH(NOLOCK)
+	        WHERE AUTHGROUP_ID IN (
+		        SELECT 
+			        AUTHGROUP_ID 
+		        FROM MES_AUTHGROUP_USER_MA WITH(NOLOCK)
+		        WHERE USER_ID = #USER_ID#
+	        )
+	        GROUP BY MENU_ID
+        ),  MENU_CTE AS (
+	        SELECT 
+		        REPLACE(MENU_ID, ' ', '') AS MENU_ID
+		        , MENU_NM
+		        , REPLACE(MENU_PARENT_ID, ' ', '') AS MENU_PARENT_ID
+		        , MENU_LEVEL
+		        , CONVERT(VARCHAR, MENU_IDX) + '_' + REPLACE(MENU_ID, ' ', '') AS CD_PATH
+            , CONVERT(VARCHAR(500), MENU_NM) AS NM_PATH
+            , MENU_TYPE
+			      , USE_YN
+            , MENU_ID AS MENU_GROUP_ID
+            , ASSEMBLY_ID
+	        FROM MES_MENU_MA WITH(NOLOCK)
+	        WHERE MENU_LEVEL = '1' AND USE_YN = 'Y'
+	        UNION ALL
+	        SELECT 
+            REPLACE(DT.MENU_ID, ' ', '') AS MENU_ID
+		        , DT.MENU_NM
+		        , REPLACE(DT.MENU_PARENT_ID, ' ', '') AS MENU_PARENT_ID
+		        , DT.MENU_LEVEL
+		        , DC.CD_PATH + '>' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH
+            , CONVERT(VARCHAR(500), REPLACE(DC.NM_PATH, ' ', '') + '>' + DT.MENU_NM) AS NM_PATH
+            , DT.MENU_TYPE
+			      , DT.USE_YN
+            , DT.MENU_PARENT_ID
+            , DT.ASSEMBLY_ID
+	        FROM MES_MENU_MA DT WITH(NOLOCK)
+	        INNER JOIN MENU_CTE DC
+		        ON DC.MENU_ID = DT.MENU_PARENT_ID
+          WHERE DT.USE_YN = 'Y'
+          AND DT.MENU_ID IN ( SELECT MENU_ID FROM MENU_INFO )
+	      )
+		    SELECT 
+			    *
+		    FROM 
+		    (        
+		        SELECT 
+			        MENU_ID
+			        , MENU_NM
+			        , MENU_PARENT_ID 
+			        , MENU_LEVEL
+              , MENU_GROUP_ID
+			        , CD_PATH
+              , CHILD_CNT
+              , MENU_TYPE
+              , ASSEMBLY_ID
+			        , (CASE WHEN MENU_PARENT_ID = '' AND CHILD_CNT = 0 THEN 'N' ELSE 'Y' END) AS SHOW_YN
+		        FROM 
+		        (
+			        SELECT
+			          MENU_ID
+			          , MENU_NM
+			          , MENU_PARENT_ID
+			          , MENU_LEVEL
+                , MENU_GROUP_ID
+			          , CD_PATH
+                , (SELECT COUNT(CTE.MENU_ID) FROM MENU_CTE CTE WHERE CTE.MENU_PARENT_ID = MC.MENU_ID AND MC.MENU_LEVEL = '1') AS CHILD_CNT
+                , MENU_TYPE
+                , ASSEMBLY_ID
+			        FROM MENU_CTE AS MC WITH(NOLOCK)
+		        ) A
+            WHERE MENU_TYPE = 'W'  
+        ) A
+        WHERE SHOW_YN = 'Y'
+        ORDER BY CD_PATH
+      ]]>      
+    </statement>
+
+
+    <!-- 
+
+    -->
+    <statement id="Get_MenuList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        WITH MENU_CTE AS (
+	        SELECT 
+		        REPLACE(MENU_ID, ' ', '') AS MENU_ID
+		        , MENU_NM
+		        , REPLACE(MENU_PARENT_ID, ' ', '') AS MENU_PARENT_ID
+		        , MENU_LEVEL
+		        , REPLACE(MENU_ID, ' ', '') AS CD_PATH
+            , CONVERT(VARCHAR, MENU_IDX) + '_' + REPLACE(MENU_ID, ' ', '') AS CD_PATH_ORDER
+		        , CONVERT(VARCHAR(500), MENU_NM) AS NM_PATH
+            , ASSEMBLY_ID
+            , MENU_TYPE
+			      , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+			      , REGIST_USER_ID
+			      , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+			      , MODIFY_USER_ID
+			      , VIEW_ID
+            , APPROVAL_FLAG
+            , USE_YN
+            , MENU_IDX
+	        FROM MES_MENU_MA WITH(NOLOCK)
+	        WHERE MENU_LEVEL = '1'
+	        UNION ALL
+	        SELECT 
+            REPLACE(DT.MENU_ID, ' ', '') AS MENU_ID
+		        , DT.MENU_NM
+		        , REPLACE(DT.MENU_PARENT_ID, ' ', '') AS MENU_PARENT_ID
+		        , DT.MENU_LEVEL
+		        , DC.CD_PATH + '>' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH
+            , DC.CD_PATH + '>' + CONVERT(VARCHAR, DT.MENU_IDX) + '_' + REPLACE(DT.MENU_ID, ' ', '') AS CD_PATH_ORDER
+		        , CONVERT(VARCHAR(500), REPLACE(DC.NM_PATH, ' ', '') + '>' + DT.MENU_NM) AS NM_PATH
+            , DT.ASSEMBLY_ID
+            , DT.MENU_TYPE
+			      , CONVERT(VARCHAR(19), DT.REGIST_DATE, 121) AS REGIST_DATE
+			      , DT.REGIST_USER_ID
+			      , CONVERT(VARCHAR(19), DT.MODIFY_DATE, 121) AS MODIFY_DATE
+			      , DT.MODIFY_USER_ID
+			      , DT.VIEW_ID            
+            , DT.APPROVAL_FLAG
+            , DT.USE_YN
+            , DT.MENU_IDX
+	        FROM MES_MENU_MA DT WITH(NOLOCK)
+	        INNER JOIN MENU_CTE DC
+		        ON DC.MENU_ID = DT.MENU_PARENT_ID
+	      )
+		    SELECT 
+			    MENU_ID
+			    , MENU_NM
+			    , MENU_PARENT_ID 
+			    , MENU_LEVEL
+			    , CD_PATH
+          , CD_PATH_ORDER
+			    , NM_PATH 
+			    , MENU_GROUP_ID
+          , CHILD_CNT
+          , ASSEMBLY_ID
+          , VIEW_ID
+          , MENU_TYPE
+          , REGIST_DATE
+			    , REGIST_USER_ID
+			    , MODIFY_DATE
+			    , MODIFY_USER_ID			
+          , APPROVAL_FLAG
+          , USE_YN
+          , MENU_IDX
+			    , (SELECT COUNT(MENU_ID) FROM MENU_CTE) AS TOTAL_CNT
+		    FROM 
+		    (
+			    SELECT
+			      MENU_ID
+			      , MENU_NM
+			      , MENU_PARENT_ID
+			      , MENU_LEVEL
+			      , CD_PATH
+            , CD_PATH_ORDER
+			      , NM_PATH 
+			      , CASE 
+						    WHEN MENU_PARENT_ID = '' THEN SUBSTRING(CD_PATH, 1, LEN(MENU_ID)) 
+						    ELSE SUBSTRING(CD_PATH, 1, LEN(MENU_PARENT_ID)) 
+					  END AS MENU_GROUP_ID
+            , (SELECT COUNT(DT.MENU_PARENT_ID) FROM MES_MENU_MA DT WITH(NOLOCK) WHERE DT.MENU_PARENT_ID = MC.MENU_ID ) AS CHILD_CNT
+            , ASSEMBLY_ID
+            , MENU_TYPE
+            , REGIST_DATE
+			      , REGIST_USER_ID
+			      , MODIFY_DATE
+			      , MODIFY_USER_ID
+			      , VIEW_ID   
+            , APPROVAL_FLAG
+            , USE_YN
+            , MENU_IDX
+			    FROM MENU_CTE AS MC WITH(NOLOCK)
+		    ) A
+        WHERE MENU_TYPE = 'W'        
+        AND MENU_ID LIKE '%' + (CASE WHEN #MENU_ID# = '' THEN MENU_ID ELSE #MENU_ID# END) + '%'
+		    AND (
+					MENU_NM LIKE '%' + (CASE WHEN #MENU_NM# = '' THEN MENU_NM ELSE #MENU_NM# END) + '%'
+				)
+        ORDER BY CD_PATH
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuExcelList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT  
+				  MENU_ID
+				  , MENU_NM
+				  , MENU_PARENT_ID
+				  , MENU_LEVEL
+				  , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+				  , REGIST_USER_ID
+				  , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+				  , MODIFY_USER_ID
+				  , ASSEMBLY_ID
+          , VIEW_ID
+          , APPROVAL_FLAG
+          , USE_YN
+				  , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
+	      FROM MES_MENU_MA WITH(NOLOCK)
+			  WHERE MENU_TYPE = 'W'
+        AND MENU_ID LIKE '%' + (CASE WHEN #MENU_ID# = '' THEN MENU_ID ELSE #MENU_ID# END) + '%'
+		      AND (
+					  MENU_NM LIKE '%' + (CASE WHEN #MENU_NM# = '' THEN MENU_NM ELSE #MENU_NM# END) + '%'
+				  )
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        MENU_ID
+				  , MENU_NM
+				  , MENU_PARENT_ID
+				  , MENU_LEVEL 
+          , ASSEMBLY_ID
+          , VIEW_ID
+          , APPROVAL_FLAG
+          , USE_YN
+          , MENU_IDX
+        FROM MES_MENU_MA WITH(NOLOCK)
+        WHERE MENU_TYPE = 'W'
+        AND MENU_ID = #MENU_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT COUNT(MENU_ID) AS VAL_CHK FROM MES_MENU_MA WITH(NOLOCK)
+        WHERE MENU_TYPE = 'W' 
+        AND MENU_ID = #MENU_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuLevel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT MENU_LEVEL FROM MES_MENU_MA WITH(NOLOCK)
+        WHERE MENU_TYPE = 'W' 
+        GROUP BY MENU_LEVEL
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_ParentMenuLevel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT MENU_LEVEL FROM MES_MENU_MA WITH(NOLOCK)
+        WHERE MENU_TYPE = 'W' 
+        AND MENU_ID = #MENU_PARENT_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_MenuInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        MERGE INTO MES_MENU_MA AS A
+        USING (SELECT #MENU_ID#) AS B (MENU_ID)
+           ON (A.MENU_ID = B.MENU_ID)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+            A.MENU_NM			      = #MENU_NM#
+            , A.MENU_PARENT_ID	= #MENU_PARENT_ID#
+            , A.MENU_LEVEL		  = #MENU_LEVEL#
+            , A.MODIFY_DATE		  = GETDATE()
+            , A.MODIFY_USER_ID	= #REG_ID#
+            , A.ASSEMBLY_ID		  = #ASSEMBLY_ID#
+            , A.VIEW_ID			    = #VIEW_ID#
+            , A.APPROVAL_FLAG   = #APPROVAL_FLAG#
+            , A.USE_YN          = #USE_YN#
+            , A.MENU_IDX        = #MENU_IDX#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            MENU_ID, MENU_NM, MENU_PARENT_ID, MENU_LEVEL, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID, ASSEMBLY_ID, VIEW_ID, MENU_TYPE, APPROVAL_FLAG, USE_YN, MENU_IDX
+          ) 
+	        VALUES (
+            #MENU_ID#, #MENU_NM#, #MENU_PARENT_ID#, #MENU_LEVEL#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#, #ASSEMBLY_ID#, #VIEW_ID#, 'W', ISNULL(#APPROVAL_FLAG#, 'N'), #USE_YN#, #MENU_IDX#
+          );
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_MenuInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_MENU_MA 
+        WHERE MENU_TYPE = 'W'
+        AND MENU_ID = #MENU_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuIDByDepthInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT  
+          REPLACE(MENU_ID, ' ', '') AS MENU_ID
+          , MENU_NM
+        FROM MES_MENU_MA WITH(NOLOCK) 
+        WHERE MENU_TYPE = 'W'
+          AND MENU_LEVEL = #MENU_LEVEL#
+          AND ISNULL(REPLACE(MENU_PARENT_ID, ' ', ''), '') = #MENU_PARENT_ID#
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Set_MenuControl" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+          DECLARE @DEF_VAL TABLE (
+	          NUM		  INT IDENTITY(1, 1)
+	          , VAL		VARCHAR(500)
+          )
+
+          DECLARE @DTL_VAL TABLE (
+	          NUM			INT		
+	          , VAL		VARCHAR(500)
+          )
+
+          DECLARE @SQL_VAL			    VARCHAR(500)
+		          , @MENU_ID			      VARCHAR(50)
+		          , @CONTROL_ID		      VARCHAR(50)
+		          , @CONTROL_NM	  	    VARCHAR(100)
+		          , @CONTROL_FUNCTION	  VARCHAR(100)
+              , @NOT_DEL_CONTROL_ID VARCHAR(1000)
+
+          DELETE FROM MES_MENU_CONTROL_MA
+          WHERE MENU_ID = #MENU_ID#
+          
+          INSERT INTO @DEF_VAL
+          SELECT value AS LINE FROM dbo.fn_Split(#INSERT_INFO#, '/')
+
+          DECLARE @START_ROW INT, @END_ROW INT
+
+          SET @START_ROW = 1
+
+          SELECT @END_ROW = COUNT(VAL) FROM @DEF_VAL
+
+          SET @SQL_VAL = ''
+
+          WHILE @START_ROW <= @END_ROW
+          BEGIN 
+	          DELETE FROM @DTL_VAL
+	
+	          SELECT @SQL_VAL = VAL FROM @DEF_VAL WHERE NUM = @START_ROW
+	
+	          INSERT INTO @DTL_VAL(NUM, VAL)
+	          SELECT 
+		          ROW_NUMBER() OVER(ORDER BY (SELECT 1)) AS ROWNUM
+		          , value 
+	          FROM dbo.fn_Split(@SQL_VAL, ',')
+	
+            SELECT @MENU_ID = VAL			      FROM @DTL_VAL WHERE NUM = 1
+            SELECT @CONTROL_ID = VAL		    FROM @DTL_VAL WHERE NUM = 2
+            SELECT @CONTROL_NM = VAL		    FROM @DTL_VAL WHERE NUM = 3
+            SELECT @CONTROL_FUNCTION = VAL	FROM @DTL_VAL WHERE NUM = 4
+
+            MERGE INTO MES_MENU_CONTROL_MA AS A
+              USING (SELECT @MENU_ID, @CONTROL_ID) AS B (MENU_ID, CONTROL_ID)
+                ON (A.MENU_ID = B.MENU_ID AND A.CONTROL_ID = B.CONTROL_ID)
+              WHEN MATCHED THEN
+              UPDATE SET 
+                A.CONTROL_NM			    = @CONTROL_NM
+                , A.CONTROL_FUNCTION	= @CONTROL_FUNCTION
+                , A.MODIFY_DATE			  = GETDATE()
+                , A.MODIFY_USER_ID		= #REG_ID#
+            
+            WHEN NOT MATCHED THEN
+            INSERT(
+	            MENU_ID, CONTROL_ID, CONTROL_NM, CONTROL_FUNCTION, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+            ) 
+            VALUES (
+	            @MENU_ID, @CONTROL_ID, @CONTROL_NM, @CONTROL_FUNCTION, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+            );		
+
+
+			      IF @START_ROW = 1
+			      BEGIN
+				      SET @NOT_DEL_CONTROL_ID = @CONTROL_ID
+			      END
+			      ELSE 
+			      BEGIN
+				      SET @NOT_DEL_CONTROL_ID = @NOT_DEL_CONTROL_ID + ',' + @CONTROL_ID
+			      END
+
+            SET @START_ROW = @START_ROW+1
+
+          END
+          
+          DELETE FROM MES_AUTHGROUP_CONTROL_MA  
+          WHERE MENU_ID = #MENU_ID#
+		        AND CONTROL_ID NOT IN (SELECT value FROM dbo.fn_Split(@NOT_DEL_CONTROL_ID, ','))
+          
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuControlInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        ACM.MENU_ID
+	        , ACM.CONTROL_ID
+	        , MCM.CONTROL_NM
+	        , MCM.CONTROL_FUNCTION
+	        , BA.BUTTON_IDX
+        FROM MES_AUTHGROUP_CONTROL_MA ACM WITH(NOLOCK) 
+	        LEFT OUTER JOIN MES_BUTTON_MA BA WITH(NOLOCK)
+		        ON ACM.CONTROL_ID = BA.BUTTON_ID
+	        LEFT OUTER JOIN MES_MENU_CONTROL_MA MCM WITH(NOLOCK) 
+		        ON ACM.MENU_ID = MCM.MENU_ID AND ACM.CONTROL_ID = MCM.CONTROL_ID
+        WHERE AUTHGROUP_ID IN (SELECT AUTHGROUP_ID FROM MES_AUTHGROUP_USER_MA WITH(NOLOCK) WHERE USER_ID = #USER_ID#)
+        AND ACM.MENU_ID = #MENU_ID#
+        ORDER BY BA.BUTTON_IDX
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Get_MenuByControlInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT  
+          REPLACE(CO.MENU_ID, ' ', '') AS MENU_ID
+          , REPLACE(CO.CONTROL_ID, ' ', '') AS CONTROL_ID
+          , CO.CONTROL_NM
+          , CO.CONTROL_FUNCTION
+          , BU.BUTTON_IDX
+        FROM MES_MENU_CONTROL_MA CO WITH(NOLOCK) 
+          LEFT OUTER JOIN MES_BUTTON_MA BU WITH (NOLOCK)
+		        ON CO.CONTROL_ID = BU.BUTTON_ID
+        WHERE REPLACE(CO.MENU_ID, ' ', '') = #MENU_ID#
+        ORDER BY BU.BUTTON_IDX
+      ]]>
+    </statement>
+
+
+  </statements>
+</sqlMap>

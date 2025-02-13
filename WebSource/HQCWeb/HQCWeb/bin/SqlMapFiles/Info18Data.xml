@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info18Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_WorkPlanList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO18_S #PLANT_CD#, #SHOP_CD#, #CAR_TYPE#, #FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_WorkPlanID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO18_CHK #PLANT_CD#, #CAR_TYPE#, #PLAN_YEAR#
+      ]]>
+    </statement>
+
+    <statement id="Get_WorkPlanInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO18_INFO #PLANT_CD#, #CAR_TYPE#, #PLAN_YEAR#
+      ]]>
+    </statement>
+
+    <statement id="Set_WorkPlanInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO18_IU #PLANT_CD#, #CAR_TYPE#, #PLAN_YEAR#, ##, #REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_WorkPlanInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO18_D #PLANT_CD#, #CAR_TYPE#, #PLAN_YEAR#, #FLAG#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO18_DDL #PLANT_CD#, #SHOP_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

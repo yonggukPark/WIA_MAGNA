@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info04Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_LineList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO04_S #PLANT_CD#, #SHOP_CD#, #FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_LineID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO04_CHK #PLANT_CD#, #SHOP_CD#, #LINE_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_LineInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO04_INFO #PLANT_CD#, #SHOP_CD#, #LINE_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_LineInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO04_IU #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #CYC_TM#, #DISP_GD#, #REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_LineInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO04_D #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #FLAG#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO04_DDL #PLANT_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

@@ -1,0 +1,134 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Frames.master.cs" Inherits="HQCWeb.MasterPage.Frames"  %>
+
+<%@ Register Src="~/UserContorls/TopControl.ascx" TagPrefix="uc1" TagName="TopControl" %>
+<%@ Register Src="~/UserContorls/LeftControl.ascx" TagPrefix="uc1" TagName="LeftControl" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>MES Application Client</title>
+    
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="No-Cache">
+
+    <link rel="stylesheet" type="text/css" href="/css/common_v.css"  />
+
+    <link rel="stylesheet" type="text/css" href="/css/HQC_Common.css"  />
+
+    <script type="text/javascript" src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/HQC_Common.js"></script>
+    <script type="text/javascript" src="/Scripts/lnb.js"></script>
+    
+
+    
+
+</head>
+<body>
+
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+
+        <asp:UpdatePanel ID="upAccess" runat="server">
+            <ContentTemplate>
+                <asp:TextBox ID="txtMenuID" runat="server" style="display:none;"></asp:TextBox>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnAccessLog" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+
+        <uc1:TopControl runat="server" ID="TopControl"/>
+        <div id="wrap">
+            <!--// LNB -->
+		    <div id="lnb">
+			    <ul>
+                    <uc1:LeftControl runat="server" ID="LeftControl" Visible="true"/>
+
+                    <asp:Button id="btnAccessLog" runat="server" OnClick="btnAccessLog_Click" style="display:none;" />
+			    </ul>
+		    </div>
+		    <!-- LNB //-->
+            <div class="contents_wrap">
+
+                <table style="display:none;">
+                    <tr>
+                        <td>승인요청 : 
+                            <asp:UpdatePanel ID="upApproval" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <asp:Label ID="lbApprovalCount" runat="server">0</asp:Label>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnApprovalRoad" EventName="Click" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                        </td>                        
+                        <asp:Button ID="btnApprovalRoad" runat="server" OnClick="btnApprovalRoad_Click"  style="display:none;" />
+                    </tr>
+                </table>
+
+                <!--// Top Tabs -->
+                <div class="tabs_wrap" id="divTabs">
+                    <ul class="tabs" id="ul_tabs">
+                    </ul>
+                </div>
+                <!-- Top Tabs //-->
+
+                <div id="divIframe">
+                </div>
+
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+        <div id="modal" class="modal_box" style="display:none;">  <%----%>
+            <iframe id="ifrPopup" name="ifrPopup" frameBorder='0' scrolling='no' style='width:500px; height:500px; overflow:hidden;'></iframe>
+        </div>
+        <div id="modal_bg" class="modal_bg" style="display:none;"></div> 
+
+        <script>
+            $(document).ready(
+                function () {
+                    $("#modal_bg").hide();
+                }
+            ); 
+
+            function fn_Display() {
+
+                var _len = 0;
+
+                _len = $("#divIframe iframe").length;
+
+                if ($("#lnb").css("display") == "none") {
+                    $("#lnb").show();
+
+                    $(".contents_wrap").attr("style", "position:relative; margin:0px; padding:0px; width:calc(100% - 251px); height:100%; background-color:#f7f7f7;");
+                } else {
+                    $("#lnb").hide();
+
+                    $(".contents_wrap").attr("style", "position:relative; margin:0px; padding:0px; width:100%; height:100%; background-color:#f7f7f7;");
+                }
+            }
+
+            var timer = setInterval(function () {
+                //console.log("test");
+                //$("#btnApprovalRoad").click();
+            }, 15000);
+
+
+        </script>	
+    </form>
+
+    <!-- 레이어팝업 사용시 필요 -->
+    <form name="form2">
+        <input type="hidden" name="hidValue" id="hidValue" />
+    </form>
+
+</body>
+</html>

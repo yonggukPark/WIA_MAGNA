@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info39Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_MasterList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO39_S #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#MASTER_SERIAL_NO#,#FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_MasterInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO39_INFO #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#MASTER_SERIAL_NO#,#SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Set_MasterInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO39_IU #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#MASTER_SERIAL_NO#,#SEQ#,#REMARK1#,#REMARK2#,#USE_YN#,#USER_ID#	
+      ]]>
+    </statement>
+
+    <statement id="Set_MasterInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO39_D #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#MASTER_SERIAL_NO#,#SEQ#, #FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO39_DDL #PLANT_CD#, #SHOP_CD#, #LINE_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

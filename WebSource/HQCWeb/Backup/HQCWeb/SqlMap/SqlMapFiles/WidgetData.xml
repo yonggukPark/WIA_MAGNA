@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WidgetData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <statements>
+    <!-- 
+    
+    -->
+    <statement id="Get_WidgetList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+          SELECT  
+            WIDGET_NUM
+            , WIDGET_NM
+            , WIDGET_URL
+            , dbo.GET_COMM_DESC('WIDGET_SIZE', WIDGET_SIZE) AS WIDGET_SIZE
+            , dbo.GET_COMM_DESC('USE_YN', USE_YN) AS USE_YN
+            , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+            , REGIST_USER_ID
+            , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+            , MODIFY_USER_ID            
+	        FROM MES_WIDGET_MA WITH(NOLOCK)
+	        WHERE WIDGET_NM LIKE '%' + (CASE WHEN #WIDGET_NM# = '' THEN WIDGET_NM ELSE #WIDGET_NM# END) + '%'
+          ORDER BY REGIST_DATE DESC
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_WidgetInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        WIDGET_NUM
+          , WIDGET_NM
+          , WIDGET_URL
+          , WIDGET_SIZE
+          , USE_YN
+        FROM MES_WIDGET_MA WITH(NOLOCK)
+        WHERE WIDGET_NUM = #WIDGET_NUM#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_WidgetInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        MERGE INTO MES_WIDGET_MA AS A
+        USING (SELECT #WIDGET_NUM#) AS B (WIDGET_NUM)
+           ON (A.WIDGET_NUM = B.WIDGET_NUM)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+          A.WIDGET_NM	          = #WIDGET_NM#
+	        , A.WIDGET_URL	      = #WIDGET_URL#
+	        , A.WIDGET_SIZE	      = #WIDGET_SIZE#
+	        , A.MODIFY_DATE			  = GETDATE()
+	        , A.MODIFY_USER_ID	  = #REG_ID#
+          , A.USE_YN	          = #USE_YN#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            WIDGET_NM, WIDGET_URL, WIDGET_SIZE, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            #WIDGET_NM#, #WIDGET_URL#, #WIDGET_SIZE#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_WidgetInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+
+        UPDATE MES_WIDGET_MA SET
+          USE_YN = 'N'
+        WHERE WIDGET_NUM = #WIDGET_NUM# 
+        
+      ]]>
+    </statement>
+    
+  </statements>
+
+</sqlMap>

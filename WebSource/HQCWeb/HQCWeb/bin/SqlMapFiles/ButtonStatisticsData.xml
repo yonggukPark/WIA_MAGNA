@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ButtonStatisticsData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+    
+    <!-- 
+    
+    -->
+    <statement id="Set_ButtonHisInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        INSERT INTO MES_WEB_BUTTON_HIS (
+            BUTTON_ID, MENU_ID, WORK_DATE, USER_ID, IP, REMARK
+        ) 
+	      VALUES (
+          #BUTTON_ID#, #CUR_MENU_ID#, GETDATE(), #REG_ID#, #IP#, #REMARK#
+        );
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_ButtonHisList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+          SELECT CONVERT(VARCHAR(19), A.WORK_DATE, 121) AS CONNECT_DT, A.IP, A.USER_ID, B.USER_NM, C.MENU_PARENT_ID, C.MENU_PARENT_NM, C.MENU_PARENT_ID + ' : ' + C.MENU_PARENT_NM AS LARGE_MENU, A.MENU_ID, C.MENU_NM, A.MENU_ID+' : '+C.MENU_NM AS SMALL_MENU
+          , A.REMARK + (CASE WHEN A.BUTTON_ID = 'btnSearch' OR A.BUTTON_ID = 'btnRestore' THEN '_' + A.BUTTON_ID ELSE '' END) AS REMARK
+          FROM MES_WEB_BUTTON_HIS A WITH(NOLOCK)
+          LEFT OUTER JOIN MES_USER_MA B WITH(NOLOCK) ON A.USER_ID = B.USER_ID
+          LEFT OUTER JOIN (
+	          SELECT A.MENU_ID, A.MENU_NM, A.MENU_PARENT_ID, B.MENU_NM AS MENU_PARENT_NM 
+	          FROM MES_MENU_MA A WITH(NOLOCK)
+	          LEFT OUTER JOIN ( SELECT MENU_ID, MENU_NM FROM MES_MENU_MA WITH(NOLOCK) WHERE MENU_LEVEL = 1) B  ON A.MENU_PARENT_ID = B.MENU_ID
+	          WHERE A.MENU_LEVEL = 2
+          )C ON A.MENU_ID = C.MENU_ID
+          WHERE A.WORK_DATE BETWEEN CONVERT(datetime, #FR_DT#+' 00:00:00',20) AND CONVERT(datetime, #TO_DT#+' 23:59:59',20) 
+          AND (A.USER_ID LIKE #USER_ID#+'%' OR B.USER_NM LIKE #USER_ID#+'%')
+          AND C.MENU_PARENT_ID = CASE WHEN #MENU_PARENT_ID# = '' THEN C.MENU_PARENT_ID ELSE #MENU_PARENT_ID# END
+          AND A.MENU_ID = CASE WHEN #MENU_ID# = '' THEN A.MENU_ID ELSE #MENU_ID# END
+          AND A.MENU_ID IN (
+            SELECT DISTINCT MENU_ID FROM MES_AUTHGROUP_CONTROL_MA WITH(NOLOCK)
+            WHERE AUTHGROUP_ID IN (
+	            SELECT AUTHGROUP_ID FROM MES_AUTHGROUP_USER_MA WITH(NOLOCK)
+	            WHERE USER_ID = #REG_ID#
+            )
+          )
+          ORDER BY SEQ
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT MENU_ID AS CODE_ID, MENU_NM AS CODE_NM 
+        FROM MES_MENU_MA WITH(NOLOCK)
+        WHERE MENU_LEVEL = 1
+        AND USE_YN = 'Y'
+        AND POPUP_YN = 'N'
+        
+        SELECT MENU_ID AS CODE_ID, MENU_NM AS CODE_NM 
+        FROM MES_MENU_MA WITH(NOLOCK)
+        WHERE MENU_LEVEL = 2
+        AND MENU_PARENT_ID = (CASE WHEN #PARENT_ID# = '' THEN MENU_PARENT_ID ELSE #PARENT_ID# END)
+        AND USE_YN = 'Y'
+        AND POPUP_YN = 'N'
+        AND MENU_ID IN (
+          SELECT DISTINCT MENU_ID FROM MES_AUTHGROUP_CONTROL_MA WITH(NOLOCK)
+          WHERE AUTHGROUP_ID IN (
+	          SELECT AUTHGROUP_ID FROM MES_AUTHGROUP_USER_MA WITH(NOLOCK)
+	          WHERE USER_ID = #REG_ID#
+          )
+        )
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

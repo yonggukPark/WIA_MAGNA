@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="UserInfoData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+    <!-- 
+    
+    -->
+    <statement id="Get_UserMenuSettingInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+          SELECT  
+            CASE
+              WHEN LEN(USER_ID) < 4 THEN  LEFT(USER_ID, 1) + '*' + SUBSTRING(USER_ID, 3, 50)
+              WHEN LEN(USER_ID) >= 4 THEN  LEFT(USER_ID, 1) + '**' + SUBSTRING(USER_ID, 4, 50)
+            END AS USER_CONVERT_ID
+            , USER_ID
+            , CASE
+              WHEN LEN(USER_NM) < 4 THEN  LEFT(USER_NM, 1) + '*' + SUBSTRING(USER_NM, 3, 50)
+              WHEN LEN(USER_NM) >= 4 THEN  LEFT(USER_NM, 1) + '**' + SUBSTRING(USER_NM, 4, 50)
+            END AS USER_NM
+		        , USER_GROUP
+		        , SITE_ID
+		        , ISNULL(dbo.GET_COMM_DESC('USER_DEPT', USER_DEPT), USER_DEPT) AS USER_DEPT
+		        , SUBSTRING(USER_TEL, 1, 3) + '****' + SUBSTRING(USER_TEL, 8, 4) AS USER_TEL 
+				    , SUBSTRING(USER_MOBILE, 1, 3) + '****' + SUBSTRING(USER_MOBILE, 8, 4) AS USER_MOBILE
+		        , dbo.FN_MASK_EMAIL(USER_EMAIL) AS USER_EMAIL
+		        , USER_EXPIRE_CNT
+		        , PASSWORD_EXPIRE_CNT
+		        , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+		        , REGIST_USER_ID
+		        , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+		        , MODIFY_USER_ID
+		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
+	        FROM MES_USER_MA WITH(NOLOCK)
+	        WHERE USER_ID LIKE '%' + (CASE WHEN #USER_ID# = '' THEN USER_ID ELSE #USER_ID# END) + '%'
+		        AND USER_NM LIKE '%' + (CASE WHEN #USER_NM# = '' THEN USER_NM ELSE #USER_NM# END) + '%'
+          ORDER BY REGIST_DATE DESC
+      ]]>      
+    </statement>
+
+  </statements>
+
+</sqlMap>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="DictionaryData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+    <!-- 
+    
+    -->
+    <statement id="Get_DictionaryList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[          
+          SELECT  
+            DIC_ID
+            , DIC_TXT_KR
+            , DIC_TXT_EN
+            , DIC_TXT_LO
+            , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+            , REGIST_USER_ID
+            , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+            , MODIFY_USER_ID
+		        , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
+	        FROM MES_DICTIONARY_MA WITH(NOLOCK)
+	        WHERE DIC_ID LIKE '%' + (CASE WHEN #DIC_ID# = '' THEN DIC_ID ELSE #DIC_ID# END) + '%'
+		        AND (
+              DIC_TXT_KR LIKE '%' + (CASE WHEN #DIC_NM# = '' THEN DIC_TXT_KR ELSE #DIC_NM# END) + '%'
+              OR 
+              DIC_TXT_EN LIKE '%' + (CASE WHEN #DIC_NM# = '' THEN DIC_TXT_EN ELSE #DIC_NM# END) + '%'
+              OR 
+              DIC_TXT_LO LIKE '%' + (CASE WHEN #DIC_NM# = '' THEN DIC_TXT_LO ELSE #DIC_NM# END) + '%'
+            )           
+          ORDER BY REGIST_DATE DESC
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_DictionaryInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        DIC_ID
+          , DIC_TXT_KR
+          , DIC_TXT_EN
+          , DIC_TXT_LO      
+        FROM MES_DICTIONARY_MA WITH(NOLOCK)
+        WHERE DIC_ID = #DIC_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_DictionaryID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT COUNT(DIC_ID) AS VAL_CHK FROM MES_DICTIONARY_MA WITH(NOLOCK)
+        WHERE DIC_ID = #DIC_ID#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_DictionaryInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        MERGE INTO MES_DICTIONARY_MA AS A
+        USING (SELECT #DIC_ID#) AS B (DIC_ID)
+           ON (A.DIC_ID = B.DIC_ID)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+          A.DIC_TXT_KR	      = #DIC_TXT_KR#
+	        , A.DIC_TXT_EN	    = #DIC_TXT_EN#
+	        , A.DIC_TXT_LO	    = #DIC_TXT_LO#
+	        , A.MODIFY_DATE			= GETDATE()
+	        , A.MODIFY_USER_ID	= #REG_ID#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            DIC_ID, DIC_TXT_KR, DIC_TXT_EN, DIC_TXT_LO, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            #DIC_ID#, #DIC_TXT_KR#, #DIC_TXT_EN#, #DIC_TXT_LO#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_DictionaryInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_DICTIONARY_MA 
+        WHERE DIC_ID = #DIC_ID#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>
