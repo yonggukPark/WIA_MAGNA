@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv='Cache-Control' content='no-cache' />
+	<meta http-equiv='Pragma' content='no-cache' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="Stylesheet" type="text/css" href="./StyleSheet/StyleSheetPIB.css" />
+	<script type="text/javascript" src="./Scripts/XmlHttpHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/AlarmHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/PibHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/TimerHandler.js"></script>
+	<title></title>
+	<script>
+
+		var pib = new PIB();
+		function PIB() {
+			this.DataRecvIntervalValue = 2000;
+			this.DataRecvInterval = null;
+			this.DataDispInterval = null;
+			this.receivedData = null;
+			this.workData = null;
+			this.DataRecvStat = 0;
+			this.DataRecvTryCnt = 0;
+			this.ShowAll = "N";
+			this.PageIndex = 0;
+			this.GetData = function () {
+				try {
+					pib.DataRecvStat = 1;
+					var workType = Request.getParameter("mode");
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					pib.ShowAll = Request.getParameter("all");
+					//pib.receivedData =
+					XmlHandler.Http.LoadUrl("GetPibData.aspx", "stock", mid, pid, "", "", "", "", workType);
+					//if (pib.receivedData && pib.receivedData != null && pib.receivedData.length && pib.receivedData.length > 0) {
+					//	pib.DataRecvTryCnt = 1;
+					//	document.getElementById("tdCurrDate").innerText = pib.receivedData[0].CurrDate;
+					//	document.getElementById("tdCurrTime").innerText = pib.receivedData[0].CurrTime;
+					//	document.getElementById("tdCurrTime").style.color = "";
+
+					//	for (var i = 0; i < pib.receivedData.length; i++) {
+					//		if (pib.receivedData[i].TableName == workType.replace(',', '').replace(',', '').replace(',', '').replace(';', '').replace(';', '').replace(';', '')) {
+					//			pib.workData = pib.receivedData[i].Data;
+					//			break;
+					//		};
+					//	};
+
+					//	pib.DataRecvStat = 0;
+
+					//}
+					//else {
+					//	pib.DataRecvTryCnt++;
+					//	if (pib.DataRecvTryCnt > 5) {
+					//		document.getElementById("tdCurrTime").style.color = "red";
+					//		pib.DataRecvTryCnt = 6;
+					//	}
+					//	else {
+					//		document.getElementById("tdCurrTime").style.color = "";
+					//	};
+					//};
+					//pib.DisplayData(true);
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 10000;
+					pib.ReceiveNewData();
+				};
+			};
+			this.LoadEnd = function (_jsonText) {
+				try {
+					var workType = Request.getParameter("mode");
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					pib.receivedData = _jsonText;
+					if (pib.receivedData && pib.receivedData != null && pib.receivedData.length && pib.receivedData.length > 0) {
+						pib.DataRecvTryCnt = 1;
+						document.getElementById("tdCurrDate").innerText = pib.receivedData[0].CurrDate;
+						document.getElementById("tdCurrTime").innerText = pib.receivedData[0].CurrTime;
+						document.getElementById("tdCurrTime").style.color = "";
+
+						for (var i = 0; i < pib.receivedData.length; i++) {
+							if (pib.receivedData[i].TableName == workType.replace(',', '').replace(',', '').replace(',', '').replace(';', '').replace(';', '').replace(';', '')) {
+								pib.workData = pib.receivedData[i].Data;
+								break;
+							};
+						};
+
+						pib.DataRecvStat = 0;
+
+					}
+					else {
+						pib.DataRecvTryCnt++;
+						if (pib.DataRecvTryCnt > 5) {
+							document.getElementById("tdCurrTime").style.color = "red";
+							pib.DataRecvTryCnt = 6;
+						}
+						else {
+							document.getElementById("tdCurrTime").style.color = "";
+						};
+					};
+					pib.DisplayData(true);
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 5000;
+					pib.ReceiveNewData();
+				};
+			};
+
+			this.DisplayData = function (isReceived) {
+				var nRowIdx = 1;
+				var tblData = document.getElementById("tblData");
+				var _LastIdx = tblData.rows.length;
+				if (pib.ShowAll.toUpperCase() == "Y") {
+					_LastIdx = tblData.rows.length - 1;
+					
+					tblData.rows[_LastIdx].cells[0].setAttribute("class", "DarkBlue_White FontSize23 AlignCenter");
+					tblData.rows[_LastIdx].cells[0].setAttribute("colspan", "3");
+					tblData.rows[_LastIdx].cells[1].style.display="none";
+					tblData.rows[_LastIdx].cells[2].style.display="none";
+					tblData.rows[_LastIdx].cells[1].setAttribute("class", "DarkBlue_White FontSize23 AlignCenter");
+					tblData.rows[_LastIdx].cells[2].setAttribute("class", "DarkBlue_White FontSize21 AlignRight5");
+					tblData.rows[_LastIdx].cells[3].setAttribute("class", "DarkBlue_White FontSize23 AlignRight5");
+					tblData.rows[_LastIdx].cells[4].setAttribute("class", "DarkBlue_White FontSize23 AlignRight5");
+					tblData.rows[_LastIdx].cells[5].setAttribute("class", "DarkBlue_White FontSize23 AlignRight5");
+					tblData.rows[_LastIdx].cells[6].setAttribute("class", "DarkBlue_White FontSize23 AlignRight5");
+					tblData.rows[_LastIdx].cells[7].setAttribute("class", "DarkBlue_White FontSize23 AlignRight5");
+
+				}
+				else {
+					tblData.rows[_LastIdx - 1].cells[0].setAttribute("class", "LightSkyBlue_White FontSize23 AlignCenter");
+					tblData.rows[_LastIdx - 1].cells[0].setAttribute("colspan", "1");
+					tblData.rows[_LastIdx - 1].cells[1].style.display="";
+					tblData.rows[_LastIdx - 1].cells[2].style.display="";
+					tblData.rows[_LastIdx - 1].cells[1].setAttribute("class", "FontSize23 AlignCenter");
+					tblData.rows[_LastIdx - 1].cells[2].setAttribute("class", "FontSize21 AlignLeft5");
+					tblData.rows[_LastIdx - 1].cells[3].setAttribute("class", "FontSize23 AlignRight5");
+					tblData.rows[_LastIdx - 1].cells[4].setAttribute("class", "FontSize23 AlignRight5");
+					tblData.rows[_LastIdx - 1].cells[5].setAttribute("class", "FontSize23 AlignRight5");
+					tblData.rows[_LastIdx - 1].cells[6].setAttribute("class", "FontSize23 AlignRight5");
+					tblData.rows[_LastIdx - 1].cells[7].setAttribute("class", "FontSize23 AlignRight5");
+				};
+				pib.PageIndex++;
+
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+					while (nRowIdx < _LastIdx) {
+						var strBgClass = (nRowIdx % 2 == 1) ? "OddRowBcolor" : "EvenRowBcolor";
+						tblData.rows[nRowIdx].setAttribute("class", strBgClass);
+						if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+
+							// 전체표시이면 무조건.. .
+							if (pib.ShowAll == "Y") {
+								// 전체일 경우 제일 마지막 라인에....
+								if (pib.workData[0].VENDOR_NM == "전체") {
+									tblData.rows[_LastIdx].cells[0].innerHTML = "◀◀ 전체합계 ▶▶";
+									tblData.rows[_LastIdx].cells[1].innerHTML = "전체";
+									tblData.rows[_LastIdx].cells[2].innerHTML = "합계";
+									tblData.rows[_LastIdx].cells[3].innerHTML = pib.workData[0].CUST_PLAN_CNT;
+									tblData.rows[_LastIdx].cells[4].innerHTML = pib.workData[0].GWMS_OUT_CNT;
+									tblData.rows[_LastIdx].cells[5].innerHTML = pib.workData[0].INSTOCK_CNT;
+									tblData.rows[_LastIdx].cells[6].innerHTML = pib.workData[0].ING_CNT;
+									tblData.rows[_LastIdx].cells[7].innerHTML = pib.workData[0].GWMS_CURR_CNT;
+
+								}
+								else {
+									if(pib.workData[0].GWMS_CURR_CNT.indexOf('[0]') < 0)
+									{
+										tblData.rows[nRowIdx].cells[0].innerHTML = pib.PageIndex * (_LastIdx - 1) - (_LastIdx - 1) + nRowIdx;
+										tblData.rows[nRowIdx].cells[1].innerHTML = pib.workData[0].VENDOR_NM;
+										tblData.rows[nRowIdx].cells[2].innerHTML = pib.workData[0].CD_NM;
+										tblData.rows[nRowIdx].cells[3].innerHTML = pib.workData[0].CUST_PLAN_CNT;
+										tblData.rows[nRowIdx].cells[4].innerHTML = pib.workData[0].GWMS_OUT_CNT;
+										tblData.rows[nRowIdx].cells[5].innerHTML = pib.workData[0].INSTOCK_CNT;
+										tblData.rows[nRowIdx].cells[6].innerHTML = pib.workData[0].ING_CNT;
+										tblData.rows[nRowIdx].cells[7].innerHTML = pib.workData[0].GWMS_CURR_CNT;
+										//tblData.rows[nRowIdx].cells[8].innerHTML = pib.workData[0].TOTAL_OUT_CNT;
+										nRowIdx += 1;
+									};
+
+								};
+							}
+							else {
+
+								// 전체표시가 아니면....
+								// 표시여부가 안정해져 있거나 표시여부가 Yes이면....
+								if(!pib.workData[0].DISPYN || (pib.workData[0].DISPYN && pib.workData[0].DISPYN == "Y"))
+								{
+									// 전체가 아닐경우 경우....
+									if (pib.workData[0].VENDOR_NM != "전체") {
+										tblData.rows[nRowIdx].cells[0].innerHTML = pib.PageIndex * (_LastIdx - 1) - (_LastIdx - 1) + nRowIdx;
+										tblData.rows[nRowIdx].cells[1].innerHTML = pib.workData[0].VENDOR_NM;
+										tblData.rows[nRowIdx].cells[2].innerHTML = pib.workData[0].CD_NM;
+										tblData.rows[nRowIdx].cells[3].innerHTML = pib.workData[0].CUST_PLAN_CNT;
+										tblData.rows[nRowIdx].cells[4].innerHTML = pib.workData[0].GWMS_OUT_CNT;
+										tblData.rows[nRowIdx].cells[5].innerHTML = pib.workData[0].INSTOCK_CNT;
+										tblData.rows[nRowIdx].cells[6].innerHTML = pib.workData[0].ING_CNT;
+										tblData.rows[nRowIdx].cells[7].innerHTML = pib.workData[0].GWMS_CURR_CNT;
+										//tblData.rows[nRowIdx].cells[8].innerHTML = pib.workData[0].TOTAL_OUT_CNT;
+										nRowIdx += 1;
+									};
+								};
+							};
+
+							pib.workData.shift(); // 첫번째 배열데이터를 삭제한다.
+						}
+						else {
+							if (nRowIdx > 1) {
+								// 표시할 데이터가 없으면 기존 화면에 표시되고 있는 내용을 삭제한다.
+								tblData.rows[nRowIdx].cells[0].innerHTML = "";
+								tblData.rows[nRowIdx].cells[1].innerHTML = "";
+								tblData.rows[nRowIdx].cells[2].innerHTML = "";
+								tblData.rows[nRowIdx].cells[3].innerHTML = "";
+								tblData.rows[nRowIdx].cells[4].innerHTML = "";
+								tblData.rows[nRowIdx].cells[5].innerHTML = "";
+								tblData.rows[nRowIdx].cells[6].innerHTML = "";
+								tblData.rows[nRowIdx].cells[7].innerHTML = "";
+								nRowIdx += 1;
+							}
+							else {
+								break;
+							};
+
+						};
+					};
+				}
+				else {
+					if (isReceived) {
+						for (nRowIdx = 1; nRowIdx < tblData.rows.length; nRowIdx++) {
+							var strBgClass = (nRowIdx % 2 == 1) ? "OddRowBcolor" : "EvenRowBcolor";
+							tblData.rows[nRowIdx].setAttribute("class", strBgClass);
+							// 표시할 데이터가 없으면 기존 화면에 표시되고 있는 내용을 삭제한다.
+							tblData.rows[nRowIdx].cells[0].innerHTML = "";
+							tblData.rows[nRowIdx].cells[1].innerHTML = "";
+							tblData.rows[nRowIdx].cells[2].innerHTML = "";
+							tblData.rows[nRowIdx].cells[3].innerHTML = "";
+							tblData.rows[nRowIdx].cells[4].innerHTML = "";
+							tblData.rows[nRowIdx].cells[5].innerHTML = "";
+							tblData.rows[nRowIdx].cells[6].innerHTML = "";
+							tblData.rows[nRowIdx].cells[7].innerHTML = "";
+						};
+					};
+				};
+
+				// 가져온 데이터가 화면에 표시할 수량보다 많이 남아있으면...
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+					// 첫줄부터 다시 표시한다.
+					pib.DisplayMoreData();
+				}
+				else {
+					pib.PageIndex = 0;
+					pib.DataRecvIntervalValue = 5000;
+					pib.ReceiveNewData();
+				};
+			};
+
+			this.DisplayMoreData = function () {
+				if (pib.DataDispInterval != null) self.clearTimeout(pib.DataDispInterval);
+				pib.DataDispInterval = self.setTimeout(function () { pib.DisplayData(false); }, 5000);	// 10초단위
+			};
+			this.ReceiveNewData = function () {
+				if (pib.DataRecvInterval != null) self.clearTimeout(pib.DataRecvInterval);
+				pib.DataRecvInterval = self.setTimeout(function () { pib.GetData(); }, pib.DataRecvIntervalValue);	// 2초단위
+				pib.DataRecvIntervalValue = 2000;
+			};
+		};
+	</script>
+</head>
+<body id="docBody" onload="resizePanel(); pib.GetData(); alm.GetData('stockAlm'); timer.DisplayData();" onresize="	resizePanel();">
+	<table class="stockPIB">
+		<tr>
+			<td class="pibHead">
+				<table>
+					<tr>
+                        <!--<td style="background-image:url('./Images/HL_LOGO.JPG'); background-size:contain; background-repeat:no-repeat; background-position:center;"></td>-->
+                        <td></td>
+						<td class="pibTitleStock">완제품 - 재고 현황</td>
+						<td class="pibClockStock">
+							<table>
+								<tr>
+									<td id="tdCurrDate"></td>
+								</tr>
+								<tr>
+									<td id="tdCurrTime"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td id="pibBody" class="pibBodyStock">
+				<table id="tblData">
+					<tr>
+						<th style="width:3%;">순서</th>
+						<th style="width:5%;">납품처</th>
+						<th style="width:11%;">차종</th>
+						<th style="width:5%;">계획</th>
+						<th style="width:5%;">실적</th>
+						<th style="width:6%;">사내창고</th>
+						<th style="width:5%;">운송중</th>
+						<th style="width:6%;">물류창고</th>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+					<tr style="height:9%;">
+						<td class="LightSkyBlue_White FontSize23 AlignCenter"></td>
+						<td class="FontSize23 AlignCenter"></td>
+						<td class="FontSize21 AlignLeft5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+						<td class="FontSize23 AlignRight5"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr id="trAlarmMsg" class="AlarmAreaDLV" style="display:none;">
+			<td id="tdAlarmMsg" style="display:none;" class="AlarmAreaDLV"><p id="pAlarmMsg" style="display:none;" class="AlarmMsgDLV"></p></td>
+		</tr>
+	</table>
+</body>
+</html>

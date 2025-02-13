@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="NoticeData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <statements>
+
+    <!-- 
+
+    -->
+    <statement id="Get_NoticeList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        NOTICE_NUM
+	        , NOTICE_TITLE
+	        , USE_YN
+	        , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+	        , REGIST_USER_ID
+	        , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+	        , MODIFY_USER_ID
+          , '미리보기' AS NOTICE_VIEW
+        FROM MES_WEB_NOTICE_MA WITH(NOLOCK)
+        WHERE (NOTICE_TITLE LIKE '%' + #NOTICE_SEARCH_TXT# + '%' OR NOTICE_CONTENT LIKE '%' + #NOTICE_SEARCH_TXT# + '%')
+      ]]>
+    </statement>
+
+    <!-- 
+
+    -->
+    <statement id="Get_NoticeList2" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        NOTICE_NUM
+	        , NOTICE_TITLE
+	        , CONVERT(VARCHAR(19), ISNULL(MODIFY_DATE,REGIST_DATE), 121) AS NOTICE_DATE
+	        , ISNULL(MODIFY_USER_ID,REGIST_USER_ID) AS NOTICE_USER
+        FROM MES_WEB_NOTICE_MA WITH(NOLOCK)
+        WHERE (NOTICE_TITLE LIKE '%' + #NOTICE_SEARCH_TXT# + '%' OR NOTICE_CONTENT LIKE '%' + #NOTICE_SEARCH_TXT# + '%')
+        AND USE_YN = 'Y'
+      ]]>
+    </statement>
+
+    <!-- 
+
+    -->
+    <statement id="Get_NoticeList_Widget" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT TOP 20
+	        NOTICE_NUM
+          , NOTICE_TITLE
+	        , SUBSTRING(CONVERT(VARCHAR(19), ISNULL(MODIFY_DATE,REGIST_DATE), 121),1,10) AS NOTICE_DATE
+        FROM MES_WEB_NOTICE_MA WITH(NOLOCK)
+        WHERE USE_YN = 'Y'
+        ORDER BY NOTICE_DATE
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_NoticeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        NOTICE_NUM
+	        , NOTICE_TITLE
+	        , NOTICE_CONTENT
+	        , USE_YN
+        FROM MES_WEB_NOTICE_MA WITH(NOLOCK)
+        WHERE NOTICE_NUM = #NOTICE_NUM#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_NoticeAttachFileInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+	        NOTICE_NUM	                  
+	        , ORG_FILE_NAME
+          , CHG_FILE_NAME
+          , FILE_PATH
+          , FILE_SIZE
+          , FILE_EXT          
+        FROM MES_WEB_NOTICE_ATTACH_FILE_MA WITH(NOLOCK)
+        WHERE NOTICE_NUM = #NOTICE_NUM#
+      ]]>
+    </statement>
+    
+    <!-- 
+    
+        MERGE INTO MES_WEB_NOTICE_MA AS A
+        USING (SELECT #NOTICE_NUM#) AS B (NOTICE_NUM)
+           ON (A.NOTICE_NUM = B.NOTICE_NUM)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+            A.NOTICE_TITLE		  = #NOTICE_TITLE#
+            , A.NOTICE_CONTENT	= #NOTICE_CONTENT#
+            , A.USE_YN          = #USE_YN#
+            , A.MODIFY_DATE		  = GETDATE()
+			      , A.MODIFY_USER_ID	= #REG_ID#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            NOTICE_NUM, NOTICE_TITLE, NOTICE_CONTENT, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            @NOTICE_NUM, #NOTICE_TITLE#, #NOTICE_CONTENT#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );    
+    
+
+    <statement id="Set_NoticeInsertInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+		    DECLARE @NOTICE_NUM INT
+
+        SET @NOTICE_NUM = NEXT VALUE FOR NOTICE_SEQ
+        
+        DECLARE @FILEINFO_SPLIT TABLE (
+	        NUM			  INT IDENTITY(1, 1)
+	        , INFO		VARCHAR(2000)
+        ) 
+
+        DECLARE @FILE_INFO TABLE (
+	        NUM				    INT IDENTITY(1, 1)
+	        , FILEINFO		VARCHAR(2000)
+        )
+
+        DECLARE @FILE_SPLIT TABLE (
+	        NUM				    INT
+	        , FILEINFO		VARCHAR(2000)
+        )
+
+        DECLARE @FILE_PATH	VARCHAR(50)
+        , @FILEINFO			    VARCHAR(MAX)
+        , @FILESPLIT		    VARCHAR(MAX)
+        , @ORG_FILE_NAME	  VARCHAR(100)
+        , @CHG_FILE_NAME	  VARCHAR(200)
+        , @FILE_SIZE        INT
+        , @FILE_EXT         VARCHAR(10)
+
+        INSERT INTO @FILEINFO_SPLIT(INFO)
+        SELECT VALUE FROM DBO.fn_Split(#FILE_INFO#, '@')
+
+        SELECT @FILE_PATH	= INFO FROM @FILEINFO_SPLIT WHERE NUM  = 1
+        SELECT @FILEINFO	= INFO FROM @FILEINFO_SPLIT WHERE NUM  = 2
+
+        DECLARE @START_NUM INT, @END_NUM INT
+
+        SET  @START_NUM = 1
+
+        INSERT INTO @FILE_INFO
+        SELECT VALUE FROM DBO.fn_Split(@FILEINFO, ',')
+
+        SELECT @END_NUM = COUNT(*) FROM @FILE_INFO
+
+        WHILE (@START_NUM <= @END_NUM)
+        BEGIN
+	
+	        DELETE FROM @FILE_SPLIT
+	
+	        SELECT @FILESPLIT = FILEINFO FROM @FILE_INFO WHERE NUM = @START_NUM
+
+	        INSERT INTO @FILE_SPLIT
+	        SELECT position, VALUE FROM DBO.fn_Split(@FILESPLIT, '/')
+
+	        SELECT @ORG_FILE_NAME = FILEINFO FROM @FILE_SPLIT WHERE NUM = 1
+	        SELECT @CHG_FILE_NAME = FILEINFO FROM @FILE_SPLIT WHERE NUM = 2
+          SELECT @FILE_SIZE     = FILEINFO FROM @FILE_SPLIT WHERE NUM = 3
+          SELECT @FILE_EXT      = FILEINFO FROM @FILE_SPLIT WHERE NUM = 4
+
+	        INSERT INTO MES_WEB_NOTICE_ATTACH_FILE_MA (NOTICE_NUM, ORG_FILE_NAME, CHG_FILE_NAME, FILE_PATH, FILE_SIZE, FILE_EXT, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+	        VALUES (@NOTICE_NUM, @ORG_FILE_NAME, @CHG_FILE_NAME, @FILE_PATH, @FILE_SIZE, @FILE_EXT, GETDATE(), 'JYJ', GETDATE(), 'JYJ')
+
+	        SET @START_NUM = @START_NUM + 1
+        END
+        
+        
+        INSERT INTO MES_WEB_NOTICE_MA(NOTICE_NUM, NOTICE_TITLE, NOTICE_CONTENT, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+        VALUES (@NOTICE_NUM, #NOTICE_TITLE#, #NOTICE_CONTENT#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#)
+
+
+      ]]>
+    </statement>
+    -->
+
+    <!-- 
+        MERGE INTO MES_WEB_NOTICE_MA AS A
+        USING (SELECT #NOTICE_NUM#) AS B (NOTICE_NUM)
+           ON (A.NOTICE_NUM = B.NOTICE_NUM)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+            A.NOTICE_TITLE		  = #NOTICE_TITLE#
+            , A.NOTICE_CONTENT	= #NOTICE_CONTENT#
+            , A.USE_YN          = #USE_YN#
+            , A.MODIFY_DATE		  = GETDATE()
+			      , A.MODIFY_USER_ID	= #REG_ID#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            NOTICE_NUM, NOTICE_TITLE, NOTICE_CONTENT, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            #NOTICE_NUM#, #NOTICE_TITLE#, #NOTICE_CONTENT#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );    
+    -->
+    <statement id="Set_NoticeUpdateInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+        
+        UPDATE MES_WEB_NOTICE_MA SET
+          NOTICE_TITLE		  = #NOTICE_TITLE#
+          , NOTICE_CONTENT	= #NOTICE_CONTENT#
+          , USE_YN          = #USE_YN#
+          , MODIFY_DATE		  = GETDATE()
+			    , MODIFY_USER_ID	= #REG_ID#
+        WHERE NOTICE_NUM    = #NOTICE_NUM#
+
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_NoticeinfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_WEB_NOTICE_MA WHERE NOTICE_NUM = #NOTICE_NUM#
+        
+        DELETE FROM MES_WEB_NOTICE_ATTACH_FILE_MA WHERE NOTICE_NUM = #NOTICE_NUM#
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Set_NoticeFileInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_WEB_NOTICE_ATTACH_FILE_MA WHERE NOTICE_NUM = #NOTICE_NUM# AND ORG_FILE_NAME = #ORG_FILE_NAME#
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Get_NoticeNum" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+		    DECLARE @NOTICE_NUM INT
+
+        SET @NOTICE_NUM = NEXT VALUE FOR NOTICE_SEQ      
+      
+        SELECT @NOTICE_NUM AS NOTICE_NUM
+      ]]>
+    </statement>
+
+    <!-- 
+    
+        MERGE INTO MES_WEB_NOTICE_MA AS A
+        USING (SELECT #NOTICE_NUM#) AS B (NOTICE_NUM)
+           ON (A.NOTICE_NUM = B.NOTICE_NUM)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+            A.NOTICE_TITLE		  = #NOTICE_TITLE#
+            , A.NOTICE_CONTENT	= #NOTICE_CONTENT#
+            , A.USE_YN          = #USE_YN#
+            , A.MODIFY_DATE		  = GETDATE()
+			      , A.MODIFY_USER_ID	= #REG_ID#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            NOTICE_NUM, NOTICE_TITLE, NOTICE_CONTENT, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            @NOTICE_NUM, #NOTICE_TITLE#, #NOTICE_CONTENT#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );    
+    
+    -->
+    <statement id="Set_NoticeInsertInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+        
+        INSERT INTO MES_WEB_NOTICE_MA(NOTICE_NUM, NOTICE_TITLE, NOTICE_CONTENT, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+        VALUES (#NOTICE_NUM#, #NOTICE_TITLE#, #NOTICE_CONTENT#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#)
+
+      ]]>
+    </statement>
+
+
+    <!-- 
+    
+    -->
+    <statement id="Set_NoticeFileInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[      
+        
+        DECLARE @FILEINFO_SPLIT TABLE (
+	        NUM			  INT IDENTITY(1, 1)
+	        , INFO		VARCHAR(2000)
+        ) 
+
+        DECLARE @FILE_INFO TABLE (
+	        NUM				    INT IDENTITY(1, 1)
+	        , FILEINFO		VARCHAR(2000)
+        )
+
+        DECLARE @FILE_SPLIT TABLE (
+	        NUM				    INT
+	        , FILEINFO		VARCHAR(2000)
+        )
+
+        DECLARE @FILE_PATH	VARCHAR(50)
+        , @FILEINFO			    VARCHAR(MAX)
+        , @FILESPLIT		    VARCHAR(MAX)
+        , @ORG_FILE_NAME	  VARCHAR(100)
+        , @CHG_FILE_NAME	  VARCHAR(200)
+        , @FILE_SIZE        INT
+        , @FILE_EXT         VARCHAR(10)
+
+        INSERT INTO @FILEINFO_SPLIT(INFO)
+        SELECT VALUE FROM DBO.fn_Split(#FILE_INFO#, '@')
+
+        SELECT @FILE_PATH	= INFO FROM @FILEINFO_SPLIT WHERE NUM  = 1
+        SELECT @FILEINFO	= INFO FROM @FILEINFO_SPLIT WHERE NUM  = 2
+
+        DECLARE @START_NUM INT, @END_NUM INT
+
+        SET  @START_NUM = 1
+
+        INSERT INTO @FILE_INFO
+        SELECT VALUE FROM DBO.fn_Split(@FILEINFO, ',')
+
+        SELECT @END_NUM = COUNT(*) FROM @FILE_INFO
+
+        WHILE (@START_NUM <= @END_NUM)
+        BEGIN
+	
+	        DELETE FROM @FILE_SPLIT
+	
+	        SELECT @FILESPLIT = FILEINFO FROM @FILE_INFO WHERE NUM = @START_NUM
+
+	        INSERT INTO @FILE_SPLIT
+	        SELECT position, VALUE FROM DBO.fn_Split(@FILESPLIT, '/') 
+
+	        SELECT @ORG_FILE_NAME = FILEINFO FROM @FILE_SPLIT WHERE NUM = 1
+	        SELECT @CHG_FILE_NAME = FILEINFO FROM @FILE_SPLIT WHERE NUM = 2
+          SELECT @FILE_SIZE     = FILEINFO FROM @FILE_SPLIT WHERE NUM = 3
+          SELECT @FILE_EXT      = FILEINFO FROM @FILE_SPLIT WHERE NUM = 4
+
+	        INSERT INTO MES_WEB_NOTICE_ATTACH_FILE_MA (NOTICE_NUM, ORG_FILE_NAME, CHG_FILE_NAME, FILE_PATH, FILE_SIZE, FILE_EXT, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID)
+	        VALUES (#NOTICE_NUM#, @ORG_FILE_NAME, @CHG_FILE_NAME, @FILE_PATH, @FILE_SIZE, @FILE_EXT, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#)
+
+	        SET @START_NUM = @START_NUM + 1
+        END        
+
+      ]]>
+    </statement>
+
+
+  </statements>
+</sqlMap>

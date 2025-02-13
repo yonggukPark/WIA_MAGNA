@@ -1,0 +1,47 @@
+﻿<script>
+    $.ajax({
+        type: "POST",
+        url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetAlarm01",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            fn_GetAlarm01Data(msg.d);
+        }
+    });
+
+    function fn_GetAlarm01Data(_val) {
+        $("#tbodyAlarm01List").html(_val);
+    }
+
+    document.getElementById("tblAlarm").onclick = function () {
+        fn_Popup_Alarm();
+    };
+
+    function fn_Popup_Alarm() {
+        fn_OpenPop('/MonitorMgt/MonWidget02/MonWidget02.aspx', "1200", "750");
+    }
+</script>
+
+<h3>실시간 알람 Top 10</h3>
+<table id="tblAlarm" cellpadding="0" cellspacing="0" style="cursor:pointer">
+    <colgroup>
+        <col style="width:30px;" />
+        <col />
+        <col style="width:72px;" />
+        <col style="width:72px;" />
+        <col style="width:64px;" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>순위</th>
+            <th>알람내용</th>
+            <th>라인</th>
+            <th>중단시간(초)</th>
+            <th>점유율(%)</th>
+        </tr>
+    </thead>
+    <tbody id="tbodyAlarm01List">
+        
+    </tbody>
+</table>

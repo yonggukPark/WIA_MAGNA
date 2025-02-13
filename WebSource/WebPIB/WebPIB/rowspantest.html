@@ -1,0 +1,98 @@
+﻿<table id="table">
+    <thead>
+        <tr>
+            <th>구분</th>
+            <th>합체1</th>
+            <th>합체2</th>
+            <th>안합체1</th>
+            <th>안합체2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>순서1</td>
+            <td>내용1</td>
+            <td>내용2</td>
+            <td>내용00</td>
+            <td>내용99</td>
+        </tr>
+        <tr>
+            <td>순서1</td>
+            <td>내용1</td>
+            <td>내용2</td>
+            <td>내용11</td>
+            <td>내용22</td>
+        </tr>
+        <tr>
+            <td>순서2</td>
+            <td>네용1</td>
+            <td>네용2</td>
+            <td>내용33</td>
+            <td>내44</td>
+        </tr>
+        <tr>
+            <td>순서2</td>
+            <td>네용1</td>
+            <td>네용2</td>
+            <td>내용55</td>
+            <td>내용66</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="javascript:;" onclick="dynamicRowSpan();">시작</a>
+
+<script>
+    function dynamicRowSpan() {
+        var table = document.getElementById("table");
+        var trArr = table.getElementsByTagName("tr");
+        //var thCnt = table.rows[0].getElementsByTagName("th").length;
+        var thCnt = 3   //이거 바꾸고 싶은 컬럼 수 만큼 바꿔라(외쪽에서 부터)
+
+        for (var tdIdx = thCnt-1; tdIdx >= 0; tdIdx--) {
+            var rowSpan = 0;
+            var compText = '';
+            for (var trIdx = 1; trIdx < trArr.length; trIdx++) {
+                var td = table.rows[trIdx].cells[tdIdx];
+                if (compText == '') {
+                    compText = td.outerText;
+                    continue;
+                }
+                if (compText == td.outerText) {
+                    rowSpan++;
+                    td.setAttribute("class", "del");
+                } else {
+                    var td = table.rows[trIdx-1-rowSpan].cells[tdIdx];
+                    if (td.classList.contains('fix_RowSpan') == false){
+                        td.setAttribute("rowspan", rowSpan+1);
+                        td.classList.add("fix_RowSpan");
+                        rowSpan = 0;
+                        compText = table.rows[trIdx].cells[tdIdx].outerText;
+                    }
+                }
+
+                if ( trIdx == trArr.length-1 && rowSpan > 0 ) {
+                    var cell = table.rows[trIdx-rowSpan].cells[tdIdx];
+                    if (cell.classList.contains('fix_RowSpan') == false){
+                        cell.setAttribute("rowspan", rowSpan+1);
+                        cell.classList.add("fix_RowSpan");
+                        rowSpan = 0;
+                        compText = '';
+                    }
+                }
+            }
+        }
+
+        table = document.getElementById("table");
+        var dels = table.getElementsByClassName("del");
+        for(var i = dels.length-1; i >= 0; i--){
+            //dels[i].remove();
+            dels[i].parentNode.removeChild(dels[i]);
+        }
+    }
+</script>
+
+
+
+
+

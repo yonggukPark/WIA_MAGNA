@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Qua34Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_ReturnList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_QUA34_S #PLANT_CD#,#FR_DT#,#TO_DT#,#EV_CHECK#,#EOL_CHECK#,#SHIP_FLAG#,#VENDOR_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_ReturnInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA34_INFO #PLANT_CD#, #COMPLETE_NO#, #REG_DATE#, #RETURN_KEY#
+      ]]>
+    </statement>
+
+    <statement id="Set_ReturnInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA34_U #PLANT_CD#,#COMPLETE_NO#,#REG_DATE#,#RETURN_KEY#,#DEFECT_GRP_CD#,#DEFECT_CD#,#VENDOR_CD#,#REMARK#,#EV_CHECK_FLAG#,#EOL_CHECK_FLAG#,#SHIP_FLAG#,#VENDOR_DETAIL#
+      ]]>
+    </statement>
+
+    <statement id="Set_ReturnConfirm" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA34_CONFIRM #PLANT_CD#,#COMPLETE_NO#,#REG_DATE#,#RETURN_KEY#,#REWORK_LOG#,#RETURN_FLAG#,#INSP_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_QUA34_DDL #PLANT_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

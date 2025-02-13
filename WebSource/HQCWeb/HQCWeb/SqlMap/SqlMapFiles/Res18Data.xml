@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Res18Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_ProdList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_RES18_S #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #PROD_DT#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_RES18_DDL #PLANT_CD#,#SHOP_CD#,#EOP_FLAG#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

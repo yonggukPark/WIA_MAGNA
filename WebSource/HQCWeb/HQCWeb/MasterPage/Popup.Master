@@ -1,0 +1,151 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Popup.Master.cs" Inherits="HQCWeb.MasterPage.Popup" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <META http-equiv="Expires" content="-1">
+    <META http-equiv="Pragma" content="no-cache">
+    <META http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.core.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.theme.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.datepicker.css" />
+
+    <script type="text/javascript" src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jq-paginator.js"></script>
+    <script type="text/javascript" src="/Scripts/HQC_Common.js?version=20241008"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/common_v_popup.css?version=20241113"  />
+
+    <script type="module" src="/Scripts/comboTreePlugin.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/comboTreeStyle.css"  />
+
+    <style type="text/css">
+       .divClass {display:table; width:100%; height:98%; filter:alpha(opacity=65); opacity:0.3; -moz-opacity:0.3; z-index:100; position:absolute; font-size:9pt; background:#d6d3ce;}
+       .pClass {display:table-cell; text-align:center; vertical-align:middle;}
+
+        td.dxgv {
+            height:35px;
+        }
+    </style>
+
+    <script language="javascript" type="text/javascript">
+        function fn_WatingCall() {
+            $("#waiting").show();
+
+            //waiting.style.visibility = 'visible';
+        }
+
+        function fn_NoConnectMsg() {
+            alert('Tibco 서비스와 연결이 끊어졌습니다. 관리자에게 문의바립니다.');
+        }
+
+        function fn_loadingEnd() {
+            $("#waiting").hide();
+
+            //waiting.style.visibility = 'hidden'
+        }
+
+        $(function () {
+            $("#PopupContent_txtDate").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#PopupContent_aSave").click(function () {
+                $("#btnSaveCount").click();
+            });
+
+            $("#PopupContent_aModify").click(function () {
+                $("#btnModifyCount").click();
+            });
+
+            $("#PopupContent_aDelete").click(function () {
+                $("#btnDeleteCount").click();
+            });
+
+            $("#PopupContent_aRestore").click(function () {
+                $("#btnRestoreCount").click();
+            });
+        });
+
+
+        function fn_ExError() {
+            alert("등록할수 없는 문자열이 포함되어 있습니다. 정보를 다시 확인하세요.");
+        }
+
+        $(document).ready(function () {
+            document.querySelector(".popup_wrap").focus();
+
+            $("#PopupContent_aSave").attr("accesskey", "S");
+            $("#PopupContent_aModify").attr("accesskey", "M");
+            $("#PopupContent_aDelete").attr("accesskey", "D");
+            $("#PopupContent_aRestore").attr("accesskey", "R");
+            $(document).keydown(function (e) {
+                if (e.key === 'Escape' || e.keyCode === 27) {
+                    parent.fn_ModalCloseDiv();
+                    // ESC 키가 눌렸을 때 원하는 동작을 여기에 추가하세요.
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <form id="frPopupForm" runat="server">
+
+        <div  id="waiting" class="divClass">
+            <p class="pClass"><img src="/images/ajax-loader.gif" /><br /></p>
+        </div>
+
+        <asp:ScriptManager runat="server" ID="ScriptManager"/>
+
+        <asp:HiddenField ID= "hidPopValue" runat="server" />
+
+        <asp:HiddenField ID= "hidPopDefaultValue" runat="server" />
+
+        <asp:ContentPlaceHolder ID="PopupContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:Button ID="btnSaveCount" runat="server" Text="btnSaveCount" OnClick="btnSaveCount_Click"  style="display:none;"  />
+                <asp:Button ID="btnModifyCount" runat="server" Text="btnModifyCount" OnClick="btnModifyCount_Click"  style="display:none;"  />
+                <asp:Button ID="btnDeleteCount" runat="server" Text="btnDeledteCount" OnClick="btnDeleteCount_Click"  style="display:none;"  />
+                <asp:Button ID="btnRestoreCount" runat="server" Text="btnRestoreCount" OnClick="btnRestoreCount_Click"  style="display:none;"  />
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnSaveCount" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="btnModifyCount" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="btnDeleteCount" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="btnRestoreCount" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+        
+
+        <script language='Javascript' type="text/javascript">
+            var _width = $("#ifrPopup", parent.document).width();
+            var _height = $("#ifrPopup", parent.document).height();
+
+            $(".popup_wrap").attr("style", "width:" + _width + "px;height:" + _height + "px;");
+
+            setTimeout(function () {
+                fn_loadingEnd();
+            }, 1000);
+        </script>
+
+    </form>
+
+    <form name="form2">
+        <input type="hidden" name="hidPopupValue" id="hidPopupValue" />
+    </form>
+
+</body>
+</html>

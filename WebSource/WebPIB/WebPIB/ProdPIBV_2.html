@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv='Cache-Control' content='no-cache' />
+	<meta http-equiv='Pragma' content='no-cache' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="Stylesheet" type="text/css" href="./StyleSheet/StyleSheetPIB.css" />
+	<script type="text/javascript" src="./Scripts/XmlHttpHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/AlarmHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/PibHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/TimerHandler.js"></script>
+	<title></title>
+	<script>
+
+		var pib = new PIB();
+		function PIB() {
+			this.DataRecvIntervalValue = 5000;
+			this.DataRecvInterval = null;
+			this.DataDispInterval = null;
+			this.receivedData = null;
+			this.workData = null;
+			this.DataRecvStat = 0;
+			this.DataRecvTryCnt = 0;
+			this.GetData = function () {
+				try {
+					pib.DataRecvStat = 1;
+					var workType = Request.getParameter("mode");
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					XmlHandler.Http.LoadUrl("GetPibData.aspx", "subContPIB", mid, pid, "", "", "", "", "");
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 10000;
+					pib.ReceiveNewData();
+				};
+			};
+
+
+			this.LoadEnd = function (_jsonText) {
+				try {
+					var workType = Request.getParameter("mode");
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					pib.receivedData = _jsonText;
+					if (pib.receivedData && pib.receivedData != null && pib.receivedData.length && pib.receivedData.length > 0) {
+					    pib.DataRecvTryCnt = 1;
+					    pib.workData = pib.receivedData[0].Data;
+					    document.getElementById("tdCurrDate").innerText = pib.receivedData[0].CurrDate;
+					    document.getElementById("tdCurrTime").innerText = pib.receivedData[0].CurrTime;
+						document.getElementById("tdCurrTime").style.color = "";
+						pib.DataRecvStat = 0;
+					}
+					else {
+						pib.DataRecvTryCnt++;
+						if (pib.DataRecvTryCnt > 5) {
+							document.getElementById("tdCurrTime").style.color = "red";
+							pib.DataRecvTryCnt = 6;
+						}
+						else {
+							document.getElementById("tdCurrTime").style.color = "";
+						};
+					};
+
+					pib.DisplayData();
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 10000;
+					pib.ReceiveNewData();
+				};
+			};
+
+			this.DisplayData = function () {
+				var nRowIdx = 0, nHdIdx = 0;
+				var tblTag1 = document.getElementById("tblTag1");
+				var tblTag2 = document.getElementById("tblTag2");
+				var tblTag3 = document.getElementById("tblTag3");
+				var tblData = document.getElementById("tblData");// 테이블 접근
+
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) { //데이터 확인 후 태그 데이터 장입
+				    tblTag1.rows[1].cells[0].innerHTML = pib.workData[0].TAG_1;
+				    tblTag2.rows[1].cells[0].innerHTML = pib.workData[0].TAG_2;
+				    tblTag3.rows[1].cells[0].innerHTML = pib.workData[0].TAG_3;
+				};
+					for (var nRowIdx = 0; nRowIdx < tblData.rows.length; nRowIdx++) { //테이블 순회
+					    if (tblData.rows[nRowIdx].id.toString().charAt(0) == 'r') { // 데이터 영역 확인
+					        var strBgClass = ((nRowIdx - nHdIdx) % 2 == 1) ? "OddRowBcolor" : "EvenRowBcolor";
+					        tblData.rows[nRowIdx].setAttribute("class", strBgClass);
+
+					        if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) { //데이터 확인 후 로우데이터 장입
+					            if (tblData.rows[nRowIdx].id.toString().charAt(1) == 's') {
+					                tblData.rows[nRowIdx].cells[0].innerHTML = "합계";
+					                //tblData.rows[nRowIdx].cells[1].innerHTML = pib.workData[0].PART_NO;
+					                //tblData.rows[nRowIdx].cells[2].innerHTML = pib.workData[0].CAR_TYPE;
+					                tblData.rows[nRowIdx].cells[3].innerHTML = pib.workData[0].HGP_SUM;
+					                tblData.rows[nRowIdx].cells[4].innerHTML = pib.workData[0].COM_D_1_SUM;
+					                tblData.rows[nRowIdx].cells[5].innerHTML = pib.workData[0].COM_P_1_SUM;
+					                tblData.rows[nRowIdx].cells[6].innerHTML = pib.workData[0].COM_D_2_SUM;
+					                tblData.rows[nRowIdx].cells[7].innerHTML = pib.workData[0].COM_P_2_SUM;
+					                tblData.rows[nRowIdx].cells[8].innerHTML = pib.workData[0].COM_3_SUM;
+					                tblData.rows[nRowIdx].cells[9].innerHTML = pib.workData[0].COM_4_SUM;
+					                tblData.rows[nRowIdx].cells[10].innerHTML = pib.workData[0].TOT_SUM;
+					                tblData.rows[nRowIdx].cells[11].innerHTML = pib.workData[0].HGP_OUT_SUM;
+					            }
+                                else{
+					                tblData.rows[nRowIdx].cells[0].innerHTML = pib.workData[0].GUBUN;
+					                tblData.rows[nRowIdx].cells[1].innerHTML = pib.workData[0].PART_NO;
+					                tblData.rows[nRowIdx].cells[2].innerHTML = pib.workData[0].CAR_TYPE;
+					                tblData.rows[nRowIdx].cells[3].innerHTML = pib.workData[0].HGP;
+					                tblData.rows[nRowIdx].cells[4].innerHTML = pib.workData[0].COM_D_1;
+					                tblData.rows[nRowIdx].cells[5].innerHTML = pib.workData[0].COM_P_1;
+					                tblData.rows[nRowIdx].cells[6].innerHTML = pib.workData[0].COM_D_2;
+					                tblData.rows[nRowIdx].cells[7].innerHTML = pib.workData[0].COM_P_2;
+					                tblData.rows[nRowIdx].cells[8].innerHTML = pib.workData[0].COM_3;
+					                tblData.rows[nRowIdx].cells[9].innerHTML = pib.workData[0].COM_4;
+					                tblData.rows[nRowIdx].cells[10].innerHTML = pib.workData[0].TOT;
+					                tblData.rows[nRowIdx].cells[11].innerHTML = pib.workData[0].HGP_OUT;
+
+					                pib.workData.shift(); // 첫번째 배열데이터를 삭제한다.
+					            }
+					        }
+					        else { //데이터가 전부 삭제됨
+
+					            tblData.rows[nRowIdx].cells[0].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[1].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[2].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[3].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[4].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[5].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[6].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[7].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[8].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[9].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[10].innerHTML = "";
+					            tblData.rows[nRowIdx].cells[11].innerHTML = "";
+					        }
+					    }
+					    else
+					        nHdIdx++;
+					};
+
+			    // 모든 테이블 행을 순회했음에도 데이터가 남아있을 경우
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+				    // 첫줄부터 다시 표시한다.
+				    pib.DisplayMoreData();
+				}
+				else {
+				    pib.DataRecvIntervalValue = 10000;
+				    pib.ReceiveNewData();
+                }
+			};
+
+			this.DisplayMoreData = function () {
+				if (pib.DataDispInterval != null) self.clearTimeout(pib.DataDispInterval);
+				pib.DataDispInterval = self.setTimeout(function () { pib.DisplayData(); }, 10000);	// 10초단위
+			};
+			this.ReceiveNewData = function () {
+				if (pib.DataRecvInterval != null) self.clearTimeout(pib.DataRecvInterval);
+				pib.DataRecvInterval = self.setTimeout(function () { pib.GetData(); }, pib.DataRecvIntervalValue);	// 2초단위
+				pib.DataRecvIntervalValue = 2000;
+			};
+		};
+	</script>
+</head>
+<body id="docBody" onload="resizePanel(); pib.GetData(); timer.DisplayData();" onresize="resizePanel();">
+	<table class="stockPIB">
+		<tr>
+			<td class="pibHead">
+				<table>
+					<tr>
+                        <td></td>
+						<td class="pibTitleStock" style="background-color:#f2f2f2;font-family:'HY견고딕'">사외창고 현황판</td>
+						<td class="pibClockStock">
+							<table>
+								<tr>
+									<td id="tdCurrDate" style="font-family:'HY견고딕'"></td>
+								</tr>
+								<tr>
+									<td id="tdCurrTime" style="font-family:'HY견고딕'"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+        <tr style="height: 80px;">
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <table id="tblTag1" style="background-color:blue; width:200px;border: 1px solid #808080;color:#ffffff">
+                                <tr style="text-align:left">
+                                    <td style="text-align:left;font-size:30px;font-family:'HY견고딕'">&ensp; EV </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; align-items: center; justify-content: center;font-size:30px;font-family:'HY견고딕'" ></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:30px"></td>
+                        <td>
+                            <table id="tblTag2" style="background-color:grey; width:200px;border: 1px solid #808080;color:#ffffff">
+                                <tr style="text-align:left">
+                                    <td style="text-align:left;font-size:30px;font-family:'HY견고딕'">&ensp; HEV </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; align-items: center; justify-content: center;font-size:30px;font-family:'HY견고딕'" ></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:30px"></td>
+                        <td>
+                            <table id="tblTag3" style="background-color:brown; width:200px;border: 1px solid #808080;color:#ffffff">
+                                <tr style="text-align:left">
+                                    <td style="text-align:left;font-size:30px;font-family:'HY견고딕'">&ensp; 48V </td>
+                                </tr>
+                                <tr>
+                                    <td style="display: flex; align-items: center; justify-content: center;font-size:30px;font-family:'HY견고딕'" ></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+		<tr>
+			<td id="pibBody" class="pibBodyStock" style="font-size:small">
+				<table id="tblData">
+                    <tr id="h1" style="height:10%; text-align:center">
+                        <th style="height:5%;font-size:16px; width:5%; background-color:#014c8d;font-family:'HY견고딕'" rowspan="3">구분</th>
+                        <th style="height:5%;font-size:16px; width:15%;background-color:#014c8d;font-family:'HY견고딕'" rowspan="3">품  번</th>
+                        <th style="height:5%;font-size:16px; width:20%;background-color:#014c8d;font-family:'HY견고딕'" rowspan="3">차  종</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" colspan="8">현재고</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" rowspan="3">사외→<br/>서열사<br/>출하대수</th>
+                    </tr>
+                    <tr id="h2" style="height:10%; text-align:center">
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" rowspan="2">HGP</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" colspan="2">완제품 맹동</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" colspan="2">완제품 삼성</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" rowspan="2">완제품<br/>울산</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" rowspan="2">동충주</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'" rowspan="2">합계</th>
+                    </tr>  
+                    <tr id="h3" style="height:10%; text-align:center">
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'">대차</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'">파레트</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'">대차</th>
+                        <th style="height:5%;font-size:16px;background-color:#014c8d;font-family:'HY견고딕'">파레트</th>
+                    </tr>       
+
+                    <tr id="rs" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize10 AlignLeft5"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                        <td class="FontSize14 AlignRight"  style="font-family:'HY견고딕'; background-color:#98FB98"></td>
+                    </tr>
+					<tr id="r1" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+					</tr>
+                    <tr id="r2" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r3" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r4" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r5" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r6" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r7" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r8" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+                    <tr id="r9" style="height:7%; text-align:center">
+                        <td class="FontSize14 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignCenter" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize10 AlignLeft5" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                        <td class="FontSize14 AlignRight" style="font-family:'HY견고딕'"></td>
+                    </tr>
+				</table>
+			</td>
+		</tr>
+		<tr id="trAlarmMsg" class="AlarmArea">
+			<td id="tdAlarmMsg" class="AlarmArea"><p id="pAlarmMsg" class="AlarmMsg"></p></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ComCodeData" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <statements>    
+    <!-- 
+    
+    -->
+    <statement id="Get_ComCodeList" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        
+          SELECT  
+            COMM_TYPE
+            , COMM_CD
+            , COMM_DESC
+            , COMM_SEQ
+            , USE_YN
+				    , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
+				    , REGIST_USER_ID
+				    , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE
+				    , MODIFY_USER_ID
+				    , ROW_NUMBER() OVER(ORDER BY REGIST_DATE DESC) AS ROW_NUM
+	        FROM MES_COMMON_CODE_MA WITH(NOLOCK)
+			    WHERE COMM_TYPE LIKE '%' + (CASE WHEN #COMM_TYPE# = '' THEN COMM_TYPE ELSE #COMM_TYPE# END) + '%'
+		        AND COMM_CD LIKE '%' + (CASE WHEN #COMM_CD# = '' THEN COMM_CD ELSE #COMM_CD# END) + '%'
+				    AND COMM_DESC LIKE '%' + (CASE WHEN #COMM_DESC# = '' THEN COMM_DESC ELSE #COMM_DESC# END) + '%'
+          ORDER BY REGIST_DATE DESC
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_ComCodeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+          COMM_TYPE
+          , COMM_CD
+          , COMM_DESC
+          , COMM_SEQ
+          , USE_YN
+        FROM MES_COMMON_CODE_MA WITH(NOLOCK)
+        WHERE COMM_TYPE = #COMM_TYPE#
+          AND COMM_CD = #COMM_CD#
+      ]]>
+    </statement>    
+    
+    <!-- 
+    
+    -->
+    <statement id="Get_ComCodeByComTypeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+          COMM_CD
+          , COMM_DESC
+        FROM MES_COMMON_CODE_MA WITH(NOLOCK)
+        WHERE COMM_TYPE = #COMM_TYPE#
+          AND USE_YN = 'Y'
+        ORDER BY COMM_SEQ          
+      ]]>
+    </statement>    
+        
+    <!-- 
+    
+    -->
+    <statement id="Get_ComTypeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT 
+          COMM_TYPE
+        FROM MES_COMMON_CODE_MA WITH(NOLOCK)
+        WHERE USE_YN = 'Y'
+        GROUP BY COMM_TYPE
+        ORDER BY COMM_TYPE
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Get_ComCodeCD_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        SELECT COUNT(COMM_CD) AS VAL_CHK FROM MES_COMMON_CODE_MA WITH(NOLOCK)
+        WHERE COMM_TYPE = #COMM_TYPE#
+          AND COMM_CD = #COMM_CD#
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_ComCodeInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        MERGE INTO MES_COMMON_CODE_MA AS A
+        USING (SELECT #COMM_TYPE#, #COMM_CD#) AS B (COMM_TYPE, COMM_CD)
+           ON (A.COMM_TYPE = B.COMM_TYPE AND A.COMM_CD = B.COMM_CD)
+        WHEN MATCHED THEN
+	        UPDATE SET 
+           A.COMM_DESC			    = #COMM_DESC#
+            , A.COMM_SEQ			  = #COMM_SEQ#
+            , A.USE_YN			    = #USE_YN#
+            , A.MODIFY_DATE		  = GETDATE()
+            , A.MODIFY_USER_ID	= #REG_ID#
+        WHEN NOT MATCHED THEN
+	        INSERT(
+            COMM_TYPE, COMM_CD, COMM_DESC, COMM_SEQ, USE_YN, REGIST_DATE, REGIST_USER_ID, MODIFY_DATE, MODIFY_USER_ID
+          ) 
+	        VALUES (
+            #COMM_TYPE#, #COMM_CD#, #COMM_DESC#, #COMM_SEQ#, #USE_YN#, GETDATE(), #REG_ID#, GETDATE(), #REG_ID#
+          );
+      ]]>
+    </statement>
+
+    <!-- 
+    
+    -->
+    <statement id="Set_ComCodeInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        DELETE FROM MES_COMMON_CODE_MA 
+        WHERE COMM_TYPE = #COMM_TYPE#
+          AND COMM_CD = #COMM_CD#
+      ]]>
+    </statement>
+
+  </statements>
+</sqlMap>

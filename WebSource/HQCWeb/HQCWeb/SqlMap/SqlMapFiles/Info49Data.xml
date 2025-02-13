@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info49Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_ErrorCdList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO49_S #PLANT_CD#, #ERROR_CD#, #ERROR_NM#, #FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_ErrorCdID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO49_CHK #PLANT_CD#, #ERROR_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_ErrorCdInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO49_INFO #PLANT_CD#,#ERROR_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_ErrorCdInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO49_IU #PLANT_CD#, #ERROR_CD#, #ERROR_NM#, #REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_ErrorCdInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO49_D #PLANT_CD#, #ERROR_CD#, #FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO49_DDL #PLANT_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

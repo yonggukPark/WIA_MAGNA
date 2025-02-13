@@ -1,0 +1,58 @@
+﻿<script>
+    $.ajax({
+        type: "POST",
+        url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetNotice01",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            fn_GetNoticeData(msg.d);
+        }
+    });
+
+    function fn_GetNoticeData(_val) {
+        $("#tableNoticeList").html(_val);
+    }
+
+    function fn_Notice() {
+
+        var aData = "";
+        aData = "WEB_00101";
+
+        var jsonData = JSON.stringify({ sMenu: aData });
+
+        $.ajax({
+            type: "POST",
+            url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetMenu",
+            data: jsonData,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                fn_Notice_Open(msg.d);
+            }
+        });
+    }
+
+    function fn_Notice_Open(title) {
+        if (title == "Error") {
+            alert("시스템 에러가 발생했습니다. 관리자에게 문의 바랍니다.");
+
+            return;
+        }
+        fn_Add('/SystemMgt/NoticeManagement/Notice004.aspx', title, 'WEB_00101', true);
+    }
+</script>
+
+<style>
+    .notice_scrollable {
+        height:calc(50vh - 290px); 
+        overflow:auto;
+    }
+</style>
+
+<h3>공지사항</h3>
+<button onclick="fn_Notice();return false">See All</button>
+<hr>
+<div class="notice_scrollable">
+    <table cellpadding="0" cellspacing="0" id="tableNoticeList"></table>
+</div>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Mon16Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_LockList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_MON16_S #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #FR_DT#, #TO_DT#, #SERIAL_NO#, #COMPLETE_NO#, #P_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_LockInfo" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_MON16_INFO #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #SERIAL_NO#
+      ]]>
+    </statement>
+
+    <statement id="Set_LockInfo" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_MON16_IU #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #SERIAL_NO#, #BLOCK_FLAG#, #REWORK_MSG#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_MON16_DDL #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #EOP_FLAG#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

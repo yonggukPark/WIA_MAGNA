@@ -1,0 +1,12 @@
+C:\hl현황판\WebPIB_현황판최종소스\WebPIB\bin\WebPIB.dll.config
+C:\hl현황판\WebPIB_현황판최종소스\WebPIB\bin\WebPIB.dll
+C:\hl현황판\WebPIB_현황판최종소스\WebPIB\bin\WebPIB.pdb
+C:\hl현황판\WebPIB_현황판최종소스\WebPIB\obj\Release\WebPIB.csprojResolveAssemblyReference.cache
+C:\hl현황판\WebPIB_현황판최종소스\WebPIB\obj\Release\WebPIB.dll
+C:\hl현황판\WebPIB_현황판최종소스\WebPIB\obj\Release\WebPIB.pdb
+C:\WebPIB\WebPIB\bin\WebPIB.dll.config
+C:\WebPIB\WebPIB\bin\WebPIB.dll
+C:\WebPIB\WebPIB\bin\WebPIB.pdb
+C:\WebPIB\WebPIB\obj\Release\WebPIB.csprojResolveAssemblyReference.cache
+C:\WebPIB\WebPIB\obj\Release\WebPIB.dll
+C:\WebPIB\WebPIB\obj\Release\WebPIB.pdb

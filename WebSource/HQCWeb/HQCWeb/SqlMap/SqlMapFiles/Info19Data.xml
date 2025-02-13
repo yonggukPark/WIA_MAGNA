@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info19Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_WorkList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO19_S #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#CAR_TYPE#,#MODE_FLAG#,#FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_WorkID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO19_CHK #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#,#CAR_TYPE#,#WORK_SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Get_WorkInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO19_INFO #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#,#CAR_TYPE#,#WORK_SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Set_WorkInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO19_IU #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #STN_CD#, #CAR_TYPE#, #WORK_SEQ#, #WORK_NM#, #WORK_CD#, #TOOL_TYPE#, #CNT#, #TORQUE_TYPE#, #P_SET#, #TOOL_HOLE#, #DEV_ID#, #WORK_TYPE#, #SCAN_CD#, #MATCH_CD#, #MODE_FLAG#, #USE_YN#, #REMARK1#, #REMARK2#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_WorkInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO19_D #PLANT_CD#,#SHOP_CD#,#LINE_CD#, #STN_CD#, #CAR_TYPE#, #WORK_SEQ#,#FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO19_DDL #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #CAR_TYPE#
+      ]]>
+    </statement>
+
+    <statement id="Get_WorkImage" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO19_IMG #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#,#CAR_TYPE#,#WORK_SEQ#
+      ]]>
+    </statement>
+
+    <statement id="Set_WorkImage" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO19_U_IMG #PLANT_CD#,#SHOP_CD#,#LINE_CD#,#STN_CD#,#CAR_TYPE#,#WORK_SEQ#,#FILE_DATA_UPT#,#FILE_DATA#,#POINT_UPT#,#POINT#,#USER_ID#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

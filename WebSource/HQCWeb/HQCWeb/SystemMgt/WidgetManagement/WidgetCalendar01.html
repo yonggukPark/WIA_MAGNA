@@ -1,0 +1,170 @@
+﻿<script>
+
+    $(document).ready(function () {
+        //달력 초기화 호출
+        MakeCalendarInit();
+    });
+
+
+    var intCuYear, intCuMonth;
+    var options = { month: "long" };
+
+    function MakeCalendarInit() {
+        cuDay = new Date();
+        intCuYear = cuDay.getFullYear();
+        intCuMonth = cuDay.getMonth();
+        getCalendar(cuDay.getFullYear(), cuDay.getMonth() + 1);
+
+        //타이틀
+        $("#lbToday").html(cuDay.getFullYear() + "." + (cuDay.getMonth() + 1).toString().padStart(2, '0'));
+    }
+
+    function getCalendar(pYear, pMonth) {
+        var jsonData = JSON.stringify({ year: pYear, month:pMonth });
+
+        $.ajax({
+            type: "POST",
+            url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetCalendar01",
+            data: jsonData,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                fn_GetCalendar01Data(msg.d);
+            }
+        });
+    }
+
+    function fn_GetCalendar01Data(_val) {
+        $("#tbodyCalendar01List").html(_val);
+
+        var isHovered = false;
+        var hideTooltipTimeout;
+        var showTooltipTimeout;
+
+        function hideTooltip() {
+            clearTimeout(showTooltipTimeout);
+            hideTooltipTimeout = setTimeout(function () {
+                if (!isHovered) {
+                    $('.tooltip-content').fadeOut();
+                    $('[class*="notice_item"]').hide();
+                }
+            }, 100); // Adjust the delay as necessary
+        }
+
+        $('.today, .schedule').hover(function (ev) {
+            clearTimeout(hideTooltipTimeout);
+            showTooltipTimeout = setTimeout(function () {
+                $(ev.currentTarget).parent().find('.tooltip-content').stop(true, true).fadeIn();
+            }, 100); // Adjust the delay as necessary
+        }, function (ev) {
+            hideTooltip();
+        }).mousemove(function (ev) {
+            var tooltip = $(ev.currentTarget).parent().find('.tooltip-content');
+            var tooltipWidth = tooltip.outerWidth();
+            var tooltipHeight = tooltip.outerHeight();
+            var left = ev.pageX - (tooltipWidth / 2);
+            var top = ev.pageY;
+            tooltip.css({ left: left, top: top });
+        });
+
+        $('.tooltip-content').hover(function (ev) {
+            isHovered = true;
+            clearTimeout(hideTooltipTimeout);
+        }, function (ev) {
+            isHovered = false;
+            hideTooltip();
+        });
+
+        $(document).mousemove(function (ev) {
+            if (!$(ev.target).closest('.today, .schedule, .tooltip-content').length) {
+                hideTooltip();
+            }
+        });
+
+        // Toggle notice items
+        $('.notice_label').on("click", function () {
+            $(this).closest('tr').nextAll('.notice_item').toggle();
+        });
+
+        $('[class*="notice_item"]').hide();
+
+        // Toggle chk items
+        $('.chk_label').on("click", function () {
+            $(this).closest('tr').nextAll('.chk_item').toggle();
+        });
+
+        $('[class*="chk_item"]').hide();
+    }
+
+    function fn_prev() {
+        cuDay.setFullYear(intCuYear);
+        cuDay.setMonth(intCuMonth - 1, 1);
+        intCuYear = cuDay.getFullYear();
+        intCuMonth = cuDay.getMonth();
+        getCalendar(cuDay.getFullYear(), cuDay.getMonth() + 1);
+
+        //타이틀
+        $("#lbToday").html(cuDay.getFullYear() + "." + (cuDay.getMonth() + 1).toString().padStart(2, '0'));
+    }
+
+    function fn_next() {
+        cuDay.setFullYear(intCuYear);
+        cuDay.setMonth(intCuMonth + 1, 1);
+        intCuYear = cuDay.getFullYear();
+        intCuMonth = cuDay.getMonth();
+        getCalendar(cuDay.getFullYear(), cuDay.getMonth() + 1);
+
+        //타이틀
+        $("#lbToday").html(cuDay.getFullYear() + "." + (cuDay.getMonth() + 1).toString().padStart(2, '0'));
+    }
+
+    // 캘린더 클릭 이동(검교정)
+    function fn_Chk_Move(aData, pkCode) {
+
+        var jsonData = JSON.stringify({ sMenu: aData, sData: pkCode });
+
+        $.ajax({
+            type: "POST",
+            url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetChkMenu",
+            data: jsonData,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                fn_Search_Open(msg.d);
+            }
+        });
+    }
+
+    function fn_Search_Open(title) {
+        if (title == "Error") {
+            alert("시스템 에러가 발생했습니다. 관리자에게 문의 바랍니다.");
+
+            return;
+        }
+        parent.fn_ModalCloseDiv();
+        parent.fn_Add('/QualityMgt/Qua51/Qua51.aspx', title, 'Qua51', true);
+    }
+
+</script>
+
+<ul>
+    <li><button class="prev" onclick="fn_prev(); return false"></button></li>
+    <li id="lbToday"></li>
+    <li><button class="next" onclick="fn_next(); return false"></button></li>
+</ul>
+<table cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+        </tr>
+    </thead>
+    <tbody id="tbodyCalendar01List">
+
+    </tbody>
+</table>

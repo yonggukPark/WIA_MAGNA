@@ -1,0 +1,548 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv='Cache-Control' content='no-cache' />
+	<meta http-equiv='Pragma' content='no-cache' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="Stylesheet" type="text/css" href="./StyleSheet/StyleSheetPIB.css" />
+	<script type="text/javascript" src="./Scripts/XmlHttpHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/AlarmHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/PibHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/TimerHandler.js"></script>
+    <title></title>
+	<script>
+
+		var pib = new PIB();
+		function PIB() {
+			this.DataRecvIntervalValue = 2000;
+			this.DataRecvInterval = null;
+			this.DataDispInterval = null;
+			this.receivedData = null;
+			this.workData = null;
+			this.DataRecvStat = 0;
+			this.DataRecvTryCnt = 0;
+			this.GetData = function () {
+				try {
+					pib.DataRecvStat = 1;
+					var workType = Request.getParameter("mode");
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					var shop1 = Request.getParameter("shop1");
+					var line1 = Request.getParameter("line1");
+					var shop2 = Request.getParameter("shop2");
+					var line2 = Request.getParameter("line2");
+					pib.receivedData = XmlHandler.Http.LoadUrl("GetPibData.aspx", "delivery", mid, pid, shop1, line1, shop2, line2, workType);
+					if (pib.receivedData && pib.receivedData != null && pib.receivedData.length && pib.receivedData.length > 0) {
+						pib.DataRecvTryCnt = 1;
+						//if (timer.tickCount >= 30) {
+						document.getElementById("tdCurrDate").innerText = pib.receivedData[0].CurrDate;
+						document.getElementById("tdCurrTime").innerText = pib.receivedData[0].CurrTime;
+						document.getElementById("tdCurrTime").style.color = "";
+						//	timer.tickCount = 0;
+						//};
+						for (var i = 0; i < pib.receivedData.length; i++) {
+							if (pib.receivedData[i].TableName == workType.replace(',', '').replace(',', '').replace(',', '').replace(';', '').replace(';', '').replace(';', '')) {
+								pib.workData = pib.receivedData[i].Data;
+								break;
+							};
+						};
+						pib.DataRecvStat = 0;
+					}
+					else {
+						pib.DataRecvTryCnt++;
+						if (pib.DataRecvTryCnt > 5) {
+							document.getElementById("tdCurrTime").style.color = "red";
+							pib.DataRecvTryCnt = 6;
+						}
+						else {
+							document.getElementById("tdCurrTime").style.color = "";
+						};
+					};
+					pib.DisplayData();
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 10000;
+					pib.ReceiveNewData();
+				};
+			};
+
+			this.DisplayData = function () {
+				var nSerialIdx = 1;
+				var tblData = document.getElementById("tblData");
+
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+					for (var nRowIdx = 0; nRowIdx < tblData.rows.length; nRowIdx++) {
+						if (pib.workData && pib.workData != null && pib.workData.length > 0) {
+
+							tblData.rows[nRowIdx].style.display = "";
+							for (var nCellIdx = 0; nCellIdx < tblData.rows[nRowIdx].cells.length; nCellIdx++) {
+								if (pib.workData && pib.workData != null && pib.workData.length > 0) {
+
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[0].style.height = "32px";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[0].innerHTML = nSerialIdx;
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[1].innerHTML
+										= ((pib.workData[0].CARNAM != null) ? pib.workData[0].CARNAM : "")
+										+ ((pib.workData[0].PLAN_TIME != null) ? "<br>[" + pib.workData[0].PLAN_TIME.substring(11,5) + "]" : "");
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[0].cells[0].innerHTML = (pib.workData[0].C1 != null && pib.workData[0].C1.indexOf('|') > 0) ? pib.workData[0].C1.split('|')[0] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[0].cells[1].innerHTML = (pib.workData[0].C1 != null && pib.workData[0].C1.indexOf('|') > 0) ? pib.workData[0].C1.split('|')[1] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[1].cells[0].innerHTML = (pib.workData[0].C2 != null && pib.workData[0].C2.indexOf('|') > 0) ? pib.workData[0].C2.split('|')[0] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[1].cells[1].innerHTML = (pib.workData[0].C2 != null && pib.workData[0].C2.indexOf('|') > 0) ? pib.workData[0].C2.split('|')[1] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[2].cells[0].innerHTML = (pib.workData[0].C3 != null && pib.workData[0].C3.indexOf('|') > 0) ? pib.workData[0].C3.split('|')[0] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[2].cells[1].innerHTML = (pib.workData[0].C3 != null && pib.workData[0].C3.indexOf('|') > 0) ? pib.workData[0].C3.split('|')[1] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[3].cells[0].innerHTML = (pib.workData[0].C4 != null && pib.workData[0].C4.indexOf('|') > 0) ? pib.workData[0].C4.split('|')[0] : "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[3].cells[1].innerHTML = (pib.workData[0].C4 != null && pib.workData[0].C4.indexOf('|') > 0) ? pib.workData[0].C4.split('|')[1] : "";
+									pib.workData.shift(); // 첫번째 배열데이터를 삭제한다.
+								}
+								else {
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[0].style.height = "32px";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[0].innerHTML = nSerialIdx;
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[1].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[0].cells[0].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[0].cells[1].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[1].cells[0].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[1].cells[1].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[2].cells[0].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[2].cells[1].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[3].cells[0].innerHTML = "";
+									tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[3].cells[1].innerHTML = "";
+								};
+								nSerialIdx++;
+							};
+
+						}
+						else {
+							//tblData.rows[nRowIdx].style.display = "none";
+							for (var nCellIdx = 0; nCellIdx < tblData.rows[nRowIdx].cells.length; nCellIdx++) {
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[0].style.height = "32px";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[0].innerHTML = nSerialIdx;
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[0].cells[0].childNodes[0].rows[0].cells[1].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[0].cells[0].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[0].cells[1].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[1].cells[0].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[1].cells[1].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[2].cells[0].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[2].cells[1].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[3].cells[0].innerHTML = "";
+								tblData.rows[nRowIdx].cells[nCellIdx].childNodes[0].rows[1].cells[0].childNodes[0].rows[3].cells[1].innerHTML = "";
+								nSerialIdx++;
+							};
+						};
+					};
+				};
+
+				// 가져온 데이터가 화면에 표시할 수량보다 많이 남아있으면...
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+					// 첫줄부터 다시 표시한다.
+					pib.DisplayMoreData();
+				}
+				else {
+					pib.DataRecvIntervalValue = 2000;
+					pib.ReceiveNewData();
+				};
+			};
+
+			this.DisplayMoreData = function () {
+				if (pib.DataDispInterval != null) self.clearTimeout(pib.DataDispInterval);
+				pib.DataDispInterval = self.setTimeout(function () { pib.DisplayData(); }, 2000);	// 2초단위
+			};
+			this.ReceiveNewData = function () {
+				if (pib.DataRecvInterval != null) self.clearTimeout(pib.DataRecvInterval);
+				pib.DataRecvInterval = self.setTimeout(function () { pib.GetData(); }, pib.DataRecvIntervalValue);	// 2초단위
+				pib.DataRecvIntervalValue = 2000;
+			};
+		};
+	</script>
+</head>
+<body id="docBody" onload="resizePanel(); pib.GetData(); timer.DisplayData();" onresize="resizePanel();">
+<table class="stockPIB">
+	<tr>
+		<td class="pibHead">
+			<table>
+				<tr>
+                        <!--<td style="background-image:url('./Images/HL_LOGO.JPG'); background-size:contain; background-repeat:no-repeat; background-position:center;"></td>-->
+                        <td></td>
+					<td class="pibTitleStock">완제품 - 출하 현황</td>
+					<td class="pibClockStock">
+						<table>
+							<tr>
+								<td id="tdCurrDate"></td>
+							</tr>
+							<tr>
+								<td id="tdCurrTime"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td id="pibBody" class="pibBody">
+			<table id="tblData">
+				<tr style="height:25%;">
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr style="height:25%;">
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr style="height:25%;">
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr style="height:25%;">
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #b200ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td style="padding:0;"><table style="border:1px solid #0026ff;">
+							<tr><th><table>
+									<tr><th></th><td></td></tr>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td><table>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+										<tr><th></th><td></td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr id="trAlarmMsg">
+		<td id="tdAlarmMsg" class="AlarmArea"><p id="pAlarmMsg" class="AlarmMsg"></p></td>
+	</tr>
+</table>
+</body>
+</html>

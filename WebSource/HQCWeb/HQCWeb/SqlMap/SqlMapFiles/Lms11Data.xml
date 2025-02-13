@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Lms11Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  
+  <statements>
+    
+    <statement id="Get_QualityList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC EXEC PROC_SELECT_PRODUCT_LOG_DATE #ToDate#,#FromDate#,#FromLot#,#ToLot#,#Line#
+      ]]>
+    </statement>
+    
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+            EXEC W_SP_LMS11_DDL #PLANT_CD#
+          ]]>
+    </statement>
+    
+  </statements>
+  
+</sqlMap>  

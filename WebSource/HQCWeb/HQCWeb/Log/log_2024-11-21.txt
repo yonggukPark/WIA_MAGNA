@@ -1,0 +1,30 @@
+2024-11-21 오후 4:53:34: Error in Excel : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeExcel(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 650
+2024-11-21 오후 4:55:46: Error in Excel : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeExcel(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 650
+2024-11-21 오후 4:58:36: Error in Excel : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeExcel(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 651
+2024-11-21 오후 5:36:24: Error in Excel : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeExcel(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 651
+2024-11-21 오후 5:58:44: Error in Excel : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeExcel(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 649
+2024-11-21 오후 6:08:01: Error in Excel : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeExcel(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 652

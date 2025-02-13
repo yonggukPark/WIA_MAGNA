@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Widget.master.cs" Inherits="HQCWeb.MasterPage.Widget" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <title></title>
+    
+    <style type="text/css">
+       .divClass {display:table; width:99%; height:100%; filter:alpha(opacity=65); opacity:0.3; -moz-opacity:0.3; z-index:100; position:absolute; font-size:9pt; background:#d6d3ce;}
+       .pClass {display:table-cell; text-align:center; vertical-align:middle;}
+
+        td.dxgv {
+            height:25px;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.contextMenu.css?version=20241008"" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/New/common.css?version=20241008"  />
+
+
+    <script src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="/Scripts/jquery.contextMenu.js"></script>
+    <script src="/Scripts/jquery.ui.position.js"></script>
+
+
+    <script src="/Scripts/amcharts.js" type="text/javascript"></script>
+    <script src="/Scripts/serial.js" type="text/javascript"></script>
+    <script src="/Scripts/pie.js" type="text/javascript"></script>
+
+    <script>
+        function fn_WatingCall() {
+            $("#waiting").show();
+        }
+
+        function fn_loadingEnd() {
+            $("#waiting").hide();
+            $("#popupCall").hide();
+        }
+
+        function fn_PopupCall() {
+            $("#popupCall").show();
+        }
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="waiting" class="divClass">
+            <p class="pClass"><img src="/images/ajax-loader.gif" /><br /></p>
+        </div>
+
+        <div id="popupCall" class="divClass"></div>
+
+        <asp:ScriptManager runat="server" ID="ScriptManager"/>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+    </form>
+
+    <script>
+        setTimeout(function () {
+            fn_loadingEnd();
+        }, 1500);
+    </script>
+
+</body>
+</html>

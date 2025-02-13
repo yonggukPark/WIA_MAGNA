@@ -1,0 +1,1 @@
+C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\obj\Release\HQCWeb.csproj.AssemblyReference.cache

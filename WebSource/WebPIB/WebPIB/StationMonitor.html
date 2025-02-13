@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv='Cache-Control' content='no-cache' />
+	<meta http-equiv='Pragma' content='no-cache' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="Stylesheet" type="text/css" href="./StyleSheet/StyleSheetPIB.css" />
+	<script type="text/javascript" src="./Scripts/XmlHttpHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/AlarmHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/PibHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/TimerHandler.js"></script>
+	<title></title>
+	<script>
+        var pib = new PIB();
+        function PIB() {
+            this.DataRecvIntervalValue = 2000;
+            this.DataRecvInterval = null;
+            this.DataDispInterval = null;
+            this.receivedData = null;
+            this.workData = null;
+            this.DataRecvStat = 0;
+            this.DataRecvTryCnt = 0;
+
+            this.GetData = function () {
+                try {
+                    pib.DataRecvStat = 1;
+                    var workType = Request.getParameter("mode");
+                    var mid = Request.getParameter("mid");
+                    var pid = Request.getParameter("pid");
+                    //pib.receivedData =
+                    XmlHandler.Http.LoadUrl("GetPibData.aspx", "stationMonitor", mid, pid, "", "", "", "", "");
+                }
+                catch (exception) {
+                    pib.DataRecvTryCnt++;
+                    if (pib.DataRecvTryCnt > 5) {
+                        document.getElementById("tdCurrTime").style.color = "red";
+                        pib.DataRecvTryCnt = 6;
+                    }
+                    else {
+                        document.getElementById("tdCurrTime").style.color = "";
+                    };
+                    pib.DataRecvIntervalValue = 10000;
+                    pib.ReceiveNewData();
+                };
+            };
+            this.LoadEnd = function (_jsonText) {
+                try {
+                    var workType = Request.getParameter("mode");
+                    var mid = Request.getParameter("mid");
+                    var pid = Request.getParameter("pid");
+                    pib.receivedData = _jsonText;
+                    if (pib.receivedData && pib.receivedData != null && pib.receivedData.length && pib.receivedData.length > 0) {
+                        pib.DataRecvTryCnt = 1;
+                        pib.workData = pib.receivedData[0].Data;
+                        document.getElementById("tdCurrDate").innerText = pib.workData[0].CurrDate;
+                        document.getElementById("tdCurrTime").innerText = pib.workData[0].CurrTime;
+                        document.getElementById("tdCurrTime").style.color = "";
+
+                        document.getElementById("div_BPA_24_QTY").innerText = pib.workData[0].Qty;
+                        pib.DataRecvStat = 0;
+                    }
+                    else {
+                        pib.DataRecvTryCnt++;
+                        if (pib.DataRecvTryCnt > 5) {
+                            document.getElementById("tdCurrTime").style.color = "red";
+                            pib.DataRecvTryCnt = 6;
+                        }
+                        else {
+                            document.getElementById("tdCurrTime").style.color = "";
+                        };
+                    };
+                    pib.DisplayData();
+                }
+                catch (exception) {
+                    pib.DataRecvTryCnt++;
+                    if (pib.DataRecvTryCnt > 5) {
+                        document.getElementById("tdCurrTime").style.color = "red";
+                        pib.DataRecvTryCnt = 6;
+                    }
+                    else {
+                        document.getElementById("tdCurrTime").style.color = "";
+                    };
+                    pib.DataRecvIntervalValue = 10000;
+                    pib.ReceiveNewData();
+                };
+            };
+            this.DisplayData = function () {
+                if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+                    for (var i = 0; i < pib.workData.length; i++) {
+                        var item = document.getElementById("div_" + pib.workData[i].SHOP_CD + "_" + pib.workData[i].LINE_CD + "_" + pib.workData[i].STN_CD);
+                        if (item != null) {
+                            item.innerHTML = pib.workData[i].STN_NAME;
+
+                            if (pib.workData[i].PD_YN == "Y") {
+                                if (pib.workData[i].STN_STATUS == "1") {
+                                    item.style.backgroundColor = "lime";
+                                } else if (pib.workData[i].STN_STATUS == "2") {
+                                    item.style.backgroundColor = "yellow";
+                                } else if (pib.workData[i].STN_STATUS == "3") {
+                                    item.style.backgroundColor = "orangered";
+                                } else {
+                                    item.style.backgroundColor = "white";
+                                }
+                            } else {
+                                item.style.backgroundColor = "white";
+                            }
+                        }
+                    }
+                }
+
+                pib.DataRecvIntervalValue = 10000;
+                pib.ReceiveNewData();
+            };
+            this.DisplayMoreData = function () {
+                if (pib.DataDispInterval != null) self.clearTimeout(pib.DataDispInterval);
+                pib.DataDispInterval = self.setTimeout(function () { pib.DisplayData(); }, 10000);	// 10초단위
+            };
+            this.ReceiveNewData = function () {
+                if (pib.DataRecvInterval != null) self.clearTimeout(pib.DataRecvInterval);
+                pib.DataRecvInterval = self.setTimeout(function () { pib.GetData(); }, pib.DataRecvIntervalValue);	// 2초단위
+                pib.DataRecvIntervalValue = 2000;
+            };
+        };
+	</script>
+    <style type="text/css">
+        .Aligner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .sbpa {
+            position: absolute;
+            border: 1px solid #808080; 
+            background-color: white; 
+            width:  40px; 
+            height: 75px;
+            font-size: 15px;
+        }
+        .bma {
+            position: absolute;  
+            border: 1px solid #808080; 
+            background-color: white; 
+            width: 35px; 
+            height: 35px;
+            font-size: 12px;
+        }
+        .bpa{
+            position: absolute;  
+            border: 1px solid #808080; 
+            background-color: white; 
+            width: 85px; 
+            height: 55px;
+            font-size: 15px;
+        }
+        .bsa{
+            position: absolute;  
+            border: 1px solid #808080; 
+            background-color: white; 
+            width: 85px; 
+            height: 55px;
+            font-size: 15px;
+        }
+        .text{
+        position: absolute;        
+        width: 88px; 
+        height: 15px;
+        font-size: 8px;
+        }
+        .text2{
+        position: absolute;        
+        width: 88px; 
+        height: 15px;
+        font-size: 9px;
+        }
+        .manual{
+            border: 2px solid #ff0000; 
+        }
+        .qty{
+            position: absolute;  
+            background-color: #e7f0f9; 
+            width: 85px; 
+            height: 55px;
+            font-size: 20px;
+            color: orangered;
+        }
+        .txt{
+            position: absolute;  
+            background-color: #e7f0f9; 
+            width: 185px; 
+            height: 55px;
+            font-size: 20px;
+            color: orangered;
+        }
+
+    </style>
+</head>
+<body id="docBody" onload="resizePanel(); pib.GetData(); alm.GetData(); timer.DisplayData();" onresize="resizePanel();">
+	<table class="stockPIB">
+		<tr>
+			<td class="pibHead">
+				<table>
+					<tr>
+                        <td class="pibClockStock">
+                         <table>
+                            <tr>
+                                <td id="tdCurrDate"></td>
+                            </tr>
+                            <tr>
+                                <td id="tdCurrTime"></td>
+                            </tr>
+                        </table>
+                        </td>
+
+						<!--<td style="background-image:url('./Images/HL_LOGO.JPG'); background-size:contain; background-repeat:no-repeat; background-position:center;"></td>-->
+						<td class="pibTitleStock">OS EV4라인 모니터링</td>
+                        <td>
+                           &nbsp; 정상 : 지연 C/T 미만 <br />
+                           &nbsp; 지연 : 기준 C/T 초과 <br />
+                           &nbsp; 비가동 : 20분 초과 (BSA: 30분)
+                        </td>
+						<!--<td class="pibClockStock">
+							<table>
+								<tr>
+									<td id="tdCurrDate"></td>
+								</tr>
+								<tr>
+									<td id="tdCurrTime"></td>
+								</tr>
+							</table>
+						</td>-->
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td id="pibBody" class="pibBodyStock">
+                <!-- Title -->
+                <div style="position: absolute; left:  65px; top:  90px; font-size:20px">SUB BPA</div>
+                <div style="position: absolute; left: 485px; top:  90px; font-size:20px">BMA</div>
+                <div style="position: absolute; left:  65px; top: 310px; font-size:20px">MAIN BPA</div>
+                <div style="position: absolute; left:  65px; top: 425px; font-size:20px">BSA</div>
+
+                <!-- Area -->
+                <div style="position: absolute; left:  50px; top: 115px; border: 2px solid #cc00cc; background-color: #e7f0f9; width: 412px; height: 165px"></div>
+                <div style="position: absolute; left: 470px; top: 115px; border: 2px solid #cc00cc; background-color: #e7f0f9; width: 487px; height: 165px"></div>
+                <div style="position: absolute; left:  50px; top: 335px; border: 2px solid #cc00cc; background-color: #e7f0f9; width: 547px; height:  65px"></div>
+                <div style="position: absolute; left:  50px; top: 450px; border: 2px solid #cc00cc; background-color: #e7f0f9; width: 907px; height: 130px"></div>
+
+                <!-- BMA 범례 -->
+                <div style="position: absolute; left: 788px; top: 90px; text-align:center; border: 1px solid #808080; background-color: lime;      width: 40px; height: 10px; padding: 5px">정상</div>
+                <div style="position: absolute; left: 848px; top: 90px; text-align:center; border: 1px solid #808080; background-color: yellow;    width: 40px; height: 10px; padding: 5px">지연</div>
+                <div style="position: absolute; left: 908px; top: 90px; text-align:center; border: 1px solid #808080; background-color: orangered; width: 40px; height: 10px; padding: 5px">비가동</div>
+
+                <!-- 화살표 이미지 -->
+                <div style="position: absolute; left:    3px; top: 145px;  width:  50px; height: 270px"><img width="50" height="250" src="./images/Arrow2.png" /></div>
+                <div style="position: absolute; left:  955px; top: 175px;  width:  50px; height: 110px"><img width="50" height="50" src="./images/arrow_blue_left.png" /></div>
+                <div style="position: absolute; left:    8px; top: 495px;  width: 50px; height: 110px"><img width="50" height="50" src="./images/arrow_blue_right.png" /></div>
+
+                <!-- SUB BPA -->
+                <!-- 1st ROW BMA 28 -->
+                <div id="div_BMA_28_B110" class="Aligner sbpa" style="left:  57px; top: 120px"></div>
+                <div id="div_BMA_28_B100" class="Aligner sbpa" style="left: 102px; top: 120px"></div>
+                <div id="div_BMA_28_B080" class="Aligner sbpa" style="left: 147px; top: 120px"></div>
+                <div id="div_BMA_28_B070" class="Aligner sbpa manual" style="left: 192px; top: 120px"></div>
+                <div id="div_BMA_28_B060" class="Aligner sbpa" style="left: 237px; top: 120px"></div>
+                <div id="div_BMA_28_B050" class="Aligner sbpa manual" style="left: 282px; top: 120px"></div>
+                <div id="div_BMA_28_B030" class="Aligner sbpa" style="left: 327px; top: 120px"></div>
+                <div id="div_BMA_28_B020" class="Aligner sbpa manual" style="left: 372px; top: 120px"></div>
+                <div id="div_BMA_28_B010" class="Aligner sbpa manual" style="left: 417px; top: 120px"></div>
+                <!-- 2nd ROW BMA 29 -->                                  
+                <div id="div_BMA_29_B110" class="Aligner sbpa" style="left:  57px; top: 200px"></div>
+                <div id="div_BMA_29_B100" class="Aligner sbpa" style="left: 102px; top: 200px"></div>
+                <div id="div_BMA_29_B080" class="Aligner sbpa" style="left: 147px; top: 200px"></div>
+                <div id="div_BMA_29_B070" class="Aligner sbpa manual" style="left: 192px; top: 200px"></div>
+                <div id="div_BMA_29_B060" class="Aligner sbpa" style="left: 237px; top: 200px"></div>
+                <div id="div_BMA_29_B050" class="Aligner sbpa manual" style="left: 282px; top: 200px"></div>
+                <div id="div_BMA_29_B030" class="Aligner sbpa" style="left: 327px; top: 200px"></div>
+                <div id="div_BMA_29_B020" class="Aligner sbpa manual" style="left: 372px; top: 200px"></div>
+                <div id="div_BMA_29_B010" class="Aligner sbpa manual" style="left: 417px; top: 200px"></div>
+
+                <!-- BMA -->
+                <!-- 1st ROW CMA 36 -->
+                <div id="div_CMA_36_C150" class="Aligner bma" style="left: 477px; top: 120px"></div>
+                <div id="div_CMA_36_C140" class="Aligner bma" style="left: 517px; top: 120px"></div>
+                <div id="div_CMA_36_C130" class="Aligner bma manual" style="left: 557px; top: 120px"></div>
+                <div id="div_CMA_36_C120" class="Aligner bma" style="left: 597px; top: 120px"></div>
+                <div id="div_CMA_36_C110" class="Aligner bma" style="left: 637px; top: 120px"></div>
+                <div id="div_CMA_36_C100" class="Aligner bma" style="left: 677px; top: 120px"></div>
+                <div id="div_CMA_36_C090" class="Aligner bma" style="left: 717px; top: 120px"></div>
+                <div id="div_CMA_36_C080" class="Aligner bma" style="left: 757px; top: 120px"></div>
+                <div id="div_CMA_36_C060" class="Aligner bma" style="left: 797px; top: 120px"></div>
+                <div id="div_CMA_36_C050" class="Aligner bma" style="left: 837px; top: 120px"></div>
+                <div id="div_CMA_36_C030" class="Aligner bma" style="left: 877px; top: 120px"></div>
+                <div id="div_CMA_36_C020" class="Aligner bma" style="left: 917px; top: 120px"></div>
+                <!-- 2nd ROW CMA 37 -->
+                <div id="div_CMA_37_C150" class="Aligner bma" style="left: 477px; top: 160px"></div>
+                <div id="div_CMA_37_C140" class="Aligner bma" style="left: 517px; top: 160px"></div>
+                <div id="div_CMA_37_C130" class="Aligner bma manual" style="left: 557px; top: 160px"></div>
+                <div id="div_CMA_37_C120" class="Aligner bma" style="left: 597px; top: 160px"></div>
+                <div id="div_CMA_37_C110" class="Aligner bma" style="left: 637px; top: 160px"></div>
+                <div id="div_CMA_37_C100" class="Aligner bma" style="left: 677px; top: 160px"></div>
+                <div id="div_CMA_37_C090" class="Aligner bma" style="left: 717px; top: 160px"></div>
+                <div id="div_CMA_37_C080" class="Aligner bma" style="left: 757px; top: 160px"></div>
+                <div id="div_CMA_37_C060" class="Aligner bma" style="left: 797px; top: 160px"></div>
+                <div id="div_CMA_37_C050" class="Aligner bma" style="left: 837px; top: 160px"></div>
+                <div id="div_CMA_37_C030" class="Aligner bma" style="left: 877px; top: 160px"></div>
+                <div id="div_CMA_37_C020" class="Aligner bma" style="left: 917px; top: 160px"></div>
+                <!-- 3rd ROW CMA 38 -->
+                <div id="div_CMA_38_C150" class="Aligner bma" style="left: 477px; top: 200px"></div>
+                <div id="div_CMA_38_C140" class="Aligner bma" style="left: 517px; top: 200px"></div>
+                <div id="div_CMA_38_C130" class="Aligner bma manual" style="left: 557px; top: 200px"></div>
+                <div id="div_CMA_38_C120" class="Aligner bma" style="left: 597px; top: 200px"></div>
+                <div id="div_CMA_38_C110" class="Aligner bma" style="left: 637px; top: 200px"></div>
+                <div id="div_CMA_38_C100" class="Aligner bma" style="left: 677px; top: 200px"></div>
+                <div id="div_CMA_38_C090" class="Aligner bma" style="left: 717px; top: 200px"></div>
+                <div id="div_CMA_38_C080" class="Aligner bma" style="left: 757px; top: 200px"></div>
+                <div id="div_CMA_38_C060" class="Aligner bma" style="left: 797px; top: 200px"></div>
+                <div id="div_CMA_38_C050" class="Aligner bma" style="left: 837px; top: 200px"></div>
+                <div id="div_CMA_38_C030" class="Aligner bma" style="left: 877px; top: 200px"></div>
+                <div id="div_CMA_38_C020" class="Aligner bma" style="left: 917px; top: 200px"></div>
+                <!-- 4th ROW CMA 39 -->
+                <div id="div_CMA_39_C150" class="Aligner bma" style="left: 477px; top: 240px"></div>
+                <div id="div_CMA_39_C140" class="Aligner bma" style="left: 517px; top: 240px"></div>
+                <div id="div_CMA_39_C130" class="Aligner bma manual" style="left: 557px; top: 240px"></div>
+                <div id="div_CMA_39_C120" class="Aligner bma" style="left: 597px; top: 240px"></div>
+                <div id="div_CMA_39_C110" class="Aligner bma" style="left: 637px; top: 240px"></div>
+                <div id="div_CMA_39_C100" class="Aligner bma" style="left: 677px; top: 240px"></div>
+                <div id="div_CMA_39_C090" class="Aligner bma" style="left: 717px; top: 240px"></div>
+                <div id="div_CMA_39_C080" class="Aligner bma" style="left: 757px; top: 240px"></div>
+                <div id="div_CMA_39_C060" class="Aligner bma" style="left: 797px; top: 240px"></div>
+                <div id="div_CMA_39_C050" class="Aligner bma" style="left: 837px; top: 240px"></div>
+                <div id="div_CMA_39_C030" class="Aligner bma" style="left: 877px; top: 240px"></div>
+                <div id="div_CMA_39_C020" class="Aligner bma" style="left: 917px; top: 240px"></div>
+
+                <!-- MAIN BPA -->
+                <div id="div_BMA_30_B130" class="Aligner bpa manual" style="left:  57px; top: 341px"></div>
+                <div class="Aligner text "style="left: 57px; top: 383px">냉각 플레이트 가체결1 </div>
+                <div id="div_BMA_30_B140" class="Aligner bpa manual" style="left: 147px; top: 341px"></div>
+                <div class="Aligner text " style="left: 147px; top: 383px">냉각 플레이트 가체결2 </div>
+                <div id="div_BMA_30_B150" class="Aligner bpa" style="left: 237px; top: 341px"></div>
+                <div class="Aligner text " style="left: 237px; top: 383px">냉각 플레이트 체결1 </div>
+                <div id="div_BMA_30_B160" class="Aligner bpa" style="left: 327px; top: 341px"></div>
+                <div class="Aligner text " style="left: 327px; top: 383px">냉각 플레이트 체결2 </div>
+                <div id="div_BMA_30_B180" class="Aligner bpa manual" style="left: 417px; top: 341px"></div>
+                <div class="Aligner text " style="left: 417px; top: 383px">5점 체결 </div>
+                <div id="div_BMA_30_B190" class="Aligner bpa" style="left: 507px; top: 341px"></div>
+                <div class="Aligner text " style="left: 507px; top: 383px">바코드 부착</div>
+
+                <!-- 설명 -->
+                <!--<div style="position: absolute; left:  615px; top: 345px; font-size:15px">
+                    정상 : 지연 C/T 미만 <br />
+                    지연 : 기준 C/T 초과 <br />
+                    비가동 : 20분 초과 (BSA: 30분)                
+                </div>-->
+
+                <!-- BSA -->
+                <!-- 1st ROW -->
+                <div id="div_BPA_24_P081" class="Aligner bsa" style="left: 417px; top: 457px"></div>
+                <div id="div_BPA_24_P091" class="Aligner bsa" style="left: 507px; top: 457px"></div>
+                <div id="div_BPA_24_TXT"  class="Aligner txt" style="left: 700px; top: 457px">BSA 생산수량 :</div>
+                <div id="div_BPA_24_QTY"  class="Aligner qty" style="left: 867px; top: 457px">0</div>
+
+                <!-- 2nd ROW -->
+                <div id="div_BPA_24_P020" class="Aligner bsa manual" style="left:  57px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  57px; top: 559px">20S 로딩</div>
+                <div id="div_BPA_24_P030" class="Aligner bsa manual" style="left: 147px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  147px; top: 559px">BMS 조립</div>
+                <div id="div_BPA_24_P050" class="Aligner bsa manual" style="left: 237px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  237px; top: 559px">19S 조립1</div>
+                <div id="div_BPA_24_P070" class="Aligner bsa manual" style="left: 327px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  327px; top: 559px">19S 조립2</div>
+                <div id="div_BPA_24_P080" class="Aligner bsa" style="left: 417px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  417px; top: 559px">냉각수로 기밀검사</div>
+                <div id="div_BPA_24_P090" class="Aligner bsa" style="left: 507px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  507px; top: 559px">충방전 검사</div>
+                <div id="div_BPA_24_P100" class="Aligner bsa" style="left: 597px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  597px; top: 559px">EOL 검사</div>
+                <div id="div_BPA_24_P120" class="Aligner bsa" style="left: 687px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  687px; top: 559px">상부케이스 체결</div>
+                <div id="div_BPA_24_P130" class="Aligner bsa" style="left: 777px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  777px; top: 559px">기밀검사</div>
+                <div id="div_BPA_24_P140" class="Aligner bsa manual" style="left: 867px; top: 519px"></div>
+                <div class="Aligner text2 " style="left:  867px; top: 559px">언로딩</div>
+
+			</td>
+		</tr>
+		<tr id="trAlarmMsg" class="AlarmAreaDLV" style="display:none;">
+			<td id="tdAlarmMsg" style="display:none;" class="AlarmAreaDLV"><p id="pAlarmMsg" style="display:none;" class="AlarmMsgDLV"></p></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,171 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Frames.master.cs" Inherits="HQCWeb.MasterPage.Frames"  %>
+
+<%@ Register Src="~/UserContorls/TopControl.ascx" TagPrefix="uc1" TagName="TopControl" %>
+<%@ Register Src="~/UserContorls/LeftControl.ascx" TagPrefix="uc1" TagName="LeftControl" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>WIA MAGNA POWERTRAIN MES System</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+
+    <%--<link rel="stylesheet" type="text/css" href="/css/common_v.css"  />--%>
+
+    <link rel="stylesheet" type="text/css" href="/css/New/common.css?version=20241008"  />
+
+    <link rel="stylesheet" type="text/css" href="/css/HQC_Common.css?version=20241008"  />
+
+    <script type="text/javascript" src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/HQC_Common.js?version=20241008"></script>
+    <script type="text/javascript" src="/Scripts/lnb.js"></script>
+    
+
+    <script src="/Scripts/amcharts.js" type="text/javascript"></script>
+    <script src="/Scripts/serial.js" type="text/javascript"></script>
+    <script src="/Scripts/pie.js" type="text/javascript"></script>
+
+
+    <script>
+        function fn_AccessLog(_val) {
+            var jsonData = JSON.stringify({ sParams: _val });
+
+            $.ajax({
+                type: "POST",
+                url: "/Main.aspx/SetMenuAccess",
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false
+            });
+        }
+
+
+        function fn_PopupLayerCall() {
+            $("#popupLayerCall").show();
+        }
+
+        function fn_menu_move() {
+            if ($("#lnb").css('display') == 'none') {
+                $('#lnr').css('width', '');
+                $("#btnlnb").attr('class', 'short_prev');
+                //$("#lnb").fadeIn();
+                $("#lnb").show();
+            }
+            else {
+                $('#lnr').css('width', '100%');
+                $("#btnlnb").attr('class', 'short_next');
+                //$("#lnb").fadeOut();
+                $("#lnb").hide();
+            }
+        }
+
+        $(document).ready(function () {
+
+            $(document).keydown(function (e) {
+                if (e.key === 'Enter') {
+                    $("#MainContent_btnSearch").click();
+                }
+            });
+        });
+
+    </script>
+
+    <style type="text/css">
+       .divClass {display:table; width:99%; height:100%; filter:alpha(opacity=65); opacity:0.3; -moz-opacity:0.3; z-index:100; position:absolute; font-size:9pt; background:#d6d3ce;}
+    </style>
+
+</head>
+<body>
+
+    <form id="form1" runat="server">
+
+        <div id="popupLayerCall" class="divClass"></div>
+
+        <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+
+        <asp:UpdatePanel ID="upAccess" runat="server">
+            <ContentTemplate>
+                <asp:TextBox ID="txtMenuID" runat="server" style="display:none;"></asp:TextBox>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnAccessLog" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+
+        <div id="wrap">
+            <!--// LNB -->
+		    <div class="column" id="lnb">
+                <h1 class="logo" title="WIA MAGNA POWERTRAIN"></h1>
+			    <ul>
+                    <uc1:LeftControl runat="server" ID="LeftControl" Visible="true"/>                    
+			    </ul>
+
+                <asp:Button id="btnAccessLog" runat="server" OnClick="btnAccessLog_Click" style="display:none;" Text="Access" />
+		    </div>
+
+            <div class="column right" id="lnr">
+			    <div class="top_rnb_wrap">
+                    <div class="top_lnb">
+                        <button class="short_prev" onclick="fn_menu_move();return false" id="btnlnb"></button>
+                    </div>
+				    <%--<ul class="top_rnb">
+					    <li>홍길동<span>님</span></li>
+					    <li><button class="widget">위젯관리</button></li>
+					    <li><button class="logout">logout</button></li>
+				    </ul>--%>
+
+                    <uc1:TopControl runat="server" ID="TopControl"/>
+			    </div>
+
+                <div class="contents_wrap">
+
+                    <div class="tabs_wrap" id="divTabs">
+					    <ul class="tabs" id="ul_tabs">
+                            <li class="tab_main" id="li_tab_Main"><p id="pMain" class="active" onclick="javascript:fn_tabChange('Main');">Main<button onclick="javascript:fn_eraseLocalStorage();"></button></p></li>
+					    </ul>
+				    </div>
+
+                    <div id="divIframe">
+                    </div>
+
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="modal" class="modal_box" style="display:none;">  
+            <iframe id="ifrPopup" name="ifrPopup" frameBorder='0' scrolling='no' style='width:500px; height:500px; overflow:hidden;'></iframe>
+        </div>
+        <div id="modal_bg" class="modal_bg" style="display:none;"></div> 
+
+        <script>
+            $(document).ready(
+                function () {
+                    $("#modal_bg").hide();
+                    $("#popupLayerCall").hide();
+                }
+            );
+
+
+            function divShortCutLayer_close() {
+                $("#divShortCutLayer").hide();
+
+                $("#popupLayerCall").hide();
+            }
+
+
+        </script>	
+    </form>
+
+    <!-- 레이어팝업 사용시 필요 -->
+    <form name="form2" style="display:none;">
+        <input type="hidden" name="hidValue" id="hidValue" />
+    </form>
+         
+</body>
+</html>

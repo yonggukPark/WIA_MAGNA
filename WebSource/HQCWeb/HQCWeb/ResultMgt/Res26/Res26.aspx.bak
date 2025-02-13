@@ -1,0 +1,353 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="Res26.aspx.cs" Inherits="HQCWeb.ResultMgt.Res26.Res26" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        .searchCombo{
+            text-align: center;
+            z-index : 9999;
+            top : 7%;
+            position : absolute; 
+        }
+
+        .number-column {
+            text-align: right;
+        }
+
+        .string-column {
+            text-align: left;
+        }
+    </style>
+    <script type="text/javascript">
+        function fn_parentReload() {
+            <%= Page.GetPostBackEventReference(btnSearch) %>
+        }
+
+        var column, field, data;
+        var container, dataProvider, gridView;
+        var cPart;
+        var chart1, chart2, chartData1, chartData2;
+
+        // 그리드 생성
+        function createGrid(_val) {
+            container = document.getElementById('realgrid_c_1');
+            dataProvider = new RealGrid.LocalDataProvider(false);
+            gridView = new RealGrid.GridView(container);
+            gridView.setDataSource(dataProvider);
+            gridView.setColumns(column);
+
+            //field 넣기 전 포맷변경(엑셀 문제)
+            field.forEach(item => {
+                if (item.fieldName == 'PLAN_SUM' || item.fieldName.substring(0, 8) == 'PLAN_DAY') {
+                    item.dataType = 'number'; item.subType = 'int'
+                }
+            });
+
+            //숫자 포맷 변경
+            gridView.setFormatOptions({ numberFormat: '#,##0' });
+
+            dataProvider.setFields(field);
+            dataProvider.setRows(data);
+            gridView.checkBar.visible = false;
+            gridView.stateBar.visible = false;
+            setContextMenu(gridView);
+            setPaging();
+            settingGrid(_val); if (data != undefined) document.getElementById('rowCnt').innerHTML = data.length;
+        }
+
+        function settingGrid(_val) {
+
+            if (_val != undefined) {
+                gridView.setFixedOptions({
+                    colCount: _val
+                });
+            }
+
+            gridView.columnByName("PLANT_CD").mergeRule = { criteria: "value" };
+            gridView.columnByName("PART_NO").mergeRule = { criteria: "value" };
+
+            for (var i = 0; i < 31; i++) {
+                gridView.columnByName("PLAN_DAY" + (i+1).toString().padStart(2, '0')).styleName = "number-column";
+            }
+            gridView.columnByName("PLAN_SUM").styleName = "number-column";
+
+            gridView.columnByName("KEY_HID").visible = false;
+            dataProvider.softDeleting = true;
+            //gridView.displayOptions.fitStyle = "even";//그리드 채우기
+            gridView.displayOptions.emptyMessage = "표시할 데이타가 없습니다.";
+            gridView.editOptions.updatable = false;//수정 불가능 설정(추후 해제결정)
+            gridView.editOptions.editable = false;//수정 불가능 설정(추후 해제결정)
+            gridView.pasteOptions.enabled = false;//붙여넣기 금지
+            //gridView.setRowGroup({ headerStatement: "${columnHeader}: ${groupValue} - ${rowCount} rows" });
+            gridView.groupPanel.visible = true;//그룹핑 활성화
+            gridView.filterPanel.visible = true;//필터패널 활성화
+        }
+
+        //콤보박스 초기화
+        jQuery(document).ready(function ($) {
+            $("#MainContent_txtPartNo").comboTree({
+                source: cPart,
+                isMultiple: true,
+                cascadeSelect: false,
+                collapse: false,
+                selectAll: true,
+                onLoadAllChk: true,
+                valueChange: true,
+                hidCon: "MainContent_txtPartNoHidden"
+            });
+        });
+
+        //부품코드 재설정
+        function fn_Set_Part() {
+
+            $("#MainContent_txtPartNo").comboTree({
+                source: cPart,
+                comboReload: true,
+                isMultiple: true,
+                cascadeSelect: false,
+                collapse: false,
+                selectAll: true,
+                onLoadAllChk: true,
+                valueChange: true,
+                hidCon: "MainContent_txtPartNoHidden"
+            });
+        }
+
+        function createChart() {
+            // SERIAL CHART
+            chart1 = new AmCharts.AmSerialChart();
+            chart1.dataProvider = chartData1;
+            chart1.categoryField = "CATEGORY_FIELD";
+
+            // SERIAL CHART
+            chart2 = new AmCharts.AmSerialChart();
+            chart2.dataProvider = chartData2;
+            chart2.categoryField = "CATEGORY_FIELD";
+            // the following two lines makes chart 3D
+            //chart2.depth3D = 20;
+            //chart2.angle = 30;
+
+            // AXES
+            // category
+            var categoryAxis = chart1.categoryAxis;
+            categoryAxis.labelRotation = 60;
+            categoryAxis.dashLength = 5;
+            categoryAxis.gridPosition = "start";
+
+            var categoryAxis = chart2.categoryAxis;
+            categoryAxis.labelRotation = 60;
+            categoryAxis.dashLength = 5;
+            categoryAxis.gridPosition = "start";
+
+            var valueAxis = chart1.valueAxes;
+            valueAxis.minimum = 0;
+
+            var valueAxis = chart2.valueAxes;
+            valueAxis.minimum = 0;
+
+            // 계획그래프
+            var graph1 = new AmCharts.AmGraph();
+            graph1.valueField = "PLAN_QTY";
+            graph1.fillColors = "#FFD6A8";
+            graph1.legendColor = "#FFD6A8";
+            graph1.balloonText = "<span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>";
+            graph1.labelText = "[[value]]";
+            graph1.type = "column";
+            graph1.title = "계획";
+            graph1.lineAlpha = 0;
+            graph1.fillAlphas = 1;
+            chart1.addGraph(graph1);
+
+            var graph2 = new AmCharts.AmGraph();
+            graph2.valueField = "PLAN_QTY";
+            graph2.fillColors = "#FFD6A8";
+            graph1.legendColor = "#FFD6A8";
+            graph2.balloonText = "<span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>";
+            graph2.labelText = "[[value]]";
+            graph2.type = "column";
+            graph2.title = "계획";
+            graph2.lineAlpha = 0;
+            graph2.fillAlphas = 1;
+            chart2.addGraph(graph2);
+
+            // 실적그래프
+            var graph1 = new AmCharts.AmGraph();
+            graph1.valueField = "ACT_QTY";
+            graph1.fillColors = "#E0EEFF";
+            graph1.legendColor = "#E0EEFF";
+            graph1.balloonText = "<span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>";
+            graph1.labelText = "[[value]]";
+            graph1.type = "column";
+            graph1.title = "실적";
+            graph1.lineAlpha = 0;
+            graph1.fillAlphas = 1;
+            chart1.addGraph(graph1);
+
+            var graph2 = new AmCharts.AmGraph();
+            graph2.valueField = "ACT_QTY";
+            graph2.fillColors = "#E0EEFF";
+            graph1.legendColor = "#E0EEFF";
+            graph2.balloonText = "<span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>";
+            graph2.labelText = "[[value]]";
+            graph2.type = "column";
+            graph2.title = "실적";
+            graph2.lineAlpha = 0;
+            graph2.fillAlphas = 1;
+            chart2.addGraph(graph2);
+
+            var legend1 = new AmCharts.AmLegend();
+            legend1.useGraphSettings = true;
+            legend1.position = "top";
+            legend1.align = "center";
+
+            var legend2 = new AmCharts.AmLegend();
+            legend2.useGraphSettings = true;
+            legend2.position = "top";
+            legend2.align = "center";
+
+            chart1.addLegend(legend1);
+            chart2.addLegend(legend2);
+
+
+            // CURSOR
+            var chartCursor = new AmCharts.ChartCursor();
+            chartCursor.cursorAlpha = 0;
+            chartCursor.zoomable = false;
+            chartCursor.categoryBalloonEnabled = false;
+            chart1.addChartCursor(chartCursor);
+            chart2.addChartCursor(chartCursor);
+
+            chart1.columnWidth = 0.25
+
+            //chart2.creditsPosition = "top-right";
+            //chart2.chartFile = "Sample02";
+
+            // WRITE
+            chart1.write("chart1_div");
+            chart2.write("chart2_div");
+        }
+
+        function adjustMaxValue() {
+            var maxValue = 0;
+            chartData1.forEach(function (data) {
+                if (data.ACT_QTY > maxValue) maxValue = data.ACT_QTY;
+                else if (data.PLAN_QTY > maxValue) maxValue = data.PLAN_QTY;
+            });
+            var axis = chart1.valueAxes[0];
+            axis.maximum = maxValue + (maxValue * 0.1);  // Add 10% headroom
+            chart1.validateData();
+
+            maxValue = 0;
+            chartData2.forEach(function (data) {
+                if (data.ACT_QTY > maxValue) maxValue = data.ACT_QTY;
+                else if (data.PLAN_QTY > maxValue) maxValue = data.PLAN_QTY;
+            });
+            var axis = chart2.valueAxes[0];
+            axis.maximum = maxValue + (maxValue * 0.1);  // Add 10% headroom
+            chart2.validateData();
+        }
+
+        function resetChart() {
+            createChart();
+            adjustMaxValue();
+        }
+    </script>
+
+    <asp:HiddenField ID="hidWidth" runat="server" Value="500" />
+    <asp:HiddenField ID="hidHeight" runat="server" Value="500" />
+
+    <asp:HiddenField ID="hidGraphWidth" runat="server" />
+    <asp:HiddenField ID="hidGraphHeight" runat="server" />
+
+    <asp:TextBox ID="hidGridHeight" runat="server" style="display:none;" />
+
+    <div class="contents">
+        <!--// Title + Win_Btn -->
+        <div class="title">
+            <h3><asp:Label ID="lbTitle" runat="server">Res26</asp:Label></h3>
+            <div class="al-r">
+                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" OnClientClick="fn_WatingCall();" Visible="false" />
+                <input type="button" value="Excel" id="btnExcel" runat="server" visible="false" onclick="fn_excelExport('Res26'); return false;" />
+            </div>
+        </div>
+        <!-- Title + Win_Btn //-->
+        <!--// Grid Search -->
+        <div class="search_grid mt13">
+            <table cellpadding="0" cellspacing="0">
+                <colgroup>
+                    <col style="width:100px;" />
+                    <col style="width:170px;" />
+                    <col style="width:120px;" />
+                    <col style="width:450px;" />
+                </colgroup>
+                <tr>
+                    <th><asp:Label ID="lbProdDt" runat="server"></asp:Label></th>
+                    <td>
+                        <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlMonth" runat="server"></asp:DropDownList>
+                    </td>
+                    <th><asp:Label ID="lbPartNo" runat="server"></asp:Label></th>
+                    <td>
+                        <div class="searchCombo" style="width:360px; font-size:12px;">
+                            <input type="text" ID="txtPartNo" runat="server" style="background-color:white; color:black;" readonly/>
+                            <asp:TextBox id="txtPartNoHidden" runat="server" style="display:none;"></asp:TextBox>
+                        </div>
+                    </td>
+                    <td class="al-r">
+                       <%-- <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" OnClientClick="fn_WatingCall();" Visible="false" />
+                        <input type="button" value="Excel" id="btnExcel" runat="server" visible="false" onclick="fn_excelExport('Res26'); return false;" />--%>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="graph_wrap mt14" style="height:300px; overflow:auto;" id="divChart">
+            <asp:UpdatePanel ID="up2" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <table>
+                        <tr>
+                            <td style="width:25%">
+                                <div id="chart1_div" style="height: 280px;"></div>
+                            </td>
+                            <td>
+                                <div id="chart2_div" style="height: 280px;"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
+        </div>
+
+        <br />
+
+        <p class="sub_tit"></p><!--통계수치 테이블의 타이틀-->
+
+        <div style="width:100%; height:320px;">
+            <asp:UpdatePanel runat="server" ID="up1" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div id="realgrid_c_1" class="realgrid_c_1"></div>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="toolbar">
+                                    <div id="gridPage" style="float:left" onselectstart="return false" ondragstart="return false"></div>
+                                    &nbsp;
+                                    <select id="current_page_value" onchange="setPaging(); return false;" style="font-size:12px; display:none; margin-top:10px; float:left" runat="server">
+                                    </select>
+                                    <input type="button" value="Set" id="btnSet" onclick="getCol('Res26'); return false;" style="display:none; margin-top:10px; float:left" />
+									<div class="al-r total" ondragstart="return false">Total : <div id="rowCnt" class="f02" style="float:right"></div></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
+        </div>
+    </div>
+
+</asp:Content>

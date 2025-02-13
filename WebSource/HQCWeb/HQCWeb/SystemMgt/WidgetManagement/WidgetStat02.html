@@ -1,0 +1,43 @@
+﻿<script>
+    $.ajax({
+        type: "POST",
+        url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetWidgetStat02",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            fn_GetData2(msg.d);
+        }
+    });
+
+    function fn_GetData2(_val) {
+        //console.log("2 _val=", _val);
+
+        var arrVal = _val.split('^');
+
+        $("#spStit02_01").html(arrVal[0]);
+        $("#spStit02_02").html(arrVal[1]);
+        $("#spStit02_03").html(arrVal[2]);
+    }
+
+    function fn_Popup2() {
+        fn_OpenPop('/PlanMgt/PlnWidget02/PlnWidget02.aspx', "1200", "750");
+    }
+
+</script>
+
+<h3>금일 출하실적 및 달성율</h3>
+<ul>
+    <li>
+        <p class="f02">출하계획</p>
+        <span class="no02" id="spStit02_01" onclick="fn_Popup2()" style="cursor:pointer"></span>
+    </li>
+    <li>
+        <p class="f02">출하실적</p>
+        <span class="no02" id="spStit02_02" onclick="fn_Popup2()" style="cursor:pointer"></span>
+    </li>
+    <li>
+        <p class="f02">달성율</p>
+        <span class="no02" id="spStit02_03" onclick="fn_Popup2()" style="cursor:pointer"></span>
+    </li>
+</ul>

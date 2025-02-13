@@ -1,0 +1,45 @@
+2024-12-05 오후 5:05:44: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1035
+2024-12-05 오후 5:06:07: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1035
+2024-12-05 오후 5:32:35: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040
+2024-12-05 오후 5:33:37: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040
+2024-12-05 오후 5:46:54: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040
+2024-12-05 오후 5:47:58: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040
+2024-12-05 오후 5:53:59: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040
+2024-12-05 오후 5:56:33: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040
+2024-12-05 오후 6:01:19: Error in CSV : 스레드가 중단되었습니다.
+Stack Trace:    위치: System.Threading.Thread.AbortInternal()
+   위치: System.Threading.Thread.Abort(Object stateInfo)
+   위치: System.Web.HttpResponse.AbortCurrentThread()
+   위치: HQCWeb.QualityMgt.Qua15.Qua15.makeCSV(DataTable dt) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\QualityMgt\Qua15\Qua15.aspx.cs:줄 1040

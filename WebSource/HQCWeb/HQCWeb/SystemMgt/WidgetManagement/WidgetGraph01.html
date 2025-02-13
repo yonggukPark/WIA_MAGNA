@@ -1,0 +1,187 @@
+﻿
+    <!--<script src="/Scripts/amcharts.js" type="text/javascript"></script>
+    <script src="/Scripts/serial.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>-->
+
+    <div>
+        <h3 style="font-size:17px;display:block">생산계획 대비 실적 [BSA 기준]</h3>
+        <ul>
+            <li><span class="tit">계획 누계</span> <span class="no lpad10" id="spPlanTot">0</span></li>
+            <li><span class="tit">실적 누계</span> <span class="no lpad10" id="spProdTot">0</span></li>
+            <li class="rpad0"><span class="tit">달성률</span> <span class="no lpad10" id="spProdRatio">0%</span></li>
+        </ul>
+    </div>
+    <div class="tab" style="margin-top:30px">
+        <input id="btnGraph01_05" type="button" onclick="openCity('7D');" class="tablinks active" value="7 Days" />
+        <input id="btnGraph01_04" type="button" onclick="openCity('30D');" class="tablinks" value="30 Days" />
+        <input id="btnGraph01_03" type="button" onclick="openCity('6M');" class="tablinks" value="6 Months" />
+        <input id="btnGraph01_02" type="button" onclick="openCity('12M');" class="tablinks" value="12 Months" />
+        <input id="btnGraph01_01" type="button" onclick="openCity('5Y');" class="tablinks" value="5 Years" />
+    </div>
+    <div id="chartdiv1" style="width: 100%; height: 200px;"></div>
+
+    <script>
+        function openCity(_val) {
+            if (_val == "5Y") {
+                $("#btnGraph01_01").attr("class", "tablinks active");
+                $("#btnGraph01_02").attr("class", "tablinks");
+                $("#btnGraph01_03").attr("class", "tablinks");
+                $("#btnGraph01_04").attr("class", "tablinks");
+                $("#btnGraph01_05").attr("class", "tablinks");
+            }
+
+            if (_val == "12M") {
+                $("#btnGraph01_01").attr("class", "tablinks");
+                $("#btnGraph01_02").attr("class", "tablinks active");
+                $("#btnGraph01_03").attr("class", "tablinks");
+                $("#btnGraph01_04").attr("class", "tablinks");
+                $("#btnGraph01_05").attr("class", "tablinks");
+            }
+
+            if (_val == "6M") {
+                $("#btnGraph01_01").attr("class", "tablinks");
+                $("#btnGraph01_02").attr("class", "tablinks");
+                $("#btnGraph01_03").attr("class", "tablinks active");
+                $("#btnGraph01_04").attr("class", "tablinks");
+                $("#btnGraph01_05").attr("class", "tablinks");
+            }
+
+            if (_val == "30D") {
+                $("#btnGraph01_01").attr("class", "tablinks");
+                $("#btnGraph01_02").attr("class", "tablinks");
+                $("#btnGraph01_03").attr("class", "tablinks");
+                $("#btnGraph01_04").attr("class", "tablinks active");
+                $("#btnGraph01_05").attr("class", "tablinks");
+            }
+
+            if (_val == "7D") {
+                $("#btnGraph01_01").attr("class", "tablinks");
+                $("#btnGraph01_02").attr("class", "tablinks");
+                $("#btnGraph01_03").attr("class", "tablinks");
+                $("#btnGraph01_04").attr("class", "tablinks");
+                $("#btnGraph01_05").attr("class", "tablinks active");
+            }
+            fn_GetGraph01(_val);
+        }
+    </script>    
+
+    <script>
+        $(document).ready(function () {
+            //초기 호출(5Y)
+            fn_GetGraph01("7D");
+        });
+
+        function fn_GetGraph01(aData) {
+
+            var jsonData = JSON.stringify({ sFlag: aData });
+            console.log(jsonData);
+            $.ajax({
+                type: "POST",
+                url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetWidgetGraph01",
+                data: jsonData,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+            }).done(function (data, textStatus, xhr) {
+                var dataString = xhr.responseJSON.d;
+
+                var correctedString = dataString.replace(/;\s*$/, ''); //따옴표 제거
+                correctedString = correctedString.replace(/(\w+)\s*:/g, '"$1":')    // 속성명을 큰따옴표로 감싸기
+                                                .replace(/'/g, '"');               // 모든 작은따옴표를 큰따옴표로 변환
+
+                var jsonArr = JSON.parse(correctedString);
+                var prodTot = 0, planTot = 0;
+                jsonArr.forEach(item => {
+                    prodTot += Number(item.prod)
+                    planTot += Number(item.plan)
+                })
+                const option = {
+                    maximumFractionDigits: 2
+                };
+
+                var prodRatio = ((prodTot / ((planTot > 0) ? planTot : planTot + 1)) * 100).toFixed(1) + '%'
+
+                $("#spPlanTot").html(planTot.toLocaleString('ko-KR'));
+                $("#spProdTot").html(prodTot.toLocaleString('ko-KR'));
+                $("#spProdRatio").html(prodRatio);
+
+                fn_GetGraph01Data(jsonArr);
+            });
+        }
+
+        function fn_GetGraph01Data(_val) {
+
+                var chart;
+                var chartData = _val;
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+
+                chart.dataProvider = chartData;
+                chart.categoryField = "date";
+                chart.chartFile = "WidgetGraph01";
+
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.gridPosition = "start";
+                if (chartData.length < 8)
+                    categoryAxis.fontSize = 14;
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisAlpha = 0;
+                valueAxis.fontSize = 14;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPHS
+                // column graph
+                var graph1 = new AmCharts.AmGraph();
+                graph1.type = "column";
+                graph1.title = "실적";
+                graph1.lineColor = "#a668d5";
+                graph1.valueField = "prod";
+                graph1.lineAlpha = 1;
+                graph1.fillAlphas = 1;
+                graph1.balloonText = "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>";
+                chart.addGraph(graph1);
+
+                // line
+                var graph2 = new AmCharts.AmGraph();
+                graph2.type = "line";
+                graph2.title = "계획";
+                graph2.lineColor = "#fcd202";
+                graph2.valueField = "plan";
+                graph2.lineThickness = 3;
+                graph2.bullet = "round";
+                graph2.bulletBorderThickness = 3;
+                graph2.bulletBorderColor = "#fcd202";
+                graph2.bulletBorderAlpha = 1;
+                graph2.bulletColor = "#ffffff";
+                graph2.balloonText = "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b> [[additional]]</span>";
+                chart.addGraph(graph2);
+
+                // LEGEND
+                var legend = new AmCharts.AmLegend();
+                legend.useGraphSettings = true;
+                legend.fontSize = 14;
+                chart.addLegend(legend);
+
+                // WRITE
+                // 차트 DIV는 각 페이지별로 고유해야 함. 중복될경우 나중에 선택되는 차트가 이전차트 위치로 덮어짐
+                // 차트 영역이 여러개일경우 순차적으로 화면에 노출되도록 타이머 설정. 동시에 화면에 노출시킬경우 그래프 깨짐
+                chart.write("chartdiv1");
+        }
+
+        function fn_Chart01_Click(date) { //차트 클릭
+            //console.log(date);
+            //fn_PopupLayerCall();
+            //$("#divChartDataLayer").show();
+
+            //$("#divChartDataLayer").attr("style", "z-index:101; position:absolute; top:50%; left:50%; width:300px;");
+
+            //$("#tbodyChartDate").html("");
+            //$("#tbodyChartDate").html("<tr><td>Graph01</td><td>Graph01</td><td>Graph01</td><td>Graph01</td><td>Graph01</td><td>Graph01</td><td>Graph01</td></tr>");
+        }
+    </script>
+
+

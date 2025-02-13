@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info11Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_MonList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO11_S #PLANT_CD#,#MON_CD#,#FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_MonID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO11_CHK #PLANT_CD#,#MON_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_MonInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO11_INFO #PLANT_CD#,#MON_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_MonInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO11_IU #PLANT_CD#,#MON_CD#, #MON_NM#, #MESSAGE#, #USE_FLG#,#REMARK1#,#REMARK2#,#USE_YN#,#USER_ID#	
+      ]]>
+    </statement>
+
+    <statement id="Set_MonInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO11_D #PLANT_CD#,#MON_CD#, #FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO11_DDL #PLANT_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

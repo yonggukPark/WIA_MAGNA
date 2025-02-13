@@ -1,0 +1,108 @@
+﻿
+<script>
+    $.ajax({
+        type: "POST",
+        url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetWidgetGraph02",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+    }).done(function (data, textStatus, xhr) {
+        var dataString = xhr.responseJSON.d;
+
+        var correctedString = dataString.replace(/;\s*$/, ''); //따옴표 제거
+        correctedString = correctedString.replace(/(\w+)\s*:/g, '"$1":')    // 속성명을 큰따옴표로 감싸기
+                                        .replace(/'/g, '"');               // 모든 작은따옴표를 큰따옴표로 변환
+
+        fn_GetGraph02Data(JSON.parse(correctedString));
+    });
+
+
+    function fn_GetGraph02Data(_val) {
+
+        //파이그래프
+        //var chart2;
+        //var chartData2 = _val;
+
+        ////alert("cc");
+        //// PIE CHART
+        //chart2 = new AmCharts.AmPieChart();
+        //chart2.dataProvider = chartData2;
+        //chart2.titleField = "part";
+        //chart2.valueField = "qty";
+        //chart2.outlineColor = "#FFFFFF";
+        //chart2.startDuration = 0;
+        //chart2.labelRadius = -30;
+        //chart2.labelText = "[[part]]<br>[[percents]]%";
+        //chart2.chartFile = "WidgetGraph02";
+        //chart2.fontSize = 11;
+
+        //// WRITE
+        //// 차트 DIV는 각 페이지별로 고유해야 함. 중복될경우 나중에 선택되는 차트가 이전차트 위치로 덮어짐
+        //// 차트 영역이 여러개일경우 순차적으로 화면에 노출되도록 타이머 설정. 동시에 화면에 노출시킬경우 그래프 깨짐
+        //chart2.write("chartdiv2");
+
+        // 막대그래프(20241024)
+        var chart2;
+        var chartData2 = _val;
+
+        var colors = ["#d56d68", "#d59968", "#d5c168", "#a0d568", "#68d5a8"];
+
+        // 각 JSON 객체에 color 속성 추가
+        chartData2.forEach(function (item, index) {
+            item.color = colors[index % colors.length]; // 색상 배열에서 순차적으로 색상 선택
+        });
+
+        // SERIAL CHART (Bar chart)
+        chart2 = new AmCharts.AmSerialChart();
+        chart2.dataProvider = chartData2; // 데이터를 제공
+        chart2.categoryField = "part"; // 카테고리 필드(막대의 이름)
+        chart2.startDuration = 1; // 애니메이션 시작 시간
+
+        // X축 (카테고리 축) 설정
+        var categoryAxis = chart2.categoryAxis;
+        categoryAxis.labelRotation = 45; // 레이블 회전 (필요에 따라 설정)
+        categoryAxis.gridPosition = "start"; // 그리드 위치
+
+        // Y축 (값 축) 설정
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.title = "생산량"; // Y축 타이틀
+        chart2.addValueAxis(valueAxis); // 차트에 Y축 추가
+
+        // Graph (Bar) 설정
+        var graph = new AmCharts.AmGraph();
+        graph.valueField = "qty"; // 값 필드(막대의 값)
+        graph.type = "column"; // 막대형 그래프
+        graph.fillAlphas = 0.8; // 막대의 투명도
+        graph.lineAlpha = 0.2; // 막대 테두리의 투명도
+        graph.balloonText = "[[part]]: <b>[[value]]</b>"; // 마우스 오버 시 텍스트
+        chart2.addGraph(graph); // 차트에 그래프 추가
+
+        // 각 컬럼별로 다른 색상 적용
+        graph.fillColorsField = "color"; // 데이터에서 color 필드를 사용
+
+        // 차트 파일명 설정
+        chart2.chartFile = "WidgetGraph02";
+        chart2.fontSize = 11;
+
+        // 차트 그리기
+        chart2.write("chartdiv2");
+    }
+    //*/
+
+    //  pie.js 218 라인에서 호출
+    function fn_Chart02_Click() {
+        //fn_PopupLayerCall();
+
+        //$("#divChartDataLayer").attr("style", "z-index:101; position:absolute; top:50%; left:50%; width:800px;");
+
+        //$("#divChartDataLayer").show();
+
+        //$("#tbodyChartDate").html("");
+
+        //$("#tbodyChartDate").html("<tr><td>Graph02</td><td>Graph02</td><td>Graph02</td><td>Graph02</td><td>Graph02</td><td>Graph02</td><td>Graph02</td></tr>");
+    }
+</script>
+
+<h3>생산 제품 분류 Top 5 [년 누계 기준]</h3>
+<div id="chartdiv2" style="width: 100%; height: 250px; font-weight: bold;"></div>

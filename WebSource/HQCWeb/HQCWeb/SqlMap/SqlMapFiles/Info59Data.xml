@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info59Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_ItemGroupList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO59_S #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #CAR_TYPE#, #STN_CD#, #ITEM_GROUP#, #USE_YN#
+      ]]>
+    </statement>
+
+    <statement id="Get_ItemGroupInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO59_INFO #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #STN_CD#, #CAR_TYPE#, #WORK_SEQ#, #DEV_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_ItemGroupInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO59_I #PLANT_CD#, #SHOP_CD#, #LINE_CD#, #CAR_TYPE#, #STN_CD#, #WORK_CD#, #DEV_ID#, #P_SET#, #ITEM_02#, #ITEM_02_YN#, #ITEM_03#, #ITEM_03_YN#, #ITEM_04#, #ITEM_04_YN#, #ITEM_05#, #ITEM_05_YN#, #ITEM_08#, #ITEM_08_YN#, #ITEM_09#, #ITEM_09_YN#, #ITEM_10#, #ITEM_10_YN#, #ITEM_12#, #ITEM_12_YN#, #ITEM_13#, #ITEM_13_YN#, #ITEM_14#, #ITEM_14_YN#, #USER_ID#, #USE_YN#, #ITEM_GROUP#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO59_DDL #PLANT_CD#, #SHOP_CD#, #LINE_CD#
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

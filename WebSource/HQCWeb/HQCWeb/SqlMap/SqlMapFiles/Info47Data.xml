@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Info47Data" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+
+  <statements>
+
+    <statement id="Get_LineGrpList" parameterClass="System.Collections.Hashtable" >
+      <![CDATA[
+        EXEC W_SP_INFO47_S #PLANT_CD#, #FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_LineGrpID_ValChk" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+       EXEC W_SP_INFO47_CHK #PLANT_CD#, #LINE_GROUP_CD#
+      ]]>
+    </statement>
+
+    <statement id="Get_LineGrpInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO47_INFO #PLANT_CD#, #LINE_GROUP_CD#
+      ]]>
+    </statement>
+
+    <statement id="Set_LineGrpInfo" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO47_IU #PLANT_CD#, #LINE_GROUP_CD#, #LINE_GROUP_NM#, #REMARK1#, #REMARK2#, #USE_YN#, #USER_ID#
+      ]]>
+    </statement>
+
+    <statement id="Set_LineGrpInfoDel" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO47_D #PLANT_CD#, #LINE_GROUP_CD#, #FLAG#, #USER_ID#, #COMP_FLAG#
+      ]]>
+    </statement>
+
+    <statement id="Get_DdlData" parameterClass="System.Collections.Hashtable">
+      <![CDATA[
+        EXEC W_SP_INFO47_DDL
+      ]]>
+    </statement>
+
+  </statements>
+
+</sqlMap>

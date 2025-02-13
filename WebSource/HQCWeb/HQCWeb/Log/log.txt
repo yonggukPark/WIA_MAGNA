@@ -1,0 +1,20 @@
+2025-01-16 오후 5:54:18: Error in btnSave_Click : 255 열을 찾을 수 없습니다.
+Stack Trace:    위치: System.Data.DataColumnCollection.get_Item(Int32 index)
+   위치: System.Data.DataRow.get_Item(Int32 columnIndex)
+   위치: HQCWeb.InfoMgt.Info30.Info30_p04.btnSave_Click(Object sender, EventArgs e) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info30\Info30_p04.aspx.cs:줄 462
+2025-01-16 오후 5:55:41: Error in btnSave_Click : 255 열을 찾을 수 없습니다.
+Stack Trace:    위치: System.Data.DataColumnCollection.get_Item(Int32 index)
+   위치: System.Data.DataRow.get_Item(Int32 columnIndex)
+   위치: HQCWeb.InfoMgt.Info30.Info30_p04.btnSave_Click(Object sender, EventArgs e) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info30\Info30_p04.aspx.cs:줄 462
+2025-01-16 오후 5:57:07: Error in btnSave_Click : 255 열을 찾을 수 없습니다.
+Stack Trace:    위치: System.Data.DataColumnCollection.get_Item(Int32 index)
+   위치: System.Data.DataRow.get_Item(Int32 columnIndex)
+   위치: HQCWeb.InfoMgt.Info30.Info30_p04.btnSave_Click(Object sender, EventArgs e) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info30\Info30_p04.aspx.cs:줄 462
+2025-01-16 오후 6:05:48: Error in btnSave_Click : 255 열을 찾을 수 없습니다.
+Stack Trace:    위치: System.Data.DataColumnCollection.get_Item(Int32 index)
+   위치: System.Data.DataRow.get_Item(Int32 columnIndex)
+   위치: HQCWeb.InfoMgt.Info30.Info30_p04.btnSave_Click(Object sender, EventArgs e) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info30\Info30_p04.aspx.cs:줄 462
+2025-01-16 오후 6:53:53: Error in btnSave_Click : 255 열을 찾을 수 없습니다.
+Stack Trace:    위치: System.Data.DataColumnCollection.get_Item(Int32 index)
+   위치: System.Data.DataRow.get_Item(Int32 columnIndex)
+   위치: HQCWeb.InfoMgt.Info30.Info30_p04.btnSave_Click(Object sender, EventArgs e) 파일 C:\HL2\1-2.WEB\WebSource\HQCWeb\HQCWeb\InfoMgt\Info30\Info30_p04.aspx.cs:줄 462

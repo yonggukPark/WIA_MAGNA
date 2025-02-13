@@ -1,0 +1,41 @@
+﻿<script>
+    $.ajax({
+        type: "POST",
+        url: "/SystemMgt/WidgetManagement/WidgetMgt.aspx/GetWidgetStat03",
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            fn_GetData3(msg.d);
+        }
+    });
+
+    function fn_GetData3(_val) {
+        var arrVal = _val.split('^');
+
+        $("#spStit03_01").html(arrVal[0]);
+        $("#spStit03_02").html(arrVal[1]);
+        $("#spStit03_03").html(arrVal[2]);
+    }
+
+    function fn_Popup3() {
+        fn_OpenPop('/QualityMgt/QuaWidget02/QuaWidget02.aspx', "1200", "750");
+    }
+
+</script>
+
+<h3>분해 현황 [당월]</h3>
+<ul>
+    <li>
+        <p class="f03">전체대상</p>
+        <span class="no03" id="spStit03_01" onclick="fn_Popup3()" style="cursor:pointer"></span>
+    </li>
+    <li>
+        <p class="f03">완료수량</p>
+        <span class="no03" id="spStit03_02" onclick="fn_Popup3()" style="cursor:pointer"></span>
+    </li>
+    <li>
+        <p class="f03">대기수량</p>
+        <span class="no03" id="spStit03_03" onclick="fn_Popup3()" style="cursor:pointer"></span>
+    </li>
+</ul>

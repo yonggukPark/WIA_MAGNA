@@ -1,0 +1,605 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="HQCWeb.MasterPage.Site" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>HGP MES System</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <META http-equiv="Expires" content="-1">
+    <META http-equiv="Pragma" content="no-cache">
+    <META http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.core.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.theme.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.ui.datepicker.css" />
+
+    <script type="text/javascript" src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jq-paginator.js"></script>
+    <script type="text/javascript" src="/Scripts/HQC_Common.js?version=20241008"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.ui.datepicker.js"></script>
+
+    <script type="module" src="/Scripts/ndef-record.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/common_v.css?version=20241008"  />
+
+    <script type="module" src="/Scripts/comboTreePlugin.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/comboTreeStyle.css"  />
+
+    <!-- 그리드 -->
+    <%--<link href="/css/realgrid-dark.css" rel="stylesheet" />
+    <link href="/css/realgrid-galaxy-blue.css" rel="stylesheet" />
+    <link href="/css/realgrid-high-contrast.css" rel="stylesheet" />
+    <link href="/css/realgrid-red-wine.css" rel="stylesheet" />--%>
+    <link href="/css/realgrid-sky-blue.css" rel="stylesheet" />
+    <%--<link href="/css/realgrid-white.css" rel="stylesheet" />
+    <link href="/css/realgrid-style.css" rel="stylesheet" />--%>
+
+    <script src="/Scripts/realgrid-utils.js"></script>
+    <script src="/Scripts/realgrid.2.7.2.min.js"></script>
+    <script src="/Scripts/realgrid-lic.js?version=20240723"></script>
+
+    <!-- 페이징 -->
+    <link href="/css/pagination.css" rel="stylesheet" />
+    <script src="/Scripts/pagination.min.js"></script>
+
+    <!-- 엑셀 -->
+    <script src="/Scripts/jszip.min.js"></script>
+    <script src="/Scripts/xlsx.full.min.js"></script>
+    
+    <!-- 챠트 -->
+    <script type="text/javascript" src="/Scripts/amcharts.js"></script>
+    <script type="text/javascript" src="/Scripts/serial.js"></script>
+    <script type="text/javascript" src="/Scripts/xy.js"></script>
+
+    <!-- ContextMenu -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery.contextMenu.css" />
+    <script src="/Scripts/jquery.contextMenu.js"></script>
+    <script src="/Scripts/jquery.ui.position.js"></script>
+    
+    <!-- MonthPicker -->
+    <%--버그로 주석 처리--%>
+<%--    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/css/MonthPicker.min.css" />
+    <script src="/Scripts/jquery-ui.js"></script>
+    <script src="/Scripts/MonthPicker.min.js"></script>--%>
+
+    <style type="text/css">
+       .divClass {display:table; width:99%; height:100%; filter:alpha(opacity=65); opacity:0.3; -moz-opacity:0.3; z-index:100; position:absolute; font-size:9pt; background:#d6d3ce;}
+       .pClass {display:table-cell; text-align:center; vertical-align:middle;}
+
+        td.dxgv {
+            height:25px;
+        }
+    </style>
+
+    <script language="javascript" type="text/javascript">
+
+        // 클릭 이벤트 중단 리스너 참조 저장
+        //let clickListener = function (event) {
+        //    event.preventDefault();
+        //    event.stopPropagation();
+        //};
+
+        function fn_WatingCall() {
+            //document.addEventListener("click", clickListener, true);
+            $("#waiting").show();
+        }
+
+        function fn_NoData() {
+            alert("조회된 데이터가 없습니다.");
+        }
+
+        function fn_loadingEnd() {
+            //document.removeEventListener("click", clickListener, true);
+            $("#waiting").hide();
+        }
+
+        function refreshDate() {
+            $("#MainContent_txtDate").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtFromDt").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtFromDt2").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtFromDt3").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtToDt").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtToDt2").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtToDt3").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtMonth").datepicker({
+                dateFormat: "yy-mm"
+            });
+        }
+
+        $(function () {
+            $("#MainContent_txtDate").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtFromDt").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtFromDt2").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtFromDt3").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtToDt").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtToDt2").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtToDt3").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $("#MainContent_txtMonth").datepicker({
+                dateFormat: "yy-mm"
+            });
+
+            $("#MainContent_btnNew").click(function(){
+                $("#btnNewCount").click();
+            });
+
+            $("#MainContent_btnSubNew").click(function () {
+                $("#btnSubNewCount").click();
+            });
+
+            $("#MainContent_btnCopy").click(function () {
+                $("#btnCopyCount").click();
+            });
+
+            $("#MainContent_btnExcel").click(function () {
+                $("#btnExcelCount").click();
+            });
+
+            $("#MainContent_btnExcel2").click(function () {
+                $("#btnExcel2Count").click();
+            });
+
+            $("#MainContent_btnConfirm").click(function () {
+                $("#btnConfirmCount").click();
+            });
+
+            $("#MainContent_btnDelete").click(function () {
+                $("#btnDeleteCount").click();
+            });
+
+            $("#MainContent_btnSave").click(function () {
+                $("#btnSaveCount").click();
+            });
+
+            $("#MainContent_btnUpload").click(function () {
+                $("#btnUploadCount").click();
+            });
+
+            $("#MainContent_btnLock").click(function () {
+                $("#btnLockCount").click();
+            });
+
+            $("#MainContent_btnExcelNew").click(function () {
+                $("#btnExcelNewCount").click();
+            });
+
+            $("#MainContent_btnExcelNew2").click(function () {
+                $("#btnExcelNew2Count").click();
+            });
+
+            $("#MainContent_btnExcelNew3").click(function () {
+                $("#btnExcelNew3Count").click();
+            });
+
+            $("#MainContent_ibtnRegister").click(function () {
+                $("#ibtnRegisterCount").click();
+            });
+
+
+            //$('#MainContent_txtMonth').MonthPicker({
+            //    Button: false,
+            //    MonthFormat: 'yy-mm',
+            //});
+        });
+
+        function fn_SortReSearch() {
+            $("#MainContent_btnSearch").click();
+        }
+
+        function fn_ErrorMessage(val) { 
+            alert(val);
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+    <form id="frSiteForm" runat="server"  name="pageForm">
+
+        <div id="waiting" class="divClass">
+            <p class="pClass"><img src="/images/ajax-loader.gif" /><br /></p>
+        </div>
+
+        <input type="hidden" id="hidLeftState" value="Y" />
+       
+        <asp:ScriptManager runat="server" ID="ScriptManager"/>
+
+        <asp:UpdatePanel ID="upPaging" runat="server"  UpdateMode="Conditional">
+            <ContentTemplate>
+                
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <asp:HiddenField ID= "hidPageSize"      runat="server" Value="0" />
+        <asp:HiddenField ID= "hidPopValue"      runat="server" />     
+
+        <p style="display:none;"><asp:Label ID="lbUserInfo" runat="server"></asp:Label><br /></p>
+        <p style="display:none;">url : <asp:Label ID="lbUrl" runat="server"></asp:Label><br /></p>
+        <p style="display:none;">sample : <asp:Label ID="lbTest" runat="server"></asp:Label></p>
+
+        <div name="divView">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <asp:Button ID="btnNewCount" runat="server" Text="btnNewCount" OnClick="btnNewCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnSubNewCount" runat="server" Text="btnSubNewCount" OnClick="btnSubNewCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnCopyCount" runat="server" Text="btnCopyCount" OnClick="btnCopyCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnExcelCount" runat="server" Text="btnExcelCount" OnClick="btnExcelCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnExcel2Count" runat="server" Text="btnExcel2Count" OnClick="btnExcel2Count_Click"  style="display:none;"  />
+                    <asp:Button ID="btnConfirmCount" runat="server" Text="btnConfirmCount" OnClick="btnConfirmCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnDeleteCount" runat="server" Text="btnDeledteCount" OnClick="btnDeleteCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnSaveCount" runat="server" Text="btnSaveCount" OnClick="btnSaveCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnUploadCount" runat="server" Text="btnUploadCount" OnClick="btnUploadCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnLockCount" runat="server" Text="btnLockCount" OnClick="btnLockCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnExcelNewCount" runat="server" Text="btnExcelCount" OnClick="btnExcelNewCount_Click"  style="display:none;"  />
+                    <asp:Button ID="btnExcelNew2Count" runat="server" Text="btnExcel2Count" OnClick="btnExcelNew2Count_Click"  style="display:none;"  />
+                    <asp:Button ID="btnExcelNew3Count" runat="server" Text="btnExcel3Count" OnClick="btnExcelNew3Count_Click"  style="display:none;"  />
+                    <asp:Button ID="ibtnRegisterCount" runat="server" Text="ibtnRegisterCountCount" OnClick="ibtnRegisterCount_Click"  style="display:none;"  />
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnNewCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnSubNewCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnCopyCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnExcelCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnExcel2Count" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnConfirmCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnDeleteCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnSaveCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnUploadCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnLockCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnExcelNewCount" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnExcelNew2Count" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnExcelNew3Count" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="ibtnRegisterCount" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
+        </div>
+
+        <script type="text/javascript" lang='Javascript' >
+            setTimeout(function () {
+                fn_loadingEnd();
+            }, 1000);
+
+            $(document).ready(function () {
+
+                $("#MainContent_btnSearch").attr("accesskey", "S");
+                $("#MainContent_btnRestore").attr("accesskey", "R");
+                $("#MainContent_btnNew").attr("accesskey", "N");
+                $("#MainContent_btnCopy").attr("accesskey", "C");
+                $("#MainContent_btnExcel").attr("accesskey", "X");
+                $(document).keydown(function (e) {
+                    if (e.key === 'Enter') {
+                        fn_SortReSearch();
+                    }
+
+                    if (e.key === 'Escape' || e.keyCode === 27) {
+                        fn_ModalCloseDiv();
+                        // ESC 키가 눌렸을 때 원하는 동작을 여기에 추가하세요.
+                    }
+                });
+            });
+
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            if (prm != null) {
+                prm.add_endRequest(function (sender, args) {
+
+                    const rq = args._response.get_webRequest();
+
+                    if (rq) {
+                        if (rq._url.split('/')[4] != 'Qua15') //대용량 엑셀다운로드시 로딩문제 발생
+                            fn_loadingEnd(); // 로딩 종료
+                    }
+                })
+            }
+
+            //그리드 틀고정
+            function setContextMenu(grid) {
+                grid.onContextMenuItemClicked = function (grid, item, clickData) {
+                    if (item.tag == 'fixedCol') {
+                        var count = grid.layoutByColumn(clickData.column).root.vindex + 1;
+                        grid.setFixedOptions({ colCount: count });
+                    } else if (item.tag == 'fixedCancel') {
+                        grid.setFixedOptions({ colCount: 0, rowCount: 0 });
+                    };
+                }
+
+                grid.onContextMenuPopup = function (grid, x, y, elementName) {
+                    if (elementName.cellType == 'header' || elementName.cellType == 'data') {
+                        setDataCellContextMenu(grid);
+                    } else {
+                        return false;
+                    }
+                };
+
+                setDataCellContextMenu(grid);
+            }
+
+            //틀고정 메뉴 출력
+            function setDataCellContextMenu(grid) {
+                var contextMenu = [{
+                    label: '열 고정',
+                    tag: 'fixedCol'
+                }, {
+                    label: "-"
+                }, {
+                    label: '고정 취소',
+                    tag: 'fixedCancel'
+                }];
+
+                grid.setContextMenu(contextMenu);
+            }
+
+            //그리드 세팅 저장
+            function getCol(scr) { // 컬럼데이터 정보 수집
+
+                if (confirm("그리드 셋팅 정보를 저장하시겠습니까?")) {
+                    fn_WatingCall();
+                    var screenSet = []; //임시. 전체 화면의 컬럼데이터를 가진 배열 가정
+                    var colSet = [];//배열 0번째에 화면명 저장
+                    var colArr = gridView.getColumns();//전체 column 배열
+
+                    var obj = new Object();
+
+                    for (var i = 0; i < colArr.length; i++) {
+                        var json = {
+                            name : colArr[i].name,
+                            width: gridView.layoutByColumn(colArr[i].name).cellWidth,
+                            vindex: gridView.layoutByColumn(colArr[i].name).vindex,
+                            colFix: gridView.layoutByColumn(colArr[i].name).isFixed
+                        }
+
+                        //console.log("name=", colArr[i]._name);
+                        //console.log("width=", gridView.layoutByColumn(colArr[i].name));
+
+                        colSet.push(json);
+                    }
+
+                    obj.MenuID = scr;
+                    obj.ColumnList = colSet;
+                    
+                    var dbJSON = JSON.stringify(obj);
+                    //console.log(dbJSON);
+
+                    //return;
+
+                    var jsonData = JSON.stringify({ sParams: dbJSON });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<%=strWebIpPort%>/SystemMgt/UserManagement/UserMenuSetting.aspx/SetUserMenuSettingInfo",
+                        data: jsonData,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            fn_MenuSettingInfoAddRtn(msg.d);
+                        }
+                    });
+
+                }
+            }
+
+            //서브 그리드 세팅 저장
+            function getCol2(scr) { // 컬럼데이터 정보 수집
+
+                if (confirm("그리드 셋팅 정보를 저장하시겠습니까?")) {
+                    fn_WatingCall();
+                    var screenSet = []; //임시. 전체 화면의 컬럼데이터를 가진 배열 가정
+                    var colSet = [];//배열 0번째에 화면명 저장
+                    var colArr = gridView2.getColumns();//전체 column 배열
+
+                    var obj = new Object();
+
+                    for (var i = 0; i < colArr.length; i++) {
+                        var json = {
+                            name : colArr[i].name,
+                            width: gridView2.layoutByColumn(colArr[i].name).cellWidth,
+                            vindex: gridView2.layoutByColumn(colArr[i].name).vindex,
+                            colFix: gridView2.layoutByColumn(colArr[i].name).isFixed
+                        }
+
+                        //console.log("name=", colArr[i]._name);
+                        //console.log("width=", gridView.layoutByColumn(colArr[i].name));
+
+                        colSet.push(json);
+                    }
+
+                    obj.MenuID = scr;
+                    obj.ColumnList = colSet;
+                    
+                    var dbJSON = JSON.stringify(obj);
+                    //console.log(dbJSON);
+
+                    //return;
+
+                    var jsonData = JSON.stringify({ sParams: dbJSON });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<%=strWebIpPort%>/SystemMgt/UserManagement/UserMenuSetting.aspx/SetUserMenuSettingInfo",
+                        data: jsonData,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (msg) {
+                            fn_MenuSettingInfoAddRtn(msg.d);
+                        }
+                    });
+
+                }
+            }
+
+            function fn_MenuSettingInfoAddRtn(_val) {
+                if (_val == "C") {
+                    alert("그리드 셋팅이 저장되었습니다.");
+                }
+
+                if (_val == "E") {
+                    alert("저장에 실패하였습니다. 관리자에게 문의 바랍니다.");
+                }
+
+                fn_loadingEnd();
+            }
+
+
+            //엑셀 출력
+            function fn_excelExport(f_name) {
+                var excelType = true;
+                var showProgress = true;
+                var itemType = true;//숨겨진값 
+                var pageType = true;//전체페이지 내보내기
+                var indicator = 'default';
+                var header = 'default';
+                var footer = 'hidden';//아래 footer
+
+                gridView.exportGrid({
+                    type: "excel",
+                    target: "local",
+                    fileName: f_name + ".xlsx",
+                    showProgress: showProgress,
+                    progressMessage: "Exporting....",
+                    indicator: indicator,
+                    header: header,
+                    footer: footer,
+                    compatibility: excelType,
+                    allItems: itemType,
+                    pagingAllItems: pageType,
+                    done: function () {  //내보내기 완료 후 실행되는 함수
+                    }
+                });
+            }
+
+            //서브 그리드 엑셀 출력
+            function fn_excelExport2(f_name) {
+                var excelType = true;
+                var showProgress = true;
+                var itemType = true;//숨겨진값 
+                var pageType = true;//전체페이지 내보내기
+                var indicator = 'default';
+                var header = 'default';
+                var footer = 'hidden';//아래 footer
+
+                gridView2.exportGrid({
+                    type: "excel",
+                    target: "local",
+                    fileName: f_name + ".xlsx",
+                    showProgress: showProgress,
+                    progressMessage: "Exporting....",
+                    indicator: indicator,
+                    header: header,
+                    footer: footer,
+                    compatibility: excelType,
+                    allItems: itemType,
+                    pagingAllItems: pageType,
+                    done: function () {  //내보내기 완료 후 실행되는 함수
+                    }
+                });
+            }
+
+            //페이징 호출
+            function setPaging() {
+                if (dataProvider.getRowCount() > 0) {
+                    var pageQty = $("#MainContent_current_page_value");
+                    gridView.setPaging(true, pageQty.val());
+                    pagination(pageQty.val());
+
+                    pageQty.show();
+                    $("#btnSet").show();
+                }
+            }
+
+            //서브 그리드 페이징 호출
+            function setPaging2() {
+                if (dataProvider2.getRowCount() > 0) {
+                    var pageQty = $("#MainContent_current_page_value2");
+                    gridView2.setPaging(true, pageQty.val());
+                    pagination2(pageQty.val());
+
+                    pageQty.show();
+                    $("#btnSet2").show();
+                }
+            }
+
+            //페이징(pagination 사용)
+            function pagination(pageQty) {
+                let container = $('#gridPage');
+
+                container.pagination({
+                    dataSource: dataProvider.getJsonRows(),
+                    pageSize: pageQty, // 한 페이지에 나타낼 데이터 수
+                    callback: function (data, pagination) {
+                        gridView.setPage(pagination.pageNumber - 1) // 페이지 설정
+                    }
+                })
+            }
+
+            //서브 그리드 페이징(pagination 사용)
+            function pagination2(pageQty) {
+                let container = $('#gridPage2');
+
+                container.pagination({
+                    dataSource: dataProvider2.getJsonRows(),
+                    pageSize: pageQty, // 한 페이지에 나타낼 데이터 수
+                    callback: function (data, pagination) {
+                        gridView2.setPage(pagination.pageNumber - 1) // 페이지 설정
+                    }
+                })
+            }
+
+        </script>
+    </form>
+
+    <!-- 일반팝업 사용시 필요 -->
+    <form name="form2">
+        <input type="hidden" name="hidValue" id="hidValue" />
+    </form>
+
+</body>
+</html>

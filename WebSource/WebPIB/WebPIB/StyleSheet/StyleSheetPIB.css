@@ -1,0 +1,448 @@
+﻿html, body, form {
+    font-family:'Headline R', Dotum, Gulim, Arial;
+	font-weight:normal;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    overflow:hidden;
+}
+
+table, tr, td, th, div {
+    font-family:'현대하모니 M','Headline R', Dotum, Gulim, Arial;
+	font-weight:normal;
+    font-size: 12px;
+	table-layout:fixed;
+	border-collapse:collapse;
+	border:0px solid silver;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+}
+p, span {
+    font-family:'Headline R', Dotum, Gulim, Arial;
+	font-weight:normal;
+}
+
+.stockPIB {
+	width:100%;
+	height:100%;
+	border:1px solid silver;
+}
+
+.pibHead
+{
+	height:13%;
+}
+
+.pibHead > table
+{
+	width:100%;
+	height:100%;
+	border:1px solid silver;
+}
+
+.pibHead > table > tbody > tr > td
+{
+	border:1px solid silver;
+}
+
+.pibTitle {
+    font-size: 33pt;
+	white-space:nowrap;
+	width:46%;
+	background-color:greenyellow;
+	color:#000000;
+	text-align:center;
+}
+
+.pibTitleStock {
+    font-size: 30pt;
+	white-space:nowrap;
+	width:50%;
+	background-color:greenyellow;
+	color:#000000;
+	text-align:center;
+}
+.pibClock {
+	width:27%;
+	text-align:center;
+}
+.pibClockStock {
+	width:25%;
+	text-align:center;
+}
+
+.subItemTitle {
+	background-color:teal;
+	color:White;
+}
+.pibClock > table,.pibClockStock > table {
+	width:100%;
+	height:100%;
+}
+.pibClock > table > tbody > tr > td,.pibClockStock > table > tbody > tr > td {
+    font-size: 16pt;
+	white-space:nowrap;
+	border:1px solid silver;
+}
+.pibBody,.pibBodyT,.pibBodyStock,.pibBodyZ,.pibBodyX {
+	vertical-align:top;
+}
+.pibBody > table,.pibBodyT > table,.pibBodyStock > table,.pibBodyZ > table,.pibBodyX > table {
+	border:1px solid silver;
+	width:100%;
+	height:100%;
+}
+.pibBody > table > tbody > tr > th {
+	height:14%;
+    font-size: 29pt;
+	white-space:nowrap;
+	border:1px solid silver;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:DarkBlue;
+	color:White;
+}
+.pibBodyT > table > tbody > tr > th {
+	height:10%;
+    font-size: 26pt;
+	white-space:nowrap;
+	border:1px solid silver;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:DarkBlue;
+	color:White;
+}
+.pibBodyStock > table > tbody > tr > th {
+	height:10%;
+    font-size: 24pt;
+	white-space:nowrap;
+	border:1px solid silver;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:DarkBlue;
+	color:White;
+}
+.pibBodyZ > table > tbody > tr > th {
+	height:8%;
+    font-size: 20pt;
+	white-space:nowrap;
+	border:1px solid silver;
+	padding-top:2px;
+	padding-bottom:2px;
+	background-color:DarkBlue;
+	color:White;
+}
+.pibBodyX > table > tbody > tr > th {
+	height:8%;
+    font-size: 16pt;
+	white-space:nowrap;
+	border:1px solid silver;
+	padding-top:2px;
+	padding-bottom:2px;
+	background-color:DarkBlue;
+	color:White;
+}
+ /* @@ KDK add S */
+.subItemTitleDC {
+	background-color:teal;
+	color:White;
+    text-align:center;
+    font-size:20pt;
+}
+.subItemDT {
+	background-color:White;
+	color:black;
+    text-align:center;
+    height:12%;
+    font-size:20pt;
+}
+ /* @@ KDK add E */
+
+.pibBody > table > tbody > tr > td {
+    font-size: 29pt;
+	border:1px solid silver;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align : center;
+}
+
+.pibBodyT > table > tbody > tr > td {
+	height:18%;
+    font-size: 22pt;
+	border:1px solid silver;
+	padding-top:1px;
+	padding-bottom:1px;
+	text-align : center;
+}
+
+.pibBodyStock > table > tbody > tr > td {
+	border:1px solid silver;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.pibBodyZ > table > tbody > tr > td {
+	height:12%;
+    font-size: 20pt;
+    font-weight: bold;
+	border:1px solid silver;
+	padding-top:1px;
+	padding-bottom:1px;
+	text-align : center;
+}
+
+.pibBodyX > table > tbody > tr > td {
+	height:12%;
+    font-size: 16pt;
+	border:1px solid silver;
+	padding-top:1px;
+	padding-bottom:1px;
+	text-align : right;
+    padding-right:5px;
+}
+
+.pibBody > table > tbody > tr > td > span {
+    font-size: 29pt;
+	text-align : center;
+	height:100%;
+}
+
+.pibBodyStock > table > tbody > tr > td > span {
+    font-size: 27pt;
+	text-align : center;
+	height:100%;
+}
+
+.pibBody > table > tbody > tr > td > table{
+	width:100%;
+	height:100%;
+}
+
+.pibBody > table > tbody > tr > td > table > tbody > tr > td > table 
+ {
+	width:100%;
+	height:100%;
+}
+.pibBody > table > tbody > tr > td > table > tbody > tr > th > table 
+ {
+	width:100%;
+	height:100%;
+}
+
+.pibBody > table > tbody > tr > td > table > tbody > tr > th  {
+    font-size: 12pt;
+	text-align : center;
+	height:20%;
+}
+
+.pibBody > table > tbody > tr > td > table > tbody > tr > td  {
+    font-size: 12pt;
+	text-align : center;
+	padding-top:5px;
+	vertical-align:top;
+	height:80%;
+	padding:0px 0px 0px 0px;
+}
+
+.pibBody > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > th {
+    font-size: 12pt;
+	text-align : center;
+	height:100%;
+	width:70%;
+	border:1px solid silver;
+	background-color:DarkBlue;
+	color:white;
+}
+
+.pibBody > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td {
+    font-size: 12pt;
+	text-align : center;
+	border:1px solid silver;
+	height:100%;
+}
+.pibBody > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > th {
+    font-size: 12pt;
+	text-align : center;
+	width:80%;
+}
+.pibBody > table > tbody > tr > td > table > tbody > tr > th > table > tbody > tr > th {
+    font-size: 11pt;
+	text-align : center;
+	width:20%;
+	border:1px solid silver;
+	background-color:yellow;
+}
+.pibBody > table > tbody > tr > td > table > tbody > tr > th > table > tbody > tr > td {
+    font-size: 11pt;
+	text-align : center;
+	width:80%;
+	padding-top:3px;
+}
+
+.LightSkyBlue_White{
+	color:white;
+	background-color:lightskyblue;
+}
+.FontSize10  {
+    font-size: 10pt;
+}
+.FontSize14  {
+    font-size: 14pt;
+}
+.FontSize16  {
+    font-size: 16pt;
+}
+.FontSize27 {
+	font-size: 27pt;
+}
+.FontSize26 {
+	font-size: 26pt;
+}
+.FontSize25 {
+	font-size: 25pt;
+}
+.FontSize24 {
+	font-size: 24pt;
+}
+.FontSize23 {
+	font-size: 23pt;
+}
+.FontSize22 {
+	font-size: 22pt;
+}
+.FontSize21 {
+	font-size: 21pt;
+}
+
+.AlarmArea{
+    font-size: 33pt;
+	border:2px solid silver;
+	text-align : center;
+	color:#000000;
+	overflow: hidden;
+	position: relative;
+
+}
+.AlarmMsg{
+    font-size: 33pt;
+	white-space:nowrap;
+	
+	margin: 0;
+	/* Starting position */
+	-moz-transform: translateX(100%);
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+	/* Apply animation to this element */
+	-moz-animation: scroll-left 15s linear infinite;
+	-webkit-animation: scroll-left 15s linear infinite;
+	animation: scroll-left 15s linear infinite;
+}
+
+.AlarmAreaDLV{
+    font-size: 25pt;
+	border:2px solid silver;
+	text-align : center;
+	color:#000000;
+	overflow: hidden;
+	position: relative;
+
+}
+.AlarmMsgDLV{
+    font-size: 25pt;
+	white-space:nowrap;
+	
+	margin: 0;
+	/* Starting position */
+	-moz-transform: translateX(100%);
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+	/* Apply animation to this element */
+	-moz-animation: scroll-left 15s linear infinite;
+	-webkit-animation: scroll-left 15s linear infinite;
+	animation: scroll-left 15s linear infinite;
+}
+
+
+.RoundBox {    
+    -moz-border-radius: 3px;
+    -webket-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.RateState1{
+	color:black;
+}
+.RateState2{
+	color:red;
+}
+
+.OddRowBcolor
+{
+	background-color:white;
+}
+.OddRowBcolor
+{
+	background-color:#eeeeee;
+}
+
+.AlignLeft5
+{
+	padding-left :5px;
+	text-align : left;
+}
+.AlignLeft
+{
+	text-align : left;
+}
+.AlignCenter
+{
+	text-align : center;
+}
+.AlignRight5
+{
+	padding-right : 5px;
+	text-align : right;
+}
+.AlignRight
+{
+	text-align : right;
+}
+.AlignTop
+{
+	vertical-align : top;
+}
+.AlignMiddle
+{
+	vertical-align : middle;
+}
+.AlignMiddle
+{
+	vertical-align : bottom;
+}
+
+/* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scroll-left {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Browser bug fix */
+ -webkit-transform: translateX(100%); /* Browser bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Browser bug fix */
+ -webkit-transform: translateX(-100%); /* Browser bug fix */
+ transform: translateX(-100%); 
+ }
+}

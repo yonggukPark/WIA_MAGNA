@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv='Cache-Control' content='no-cache' />
+	<meta http-equiv='Pragma' content='no-cache' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="Stylesheet" type="text/css" href="./StyleSheet/StyleSheetPIB.css" />
+	<script type="text/javascript" src="./Scripts/XmlHttpHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/AlarmHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/PibHandler.js"></script>
+	<script type="text/javascript" src="./Scripts/TimerHandler.js"></script>
+    <title></title>
+	<script>
+        // add by kfa 2022.12.07 
+		var pib = new PIB();
+		function PIB() {
+			this.DataRecvIntervalValue = 2000;
+			this.DataRecvInterval = null;
+			this.DataDispInterval = null;
+			this.receivedData = null;
+			this.workData = null;
+			this.prodData = null;      
+			this.DataRecvStat = 0;
+			this.DataRecvTryCnt = 0;
+			this.workType = null;
+			this.GetData = function () {
+				try {
+					pib.DataRecvStat = 1;
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					XmlHandler.Http.LoadUrl("GetPibData.aspx", "tprod", mid, pid, "", "", "", "", "");
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 5000;
+					pib.ReceiveNewData();
+				};
+			};
+			this.LoadEnd = function (_jsonText) {
+				try {
+					//pib.workType = Request.getParameter("mode");
+					var mid = Request.getParameter("mid");
+					var pid = Request.getParameter("pid");
+					pib.receivedData = _jsonText;
+					if (pib.receivedData && pib.receivedData != null && pib.receivedData.length && pib.receivedData.length > 0) {
+						pib.DataRecvTryCnt = 1;
+						pib.workData = pib.receivedData[0].Data;
+						pib.prodData = pib.receivedData[1].Data; 
+
+						document.getElementById("tdCurrDate").innerText = pib.receivedData[0].CurrDate;
+						document.getElementById("tdCurrTime").innerText = pib.receivedData[0].CurrTime;
+						document.getElementById("tdCurrTime").style.color = "";
+						pib.DataRecvStat = 0;
+
+					}
+					else {
+						pib.DataRecvTryCnt++;
+						if (pib.DataRecvTryCnt > 5) {
+							document.getElementById("tdCurrTime").style.color = "red";
+							pib.DataRecvTryCnt = 6;
+						}
+						else {
+							document.getElementById("tdCurrTime").style.color = "";
+						};
+					};
+
+					pib.DisplayData();
+				}
+				catch (exception) {
+					pib.DataRecvTryCnt++;
+					if (pib.DataRecvTryCnt > 5) {
+						document.getElementById("tdCurrTime").style.color = "red";
+						pib.DataRecvTryCnt = 6;
+					}
+					else {
+						document.getElementById("tdCurrTime").style.color = "";
+					};
+					pib.DataRecvIntervalValue = 5000;
+					pib.ReceiveNewData();
+				};
+			};
+			this.DisplayData = function () {
+				var nRowIdx = 0;
+				var arrWorkData = new Array();
+				var arrProdData = new Array();
+				
+				if (pib.workType == "0") {
+					pib.workType = (Number(pib.workType) + 1).toString();
+				}
+				else if (pib.workType == null || pib.workType == "" || pib.workType == "5") {
+					pib.workType = 0;
+				}
+				else {
+					pib.workType = (Number(pib.workType) + 1).toString();
+				};
+
+				if (pib.workData && pib.workData != null && pib.workData.length && pib.workData.length > 0) {
+					var nWorkDataCnt = pib.workData.length;
+					var tblData = document.getElementById("tblData");
+                    
+					for (nRowIdx = 0; nRowIdx < pib.workData.length; nRowIdx++) {
+						if (pib.workData[nRowIdx].VIEW_MODE == pib.workType) {
+							arrWorkData.push(pib.workData[nRowIdx]);
+						};
+					};
+
+					for (nRowIdx = 1; nRowIdx < tblData.rows.length; nRowIdx++) {
+						if (arrWorkData && arrWorkData != null && arrWorkData.length && arrWorkData.length > 0) {
+
+							tblData.rows[nRowIdx].cells[0].innerHTML = arrWorkData[0].TITLE;
+							tblData.rows[nRowIdx].cells[1].innerHTML = arrWorkData[0].PLAN_QTY;
+							tblData.rows[nRowIdx].cells[2].innerHTML = (arrWorkData[0].RTT == '0') ? "" : arrWorkData[0].RTT;
+							tblData.rows[nRowIdx].cells[3].innerHTML = arrWorkData[0].RTR;
+							tblData.rows[nRowIdx].cells[4].innerHTML = (arrWorkData[0].ROR == '0') ? "" : (Number(arrWorkData[0].DISP_GD) > Number(arrWorkData[0].ROR)) ? "<font color='red'>" + arrWorkData[0].ROR + "%</font>" : arrWorkData[0].ROR + "%";
+
+							arrWorkData.shift(); // 첫번째 배열데이터를 삭제한다.
+						}
+						else {
+							// 표시할 데이터가 없으면 기존 화면에 표시되고 있는 내용을 삭제한다.
+							tblData.rows[nRowIdx].cells[0].innerHTML = "";
+							tblData.rows[nRowIdx].cells[1].innerHTML = "";
+							tblData.rows[nRowIdx].cells[2].innerHTML = "";
+							tblData.rows[nRowIdx].cells[3].innerHTML = "";
+							tblData.rows[nRowIdx].cells[4].innerHTML = "";
+						};
+					};
+				};
+
+				// 가져온 데이터가 화면에 표시할 수량보다 많이 남아있으면...
+				if (arrWorkData && arrWorkData != null && arrWorkData.length && arrWorkData.length > 0) {
+					// 첫줄부터 다시 표시한다.
+					pib.DisplayMoreData();
+				}
+				else {
+					pib.DataRecvIntervalValue = 5000;
+					pib.ReceiveNewData();
+				};
+
+				for (nRowIdx = 0; nRowIdx < pib.prodData.length; nRowIdx++) {
+				    arrProdData.push(pib.prodData[nRowIdx]);
+				};
+				for (nRowIdx = 0; nRowIdx < arrProdData.length; nRowIdx++) {
+				    if (arrProdData[nRowIdx].P != "0")
+				        document.getElementById("tdPlan_" + String(nRowIdx + 1)).innerText = arrProdData[nRowIdx].P;
+				    if (arrProdData[nRowIdx].T != "0")
+				        document.getElementById("tdProd_" + String(nRowIdx + 1)).innerText = arrProdData[nRowIdx].T;
+				};
+			};
+
+			this.DisplayMoreData = function () {
+				if (pib.DataDispInterval != null) self.clearTimeout(pib.DataDispInterval);
+				pib.DataDispInterval = self.setTimeout(function () { pib.DisplayData(); }, 5000);	// 5초단위
+			};
+			this.ReceiveNewData = function () {
+				if (pib.DataRecvInterval != null) self.clearTimeout(pib.DataRecvInterval);
+				pib.DataRecvInterval = self.setTimeout(function () { pib.GetData(); }, pib.DataRecvIntervalValue);	// 2초단위
+				pib.DataRecvIntervalValue = 2000;
+			};
+		};
+	</script>
+</head>
+<body id="docBody" onload="resizePanel(); pib.GetData(); alm.GetData(); timer.DisplayData();" onresize="resizePanel();">
+<table class="stockPIB">
+	<tr>
+		<td class="pibHead">
+			<table>
+				<tr>
+                        <!--<td style="background-image:url('./Images/HL_LOGO.JPG'); background-size:contain; background-repeat:no-repeat; background-position:center;"></td>-->
+                        <td></td>
+					<td class="pibTitle">1공장 생산 현황판</td>
+					<td class="pibClock">
+						<table>
+							<tr>
+								<td id="tdCurrDate"></td>
+							</tr>
+							<tr>
+								<td id="tdCurrTime"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td id="pibBody" class="pibBodyZ">
+			<table id="tblData">
+				<tr>
+					<th style="width:28%;">LINE</th>
+					<th style="width:18%;">계획수량</th>
+					<th style="width:18%;">실시간 목표</th>
+					<th style="width:18%;">실시간 실적</th>
+					<th style="width:18%;">실시간 가동률</th>
+				</tr>
+				<tr>
+					<td class="LightSkyBlue_White"></td>
+                    <td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+				</tr>
+				<tr>
+					<td class="LightSkyBlue_White"></td>
+                    <td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+				</tr>
+				<tr>
+                    <td class="LightSkyBlue_White"></td>
+                    <td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+				</tr>
+				<tr>
+                    <td class="LightSkyBlue_White"></td>
+                    <td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+				</tr>
+				<tr>
+                    <td class="LightSkyBlue_White"></td>
+                    <td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+					<td style="text-align:right;padding-right:5px"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+    <tr style="height:180px">
+        <td id="pibBody" class="pibBodyX">
+            <table id="tblData2">
+                <tr>
+                    <th style="width:28%;" rowspan="6">월 생산<br /><br />계획<br /><br />실적</th>
+                    <th style="width:9%;">1월</th>
+                    <th style="width:9%;">2월</th>
+                    <th style="width:9%;">3월</th>
+                    <th style="width:9%;">4월</th>
+                    <th style="width:9%;">5월</th>
+                    <th style="width:9%;">6월</th>
+                    <th style="width:18%;">계 획 합 계</th>
+                </tr>
+                <tr>
+                    <td id="tdPlan_1"></td>
+                    <td id="tdPlan_2"></td>
+                    <td id="tdPlan_3"></td>
+                    <td id="tdPlan_4"></td>
+                    <td id="tdPlan_5"></td>
+                    <td id="tdPlan_6"></td>
+                    <td id="tdPlan_13" rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td id="tdProd_1"></td>
+                    <td id="tdProd_2"></td>
+                    <td id="tdProd_3"></td>
+                    <td id="tdProd_4"></td>
+                    <td id="tdProd_5"></td>
+                    <td id="tdProd_6"></td>
+                </tr>
+                <tr>
+                    <th>7월</th>
+                    <th>8월</th>
+                    <th>9월</th>
+                    <th>10월</th>
+                    <th>11월</th>
+                    <th>12월</th>
+                    <th>실 적 합 계</th>
+                </tr>
+                <tr>
+                    <td id="tdPlan_7"></td>
+                    <td id="tdPlan_8"></td>
+                    <td id="tdPlan_9"></td>
+                    <td id="tdPlan_10"></td>
+                    <td id="tdPlan_11"></td>
+                    <td id="tdPlan_12"></td>
+                    <td id="tdProd_13" rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td id="tdProd_7"></td>
+                    <td id="tdProd_8"></td>
+                    <td id="tdProd_9"></td>
+                    <td id="tdProd_10"></td>
+                    <td id="tdProd_11"></td>
+                    <td id="tdProd_12"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+	<!--tr id="trAlarmMsg" style="display:none">
+		<td id="tdAlarmMsg" class="AlarmAreaDLV"><p id="pAlarmMsg" class="AlarmMsgDLV"></p></td>
+	</tr-->
+</table>
+</body>
+</html>
