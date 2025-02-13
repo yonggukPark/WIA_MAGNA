@@ -4,5 +4,13 @@
 *.config
 *.cache
 /WebSource/HQCWeb/HQCWeb/bin
-/WebSource/HQCWeb/.vs
 /WebSource/HQCWeb/HQCWeb/obj/Debug
+WebSource/HQCWeb/HQCWeb/.vs/HQCWeb.csproj.dtbcache.json
+WebSource/HQCWeb/HQCWeb/HQCWeb.csproj
+WebSource/HQCWeb/HQCWeb/obj/Release/.NETFramework,Version=v4.8.AssemblyAttributes.cs
+WebSource/HQCWeb/HQCWeb/obj/Release/HQCWeb.csproj.FileListAbsolute.txt
+/WebSource/HQCWeb/HQCWeb/obj
+WebSource/HQCWeb/HQCWeb/HQCWeb.csproj
+/WebSource/HQCWeb/.vs
+WebSource/HQCWeb/.vs/HQCWeb/v14/.suo
+WebSource/HQCWeb/HQCWeb/HQCWeb.csproj
