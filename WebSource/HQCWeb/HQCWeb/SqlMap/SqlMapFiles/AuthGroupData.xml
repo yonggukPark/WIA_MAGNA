@@ -12,7 +12,7 @@
             , AUTHGROUP_TXT_KR
             , AUTHGROUP_TXT_EN
             , AUTHGROUP_TXT_LO
-            , dbo.GET_COMM_DESC('USE_YN', USE_YN) AS USE_YN
+            , dbo.USF_GET_COMM_DESC('USE_YN', USE_YN) AS USE_YN
             , CONVERT(VARCHAR(19), REGIST_DATE, 121) AS REGIST_DATE
             , REGIST_USER_ID
             , CONVERT(VARCHAR(19), MODIFY_DATE, 121) AS MODIFY_DATE

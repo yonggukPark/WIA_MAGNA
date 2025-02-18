@@ -5,9 +5,9 @@ using HQCWeb.FW;
 using HQCWeb.FW.Data;
 using HQCWeb.FW.Rule;
 
-namespace HQCWeb.Biz.LmsManageMent
+namespace HQCWeb.Biz.PlanManagement
 {
-    public class Lms11
+    public class Pln11
     {
         DataTable dt = new DataTable();
         DataSet dsList = new DataSet();
@@ -17,7 +17,7 @@ namespace HQCWeb.Biz.LmsManageMent
         MesRuleBase MRB = new MesRuleBase();
 
         #region HQCBizSample
-        public Lms11()
+        public Pln11()
         {
 
         }

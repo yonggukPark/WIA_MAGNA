@@ -5,9 +5,9 @@ using HQCWeb.FW;
 using HQCWeb.FW.Data;
 using HQCWeb.FW.Rule;
 
-namespace HQCWeb.Biz.LmsManageMent
+namespace HQCWeb.Biz.QualityManagement
 {
-    public class Lms10
+    public class Qua07
     {
         DataTable dt = new DataTable();
         DataSet dsList = new DataSet();
@@ -17,7 +17,7 @@ namespace HQCWeb.Biz.LmsManageMent
         MesRuleBase MRB = new MesRuleBase();
 
         #region HQCBizSample
-        public Lms10()
+        public Qua07()
         {
 
         }

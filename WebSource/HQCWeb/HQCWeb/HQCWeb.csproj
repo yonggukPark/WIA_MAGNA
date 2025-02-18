@@ -225,7 +225,7 @@
     <Content Include="InfoMgt\InfoTest\InfoTest.aspx" />
     <Content Include="InfoMgt\InfoTest\InfoTest_P01.aspx" />
     <Content Include="InfoMgt\InfoTest\InfoTest_P02.aspx" />
-    <Content Include="LmsMgt\Lms11\Lms11.aspx" />
+    <Content Include="QualityMgt\Qua07\Qua07.aspx" />
     <Content Include="MonitorMgt\Mon18\Mon18.aspx" />
     <Content Include="MonitorMgt\Mon18\Mon18_p01.aspx" />
     <Content Include="MonitorMgt\Mon18\Mon18_p02.aspx" />
@@ -575,6 +575,8 @@
     <Content Include="PlanMgt\Pln04\Pln04_p02.aspx" />
     <Content Include="PlanMgt\Pln04\Pln04_p03.aspx" />
     <Content Include="PlanMgt\Pln05\Pln05.aspx" />
+    <Content Include="PlanMgt\Pln11\Pln11.aspx" />
+    <Content Include="PlanMgt\Pln11\Pln11_p01.aspx" />
     <Content Include="PlanMgt\PlnWidget02\PlnWidget02.aspx" />
     <Content Include="QualityMgt\Qua10\Qua10.aspx" />
     <Content Include="QualityMgt\Qua11\Qua11.aspx" />
@@ -694,7 +696,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SqlMap\SqlMapFiles\InfoTestData.xml" />
-    <Content Include="SqlMap\SqlMapFiles\Lms11Data.xml">
+    <Content Include="SqlMap\SqlMapFiles\Qua07Data.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SqlMap\SqlMapFiles\Mon15Data.xml" />
@@ -714,6 +716,7 @@
     <Content Include="SqlMap\SqlMapFiles\Mon16Data.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SqlMap\SqlMapFiles\Pln11Data.xml" />
     <Content Include="SqlMap\SqlMapFiles\Pln05Data.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -834,7 +837,9 @@
     <Content Include="SqlMap\SqlMapFiles\Info19Data.xml" />
     <Content Include="SqlMap\SqlMapFiles\Info47Data.xml" />
     <Content Include="SqlMap\SqlMapFiles\Info48Data.xml" />
-    <Content Include="SqlMap\SqlMapFiles\MenuData.xml" />
+    <Content Include="SqlMap\SqlMapFiles\MenuData.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SqlMap\SqlMapFiles\MessageData.xml" />
     <Content Include="SqlMap\SqlMapFiles\CUDData.xml">
       <SubType>Designer</SubType>
@@ -1010,8 +1015,7 @@
     <Compile Include="Biz\InfoManagement\Info62.cs" />
     <Compile Include="Biz\InfoManagement\Info63.cs" />
     <Compile Include="Biz\InfoManagement\InfoTest.cs" />
-    <Compile Include="Biz\LmsManageMent\Lms10.cs" />
-    <Compile Include="Biz\LmsManageMent\Lms11.cs" />
+    <Compile Include="Biz\QualityManagement\Qua07.cs" />
     <Compile Include="Biz\MonitorManagement\Mon10.cs" />
     <Compile Include="Biz\MonitorManagement\Mon11.cs" />
     <Compile Include="Biz\MonitorManagement\Mon13.cs" />
@@ -1029,6 +1033,7 @@
     <Compile Include="Biz\PlanManagement\Pln04.cs" />
     <Compile Include="Biz\PlanManagement\Pln05.cs" />
     <Compile Include="Biz\PlanManagement\Pln06.cs" />
+    <Compile Include="Biz\PlanManagement\Pln11.cs" />
     <Compile Include="Biz\PlanManagement\PlnWidget02.cs" />
     <Compile Include="Biz\QualityManagement\Qua10.cs" />
     <Compile Include="Biz\QualityManagement\Qua11.cs" />
@@ -2449,12 +2454,12 @@
     <Compile Include="InfoMgt\InfoTest\InfoTest_P02.aspx.designer.cs">
       <DependentUpon>InfoTest_P02.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LmsMgt\Lms11\Lms11.aspx.cs">
-      <DependentUpon>Lms11.aspx</DependentUpon>
+    <Compile Include="QualityMgt\Qua07\Qua07.aspx.cs">
+      <DependentUpon>Qua07.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LmsMgt\Lms11\Lms11.aspx.designer.cs">
-      <DependentUpon>Lms11.aspx</DependentUpon>
+    <Compile Include="QualityMgt\Qua07\Qua07.aspx.designer.cs">
+      <DependentUpon>Qua07.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -2690,6 +2695,20 @@
     </Compile>
     <Compile Include="PlanMgt\Pln05\Pln05.aspx.designer.cs">
       <DependentUpon>Pln05.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln11\Pln11.aspx.cs">
+      <DependentUpon>Pln11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln11\Pln11.aspx.designer.cs">
+      <DependentUpon>Pln11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanMgt\Pln11\Pln11_p01.aspx.cs">
+      <DependentUpon>Pln11_p01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanMgt\Pln11\Pln11_p01.aspx.designer.cs">
+      <DependentUpon>Pln11_p01.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlanMgt\PlnWidget02\PlnWidget02.aspx.cs">
       <DependentUpon>PlnWidget02.aspx</DependentUpon>
@@ -3562,8 +3581,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="FMB_FW\" />
     <Folder Include="FW\Utils\" />
-    <Folder Include="LmsMgt\Lms10\" />
-    <Folder Include="LmsMgt\Lms20\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

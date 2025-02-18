@@ -10,23 +10,27 @@ using MES.FW.Common.CommonMgt;
 using HQCWeb.FMB_FW;
 using HQCWeb.FW;
 
+using MES.FW.Common.Crypt;
 using System.Dynamic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace HQCWeb.LmsMgt.Lms11
+namespace HQCWeb.QualityMgt.Qua07
 {
-    public partial class Lms11 : System.Web.UI.Page
+    public partial class Qua07 : System.Web.UI.Page
     {
         BasePage bp = new BasePage();
         ExcelExport ee = new ExcelExport();
+        Crypt cy = new Crypt();
 
         string strDBName = string.Empty;
         string strQueryID = string.Empty;
         string strErrMessage = string.Empty;
 
+        public string strKey = System.Configuration.ConfigurationManager.AppSettings.Get("HQC_CRYPTKEY");
+
         // 비지니스 클래스 작성
-        Biz.LmsManageMent.Lms11 biz = new Biz.LmsManageMent.Lms11();
+        Biz.QualityManagement.Qua07 biz = new Biz.QualityManagement.Qua07();
 
         #region GRID Setting
         // 그리드에 보여져야할 컬럼 정의
@@ -42,7 +46,10 @@ namespace HQCWeb.LmsMgt.Lms11
         public string strMainFix;
         public string strDetailFix;
         // 그리드 키값 정의
-        public string[] strKeyColumn = new string[] { "COL_1" };
+        public string[] strKeyColumn = new string[] { "ORDER_NO" };
+
+        // 상세 그리드 키값 정의
+        public string[] strDetailKeyColumn = new string[] { "" };
 
         //JSON 전달용 변수
         string jsMainField = string.Empty;
@@ -57,6 +64,8 @@ namespace HQCWeb.LmsMgt.Lms11
         #region Page_Load
         protected void Page_Load(object sender, EventArgs e)
         {
+            cy.Key = strKey;
+
             SetPageInit();
 
             if (!IsPostBack)
@@ -74,8 +83,8 @@ namespace HQCWeb.LmsMgt.Lms11
 
 
                 // 클라이언트 사이드 변수에 JSON 데이터 할당 및 'createDetailGrid' 함수 호출
-                string scriptDetail = $@" column = {jsDetailCol}; 
-                                field = {jsDetailField}; 
+                string scriptDetail = $@" column2 = {jsDetailCol}; 
+                                field2 = {jsDetailField}; 
                                 createDetailGrid('" + strDetailFix + "'); ";
 
                 //직렬화된 JSON을 자바스크립트 변수에 적용합니다.
@@ -94,10 +103,9 @@ namespace HQCWeb.LmsMgt.Lms11
             DataSet ds = new DataSet();
 
             strDBName = "GPDB";
-            strQueryID = "Lms11Data.Get_DdlData";
+            strQueryID = "Qua07Data.Get_DdlData";
 
             FW.Data.Parameters param = new FW.Data.Parameters();
-            param.Add("PLANT_CD", bp.g_plant.ToString());
 
             // 비지니스 메서드 호출(다중테이블 함수)
             ds = biz.GetDataSet(strDBName, strQueryID, param);
@@ -132,10 +140,10 @@ namespace HQCWeb.LmsMgt.Lms11
             strQueryID = "UserInfoData.Get_UserMenuSettingInfo";
 
             FW.Data.Parameters sParam = new FW.Data.Parameters();
-            sParam.Add("MENU_ID", "Lms11");
+            sParam.Add("MENU_ID", "Qua07");
             sParam.Add("USER_ID", bp.g_userid.ToString());
 
-            sParam.Add("CUR_MENU_ID", "Lms11");
+            sParam.Add("CUR_MENU_ID", "Qua07");
 
             ds = biz.GetUserMenuSettingInfoList(strDBName, strQueryID, sParam);
 
@@ -147,7 +155,7 @@ namespace HQCWeb.LmsMgt.Lms11
                 {
                     strMessage = ds.Tables[0].Rows[0][1].ToString();
 
-                    ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createMainGrid();", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createGrid();", true);
 
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), Guid.NewGuid().ToString(), "fn_ErrorMessage('" + strMessage + "');", true);
                 }
@@ -175,7 +183,7 @@ namespace HQCWeb.LmsMgt.Lms11
                     }
                     else
                     {
-                        arrMainColumn = new string[] { "PART_NO", "OCCUR_DT", "SHIFT", "LOT_NO", "NO", "CAR_TYPE", "SEQ_ID", "KEY_HID" };
+                        arrMainColumn = new string[] { "ORDER_NO", "ORDER_DATE", "SHIFT", "LOT_NO", "NUM_QTY", "CAR_TYPE", "SEQ_NO", "KEY_HID" };
                         arrMainColumnCaption = new string[arrMainColumn.Length];
                         arrMainColumnWidth = new string[arrMainColumn.Length];
                         strMainFix = "";
@@ -222,7 +230,7 @@ namespace HQCWeb.LmsMgt.Lms11
         #region SetTitle
         private void SetTitle()
         {
-            lbCond_01.Text = Dictionary_Data.SearchDic("구분", bp.g_language);
+            lbCond_01.Text = Dictionary_Data.SearchDic("제품번호", bp.g_language);
             lbLotNo.Text = Dictionary_Data.SearchDic("로트번호", bp.g_language);
             lbLineCd.Text = Dictionary_Data.SearchDic("라인", bp.g_language);
         }
@@ -235,19 +243,19 @@ namespace HQCWeb.LmsMgt.Lms11
             string strTableName = string.Empty;
             string strMessage = string.Empty;
 
-            strDBName = "WIADB";
-            strQueryID = "Lms11Data.Get_QualityList";
+            strDBName = "GPDB";
+            strQueryID = "Qua07Data.Get_QualityList";
 
             FW.Data.Parameters sParam = new FW.Data.Parameters();
-            sParam.Add("ToDate", txtToDt.Text);
-            sParam.Add("FromDate", txtFromDt.Text);
+            sParam.Add("ToDate", txtToDt.Text.Replace("-", ""));
+            sParam.Add("FromDate", txtFromDt.Text.Replace("-", ""));
             sParam.Add("FromLot", txtFromLot.Text);
             sParam.Add("ToLot", textToLot.Text);
             sParam.Add("Line", ddlLineCd.SelectedValue);
 
             sParam.Add("FLAG", flag);
 
-            sParam.Add("CUR_MENU_ID", "Lms11");        // 조회페이지 메뉴 아이디 입력 - 에러로그 생성시 메뉴 아이디 필요
+            sParam.Add("CUR_MENU_ID", "Qua07");        // 조회페이지 메뉴 아이디 입력 - 에러로그 생성시 메뉴 아이디 필요
 
             // 비지니스 메서드 호출
             ds = biz.GetDataSet(strDBName, strQueryID, sParam);
@@ -260,7 +268,7 @@ namespace HQCWeb.LmsMgt.Lms11
                 {
                     strErrMessage = ds.Tables[0].Rows[0][1].ToString();
 
-                    ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createMainGrid();", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createGrid();", true);
 
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), Guid.NewGuid().ToString(), "fn_ErrorMessage('" + strErrMessage + "');", true);
                 }
@@ -284,7 +292,7 @@ namespace HQCWeb.LmsMgt.Lms11
                         {
                             // 클라이언트 사이드 변수에 JSON 데이터 할당 및 'search' 함수 호출
                             string script = $@" data = ''; 
-                            createMainGrid(); ";
+                            createGrid(); ";
 
                             //직렬화된 JSON을 자바스크립트 변수에 적용합니다.
                             ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", script, true);
@@ -292,12 +300,13 @@ namespace HQCWeb.LmsMgt.Lms11
                             ScriptManager.RegisterStartupScript(Page, this.GetType(), Guid.NewGuid().ToString(), "fn_NoData();", true);
                         }
 
+
                     }
                     else
                     {
                         // 클라이언트 사이드 변수에 JSON 데이터 할당 및 'search' 함수 호출
                         string script = $@" data = ''; 
-                            createMainGrid(); ";
+                            createGrid(); ";
 
                         //직렬화된 JSON을 자바스크립트 변수에 적용합니다.
                         ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", script, true);
@@ -308,7 +317,7 @@ namespace HQCWeb.LmsMgt.Lms11
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createMainGrid();", true);
+                ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createGrid();", true);
 
                 ScriptManager.RegisterStartupScript(Page, this.GetType(), "Faile", "fn_NoData();", true);
             }
@@ -346,6 +355,89 @@ namespace HQCWeb.LmsMgt.Lms11
                 txtToDt.Text = date[1];
                 txtFromDt.Enabled = false;
                 txtToDt.Enabled = false;
+            }
+        }
+        #endregion
+
+        #region btnDetailSearch_Click
+        protected void btnDetailSearch_Click(object sender, EventArgs e)
+        {
+            string strTableName = string.Empty;
+            string strMessage = string.Empty;
+
+            string[] strSplitValue = cy.Decrypt(hidParams.Value).Split('/');
+
+            strDBName = "GPDB";
+            strQueryID = "Qua07Data.Get_CurrectDetailList";
+
+            FW.Data.Parameters sParam = new FW.Data.Parameters();
+            sParam.Add("PLANT_CD", strSplitValue[0]);
+            sParam.Add("MAN_NO", strSplitValue[1]);
+
+            sParam.Add("CUR_MENU_ID", "Lms11");        // 조회페이지 메뉴 아이디 입력 - 에러로그 생성시 메뉴 아이디 필요
+
+
+            DataSet ds = new DataSet();
+
+            ds = biz.GetDataSet(strDBName, strQueryID, sParam);
+
+            if (ds.Tables.Count > 0)
+            {
+                strTableName = ds.Tables[0].TableName.ToString();
+
+                if (strTableName == "ErrorLog")
+                {
+                    strMessage = ds.Tables[0].Rows[0][1].ToString();
+
+                    ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", "createGrid();", true);
+
+                    ScriptManager.RegisterStartupScript(Page, this.GetType(), Guid.NewGuid().ToString(), "fn_ErrorMessage('" + strMessage + "');", true);
+                }
+                else
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        jsDetailData = ConvertJSONData.ConvertDataTableToJSON(ds.Tables[0], strDetailKeyColumn);
+
+                        //정상처리되면
+                        if (!String.IsNullOrEmpty(jsDetailData))
+                        {
+                            // 클라이언트 사이드 변수에 JSON 데이터 할당 및 'search' 함수 호출
+                            string script = $@" data2 = {jsDetailData}; 
+                            createDetailGrid('" + strDetailFix + "'); ";
+
+                            //직렬화된 JSON을 자바스크립트 변수에 적용합니다.
+                            ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", script, true);
+                        }
+                        else
+                        {
+                            // 클라이언트 사이드 변수에 JSON 데이터 할당 및 'search' 함수 호출
+                            string script = $@" data2 = ""; 
+                            createDetailGrid(); ";
+
+                            //직렬화된 JSON을 자바스크립트 변수에 적용합니다.
+                            ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", script, true);
+
+                            ScriptManager.RegisterStartupScript(Page, this.GetType(), Guid.NewGuid().ToString(), "fn_NoData();", true);
+                        }
+
+                    }
+                    else
+                    {
+                        // 클라이언트 사이드 변수에 JSON 데이터 할당 및 'search' 함수 호출
+                        string script = $@" data2 = ''; 
+                            createDetailGrid(); ";
+
+                        //직렬화된 JSON을 자바스크립트 변수에 적용합니다.
+                        ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "searchData", script, true);
+
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), Guid.NewGuid().ToString(), "fn_NoData();", true);
+                    }
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, this.GetType(), "Faile", "fn_NoData();", true);
             }
         }
         #endregion

@@ -391,7 +391,9 @@
 
     <statement id="Get_CalendarData" parameterClass="System.Collections.Hashtable">
       <![CDATA[
-          EXEC W_SP_WIDGET_CALENDAR #PLANT_CD#, #PROD_DT#
+          SELECT 2025 AS INSPECT_YEAR, 20250208 AS INSPECT_DATE, '검교정 내용' AS MAN_NO, 1 AS CNT;
+          SELECT 1 ;
+          SELECT 20250220 AS DATA_DATE, 50 AS NOTICE_NUM, '새로운 공지' AS NOTICE_TITLE, 1 AS CNT;
       ]]>
     </statement>
     
